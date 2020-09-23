@@ -89,7 +89,7 @@ void  myNSLog(NSString *format, ...){
 
 ### 用MachOView查看NSLog的偏移
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601163255211.png" alt="image-20200601163255211" style="zoom:50%;" />
+<img src=./Hook原理.assets/image-20200601163255211.png" alt="image-20200601163255211" style="zoom:50%;" />
 
 ### 动态调试
 
