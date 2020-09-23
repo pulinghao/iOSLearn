@@ -95,13 +95,13 @@ void  myNSLog(NSString *format, ...){
 
 找到MachO文件的加载地址为`` 0x0000000104940000``
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601163206831.png" alt="image-20200601163206831" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601163206831.png" alt="image-20200601163206831" style="zoom:50%;" />
 
 
 
 将懒加载表的偏移与MachO的加载地址相加 `` 0x000000010494c000``
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601163324292.png" alt="image-20200601163324292" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601163324292.png" alt="image-20200601163324292" style="zoom:50%;" />
 
 x命令是读取指针的值
 
@@ -111,7 +111,7 @@ x命令是读取指针的值
 
 使用dis -s命令反汇编
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601163757564.png" alt="image-20200601163757564" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601163757564.png" alt="image-20200601163757564" style="zoom:50%;" />
 
 
 
@@ -119,7 +119,7 @@ x命令是读取指针的值
 
 再次用x命令，查看`` 0x000000010494c000``地址中的内容， 会发现发生了变化，此时，再用dis -s反汇编，得到结果
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601164324333.png" alt="image-20200601164324333" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601164324333.png" alt="image-20200601164324333" style="zoom:50%;" />
 
 ## fishhook是如何通过字符串找到对应的函数地址？
 
