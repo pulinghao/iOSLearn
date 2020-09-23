@@ -125,7 +125,7 @@ x命令是读取指针的值
 
 懒加载表（Lazy Symbol Pointers)与之对应的动态符号表(Dynamic Symbol Table)，两者一一对应
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601170915773.png" alt="image-20200601170915773" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601170915773.png" alt="image-20200601170915773" style="zoom:50%;" />
 
 ==>去Dynamic Symbol Table找
 
@@ -133,23 +133,23 @@ x命令是读取指针的值
 
 ==>去**Symbol Table** 找到偏移
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601171311336.png" alt="image-20200601171311336" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601171311336.png" alt="image-20200601171311336" style="zoom:50%;" />
 
 Data值为F5，十进制85.那么在Symbol Table中找到偏移为245的值
 
 
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601171518013.png" alt="image-20200601171518013" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601171518013.png" alt="image-20200601171518013" style="zoom:50%;" />
 
 ==>去**String Table**找
 
-<img src="/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601171655325.png" alt="image-20200601171655325" style="zoom:50%;" />
+<img src="./Hook原理.assets/image-20200601171655325.png" alt="image-20200601171655325" style="zoom:50%;" />
 
 在String Table中的偏移是DD，十进制为204。
 
 
 
-![image-20200601180049882](/Users/pulinghao/Github/iOSLearn/Hook原理.assets/image-20200601180049882.png)
+![image-20200601180049882](./Hook原理.assets/image-20200601180049882.png)
 
 
 
