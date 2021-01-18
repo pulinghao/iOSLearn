@@ -33,7 +33,7 @@
 
 # 实例
 
-- `object_setClass`
+- 修改ISA指针`object_setClass`
 
   将self的isa指针指向新的类，并不会改变[self class]的值，只是改变self->isa的值
 
@@ -154,9 +154,37 @@
   }
   ```
 
+- 获取方法的IMP`method_getImplementation`
+
+  ```
+  Method newMethod = class_getInstanceMethod([Person class], @selector(run));
+  IMP imp = method_getImplementation(newMethod);
+  ```
+
   
 
-- 
+- 设置方法的IMP`method_setImplementation`
+
+  交换两个方法，如下
+
+  ```objective-c
+  Person *p = [[Person alloc] init];
+  [p walk];
+  
+  Method oldMethod = class_getInstanceMethod([Person class], @selector(walk));
+  Method newMethod = class_getInstanceMethod([Person class], @selector(run));
+  IMP imp = method_getImplementation(newMethod);
+  method_setImplementation(oldMethod, imp);
+  [p walk];
+  
+  //也可以设置C语言指针
+  void doSth(){
+    
+  }
+  method_setImplementation(oldMethod, (IMP)doSth);
+  ```
+
+  
 
 
 

@@ -18,6 +18,9 @@
 		A36C760925B3281A005D7B8A /* MyLearnIOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C760825B3281A005D7B8A /* MyLearnIOSUITests.m */; };
 		A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C761B25B32A1C005D7B8A /* KVOPerson.m */; };
 		A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C762525B3308F005D7B8A /* KVOSecondViewController.m */; };
+		A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C763725B5DC88005D7B8A /* RuntimeLearn.m */; };
+		A36C764125B5DC93005D7B8A /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764025B5DC93005D7B8A /* Person.m */; };
+		A36C764725B5DCA5005D7B8A /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764625B5DCA5005D7B8A /* Dog.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,12 @@
 		A36C761B25B32A1C005D7B8A /* KVOPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVOPerson.m; sourceTree = "<group>"; };
 		A36C762425B3308F005D7B8A /* KVOSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVOSecondViewController.h; sourceTree = "<group>"; };
 		A36C762525B3308F005D7B8A /* KVOSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVOSecondViewController.m; sourceTree = "<group>"; };
+		A36C763625B5DC88005D7B8A /* RuntimeLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeLearn.h; sourceTree = "<group>"; };
+		A36C763725B5DC88005D7B8A /* RuntimeLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeLearn.m; sourceTree = "<group>"; };
+		A36C763F25B5DC93005D7B8A /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		A36C764025B5DC93005D7B8A /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		A36C764525B5DCA5005D7B8A /* Dog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
+		A36C764625B5DCA5005D7B8A /* Dog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +119,7 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				A36C763525B5DC70005D7B8A /* Runtime */,
 				A36C761925B32844005D7B8A /* KVO */,
 				A36C75E125B32817005D7B8A /* AppDelegate.h */,
 				A36C75E225B32817005D7B8A /* AppDelegate.m */,
@@ -153,6 +163,19 @@
 				A36C762525B3308F005D7B8A /* KVOSecondViewController.m */,
 			);
 			path = KVO;
+			sourceTree = "<group>";
+		};
+		A36C763525B5DC70005D7B8A /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				A36C763625B5DC88005D7B8A /* RuntimeLearn.h */,
+				A36C763725B5DC88005D7B8A /* RuntimeLearn.m */,
+				A36C763F25B5DC93005D7B8A /* Person.h */,
+				A36C764025B5DC93005D7B8A /* Person.m */,
+				A36C764525B5DCA5005D7B8A /* Dog.h */,
+				A36C764625B5DCA5005D7B8A /* Dog.m */,
+			);
+			path = Runtime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,8 +307,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
+				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
+				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,
