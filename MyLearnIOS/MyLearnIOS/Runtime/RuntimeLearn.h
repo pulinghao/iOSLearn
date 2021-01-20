@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)exchangeMethod;
 
+// 消息转发
+- (void)resolve;
+
 @end
 
 NS_ASSUME_NONNULL_END

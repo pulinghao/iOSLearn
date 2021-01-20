@@ -23,7 +23,7 @@
     
     RuntimeLearn *runteim = [[RuntimeLearn alloc] init];
     
-    [runteim exchangeMethod];
+    [runteim resolve];
 }
 
 

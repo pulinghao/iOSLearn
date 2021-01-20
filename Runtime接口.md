@@ -29,7 +29,108 @@
 
   
 
+- 消息转发`objc_msgSend`，源码位于`objc_msg-arm64.s`
 
+  ```asm
+  	ENTRY _objc_msgSend
+  	UNWIND _objc_msgSend, NoFrame
+  
+  	
+  	cmp	p0, #0			// nil check and tagged pointer check,p0是消息接收者
+  #if SUPPORT_TAGGED_POINTERS
+  	b.le	 		//  (MSB tagged pointer looks negative)  //b.le意思是小于等于0，走LNilOrTagged 分支
+  #else
+  	b.eq	LReturnZero     //b.eq意思是等于0，走LReturnZero  分支
+  #endif
+  	ldr	p13, [x0]		// p13 = isa
+  	GetClassFromIsa_p16 p13, 1, x0	// p16 = class
+  LGetIsaDone:
+  	// calls imp or objc_msgSend_uncached
+  	CacheLookup NORMAL, _objc_msgSend, __objc_msgSend_uncached
+  
+  #if SUPPORT_TAGGED_POINTERS
+  LNilOrTagged:
+  	b.eq	LReturnZero		// nil check
+  	GetTaggedClass
+  	b	LGetIsaDone
+  // SUPPORT_TAGGED_POINTERS
+  #endif
+  
+  LReturnZero:    //
+  	// x0 is already zero
+  	mov	x1, #0
+  	movi	d0, #0
+  	movi	d1, #0
+  	movi	d2, #0
+  	movi	d3, #0
+  	ret
+  
+  	END_ENTRY _objc_msgSend
+  ```
+
+  注意`GetClassFromIsa_p16`这个汇编方法，本质还是做了下面的掩码操作，得到`isa`
+
+  ```asm
+  .macro ExtractISA
+  	and    $0, $1, #ISA_MASK
+  .endmacro
+  ```
+
+  > .macro 的语法相当于是define，定义了一个宏
+
+  ```asm
+  .macro MethodTableLookup
+  	
+  	SAVE_REGS MSGSEND
+  
+  	// lookUpImpOrForward(obj, sel, cls, LOOKUP_INITIALIZE | LOOKUP_RESOLVER)
+  	// receiver and selector already in x0 and x1
+  	mov	x2, x16
+  	mov	x3, #3
+  	bl	_lookUpImpOrForward  // 在方法列表里找方法
+  
+  	// IMP in x0
+  	mov	x17, x0
+  
+  	RESTORE_REGS MSGSEND
+  
+  .endmacro
+  
+  ```
+
+  > 汇编中的方法_lookUpImpOrForward比C语言中的同名方法，多一个下划线，同名C方法
+  >
+  > `extern IMP lookUpImpOrForward(id obj, SEL, Class cls, int behavior);`
+
+  
+
+- 动态解析
+
+  resolveInstanceMethod方法，会被调用两次，为什么？
+
+  【答】第一次触发动态解析，调用resolve；第二次是消息转发，进入forwarding逻辑了，再次调用resolve。通过lldb调试打印调用栈`bt`可以发现
+
+  ```shell
+  #第二次调用
+  * thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 2.1
+    * frame #0: 0x000000010206770b MyLearnIOS`+[Person resolveInstanceMethod:](self=Person, _cmd="resolveInstanceMethod:", sel="walk") at Person.m:22:5
+      frame #1: 0x00007fff20185ef2 libobjc.A.dylib`resolveInstanceMethod(objc_object*, objc_selector*, objc_class*) + 159
+      frame #2: 0x00007fff20185cfe libobjc.A.dylib`resolveMethod_locked(objc_object*, objc_selector*, objc_class*, int) + 345
+      frame #3: 0x00007fff201858a7 libobjc.A.dylib`class_getInstanceMethod + 47
+      frame #4: 0x00007fff2042f83f CoreFoundation`__methodDescriptionForSelector + 281
+      frame #5: 0x00007fff2042f8e8 CoreFoundation`-[NSObject(NSObject) methodSignatureForSelector:] + 30
+      frame #6: 0x00007fff20424c09 CoreFoundation`___forwarding___ + 420
+      frame #7: 0x00007fff20427068 CoreFoundation`__forwarding_prep_0___ + 120
+  
+  #第一次调用
+  * thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 2.1
+    * frame #0: 0x000000010206770b MyLearnIOS`+[Person resolveInstanceMethod:](self=Person, _cmd="resolveInstanceMethod:", sel="walk") at Person.m:22:5
+      frame #1: 0x00007fff20185ef2 libobjc.A.dylib`resolveInstanceMethod(objc_object*, objc_selector*, objc_class*) + 159
+      frame #2: 0x00007fff20185cfe libobjc.A.dylib`resolveMethod_locked(objc_object*, objc_selector*, objc_class*, int) + 345
+      frame #3: 0x00007fff2017421b libobjc.A.dylib`_objc_msgSend_uncached + 75
+  ```
+
+  
 
 # 实例
 
@@ -184,9 +285,15 @@
   method_setImplementation(oldMethod, (IMP)doSth);
   ```
 
+- 与`@selector()`等价 方法
+
+  ```objective-c
+  @selector(yourname) //与下面的方法等价
+  sel_registerName("yourname");
   
+  ```
 
-
+  
 
 # clang
 

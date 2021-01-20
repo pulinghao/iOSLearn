@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)walk;
 
 - (void)run;
+
++ (void)walkwalk;
 @end
 
 NS_ASSUME_NONNULL_END

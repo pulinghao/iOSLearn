@@ -34,8 +34,14 @@ struct method_t {
     IMP imp = method_getImplementation(newMethod2->selbig.imp);
     method_setImplementation(oldMethod, imp);
     [p walk];
-    
-    
 }
 
+
+- (void)resolve
+{
+    Person *p = [[Person alloc] init];
+    [p walk];
+    
+    [Person walkwalk];
+}
 @end
