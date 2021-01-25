@@ -130,7 +130,35 @@
       frame #3: 0x00007fff2017421b libobjc.A.dylib`_objc_msgSend_uncached + 75
   ```
 
+- Runtime消息打印`instrumentObjcMessageSends`
+
+  ```objective-c
+  extern void instrumentObjcMessageSends(BOOL);
+  @interface ViewController ()
   
+  @end
+  
+  @implementation ViewController
+  
+  - (void)viewDidLoad {
+      [super viewDidLoad];
+      // Do any additional setup after loading the view.
+      
+      instrumentObjcMessageSends(YES);  //打开打印消息
+  
+      MyCopy *copy = [[MyCopy alloc] init];
+      instrumentObjcMessageSends(NO);   //关闭打印消息
+  }
+  
+  
+  //输出日志在 /private/tmp/msgSend-XXX下
+  ```
+
+  > 这个日志在Mac环境下能打印，但是在iOS 模拟器下打印不出来
+
+
+
+
 
 # 实例
 
@@ -214,7 +242,13 @@
   }
   ```
 
-  
+- 给类添加实例变量`class_addIvar`
+
+  ```
+  class_addIvar(TZCat, name.UTF8String, sizeof(id),log2(sizeof(id)),@encode(id));
+  ```
+
+  添加`ivar`只能在`objc_registerClassPair`之前，原因在于，`ivar`在`class_ro_t`的结构体中，是只读的。而`method`能够在类注册之后添加，原因也是因为`method`的列表，在`class_rw_t`结构中。
 
 # 方法
 

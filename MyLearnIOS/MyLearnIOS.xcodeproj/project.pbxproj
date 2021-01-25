@@ -21,6 +21,12 @@
 		A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C763725B5DC88005D7B8A /* RuntimeLearn.m */; };
 		A36C764125B5DC93005D7B8A /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764025B5DC93005D7B8A /* Person.m */; };
 		A36C764725B5DCA5005D7B8A /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764625B5DCA5005D7B8A /* Dog.m */; };
+		A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A60E25B99C70001E427D /* MyCopy.m */; };
+		A3E6A61F25BC32BA001E427D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A61E25BC32BA001E427D /* main.m */; };
+		A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF252E25BC797D008051CB /* RuntimeAPI.m */; };
+		A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253525BC79E6008051CB /* RuntimeVC.m */; };
+		A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253C25BC849B008051CB /* NIOPerson.m */; };
+		A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF255025BDCBBB008051CB /* PLHThread.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +45,18 @@
 			remoteInfo = MyLearnIOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A3E6A61A25BC32BA001E427D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A36C75DE25B32817005D7B8A /* MyLearnIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLearnIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +87,20 @@
 		A36C764025B5DC93005D7B8A /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		A36C764525B5DCA5005D7B8A /* Dog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
 		A36C764625B5DCA5005D7B8A /* Dog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
+		A3E6A60D25B99C70001E427D /* MyCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCopy.h; sourceTree = "<group>"; };
+		A3E6A60E25B99C70001E427D /* MyCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCopy.m; sourceTree = "<group>"; };
+		A3E6A61C25BC32BA001E427D /* LearnMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3E6A61E25BC32BA001E427D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A3EF252D25BC797D008051CB /* RuntimeAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeAPI.h; sourceTree = "<group>"; };
+		A3EF252E25BC797D008051CB /* RuntimeAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeAPI.m; sourceTree = "<group>"; };
+		A3EF253425BC79E6008051CB /* RuntimeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeVC.h; sourceTree = "<group>"; };
+		A3EF253525BC79E6008051CB /* RuntimeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeVC.m; sourceTree = "<group>"; };
+		A3EF253B25BC849B008051CB /* NIOPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NIOPerson.h; sourceTree = "<group>"; };
+		A3EF253C25BC849B008051CB /* NIOPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NIOPerson.m; sourceTree = "<group>"; };
+		A3EF254425BDCA4F008051CB /* CFRunLoop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CFRunLoop.c; sourceTree = "<group>"; };
+		A3EF254A25BDCA59008051CB /* CFRunLoop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFRunLoop.h; sourceTree = "<group>"; };
+		A3EF254F25BDCBBB008051CB /* PLHThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLHThread.h; sourceTree = "<group>"; };
+		A3EF255025BDCBBB008051CB /* PLHThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHThread.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +125,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A3E6A61925BC32BA001E427D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,6 +141,7 @@
 				A36C75E025B32817005D7B8A /* MyLearnIOS */,
 				A36C75FC25B3281A005D7B8A /* MyLearnIOSTests */,
 				A36C760725B3281A005D7B8A /* MyLearnIOSUITests */,
+				A3E6A61D25BC32BA001E427D /* LearnMac */,
 				A36C75DF25B32817005D7B8A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +152,7 @@
 				A36C75DE25B32817005D7B8A /* MyLearnIOS.app */,
 				A36C75F925B32819005D7B8A /* MyLearnIOSTests.xctest */,
 				A36C760425B3281A005D7B8A /* MyLearnIOSUITests.xctest */,
+				A3E6A61C25BC32BA001E427D /* LearnMac */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +160,8 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				A3EF254325BDC98F008051CB /* Runloop */,
+				A3E6A60C25B99C60001E427D /* Copy */,
 				A36C763525B5DC70005D7B8A /* Runtime */,
 				A36C761925B32844005D7B8A /* KVO */,
 				A36C75E125B32817005D7B8A /* AppDelegate.h */,
@@ -174,8 +217,42 @@
 				A36C764025B5DC93005D7B8A /* Person.m */,
 				A36C764525B5DCA5005D7B8A /* Dog.h */,
 				A36C764625B5DCA5005D7B8A /* Dog.m */,
+				A3EF252D25BC797D008051CB /* RuntimeAPI.h */,
+				A3EF252E25BC797D008051CB /* RuntimeAPI.m */,
+				A3EF253425BC79E6008051CB /* RuntimeVC.h */,
+				A3EF253525BC79E6008051CB /* RuntimeVC.m */,
+				A3EF253B25BC849B008051CB /* NIOPerson.h */,
+				A3EF253C25BC849B008051CB /* NIOPerson.m */,
 			);
 			path = Runtime;
+			sourceTree = "<group>";
+		};
+		A3E6A60C25B99C60001E427D /* Copy */ = {
+			isa = PBXGroup;
+			children = (
+				A3E6A60D25B99C70001E427D /* MyCopy.h */,
+				A3E6A60E25B99C70001E427D /* MyCopy.m */,
+			);
+			path = Copy;
+			sourceTree = "<group>";
+		};
+		A3E6A61D25BC32BA001E427D /* LearnMac */ = {
+			isa = PBXGroup;
+			children = (
+				A3E6A61E25BC32BA001E427D /* main.m */,
+			);
+			path = LearnMac;
+			sourceTree = "<group>";
+		};
+		A3EF254325BDC98F008051CB /* Runloop */ = {
+			isa = PBXGroup;
+			children = (
+				A3EF254A25BDCA59008051CB /* CFRunLoop.h */,
+				A3EF254425BDCA4F008051CB /* CFRunLoop.c */,
+				A3EF254F25BDCBBB008051CB /* PLHThread.h */,
+				A3EF255025BDCBBB008051CB /* PLHThread.m */,
+			);
+			path = Runloop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +311,23 @@
 			productReference = A36C760425B3281A005D7B8A /* MyLearnIOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A3E6A61B25BC32BA001E427D /* LearnMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3E6A62025BC32BA001E427D /* Build configuration list for PBXNativeTarget "LearnMac" */;
+			buildPhases = (
+				A3E6A61825BC32BA001E427D /* Sources */,
+				A3E6A61925BC32BA001E427D /* Frameworks */,
+				A3E6A61A25BC32BA001E427D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LearnMac;
+			productName = LearnMac;
+			productReference = A3E6A61C25BC32BA001E427D /* LearnMac */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -253,6 +347,9 @@
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = A36C75DD25B32817005D7B8A;
 					};
+					A3E6A61B25BC32BA001E427D = {
+						CreatedOnToolsVersion = 12.3;
+					};
 				};
 			};
 			buildConfigurationList = A36C75D925B32817005D7B8A /* Build configuration list for PBXProject "MyLearnIOS" */;
@@ -271,6 +368,7 @@
 				A36C75DD25B32817005D7B8A /* MyLearnIOS */,
 				A36C75F825B32819005D7B8A /* MyLearnIOSTests */,
 				A36C760325B3281A005D7B8A /* MyLearnIOSUITests */,
+				A3E6A61B25BC32BA001E427D /* LearnMac */,
 			);
 		};
 /* End PBXProject section */
@@ -307,13 +405,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
+				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
 				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
+				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
+				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
+				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,
 				A36C75E625B32817005D7B8A /* SceneDelegate.m in Sources */,
 			);
@@ -332,6 +435,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A36C760925B3281A005D7B8A /* MyLearnIOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3E6A61825BC32BA001E427D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E6A61F25BC32BA001E427D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +699,26 @@
 			};
 			name = Release;
 		};
+		A3E6A62125BC32BA001E427D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A3E6A62225BC32BA001E427D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -623,6 +754,15 @@
 			buildConfigurations = (
 				A36C761425B3281A005D7B8A /* Debug */,
 				A36C761525B3281A005D7B8A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3E6A62025BC32BA001E427D /* Build configuration list for PBXNativeTarget "LearnMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3E6A62125BC32BA001E427D /* Debug */,
+				A3E6A62225BC32BA001E427D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
