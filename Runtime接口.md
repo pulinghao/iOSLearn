@@ -337,3 +337,18 @@
 clang -x objective-c -rewrite-objc -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk  XXX.m文件
 ```
 
+如果只想要iOS平台下的代码，可以做如下操作
+
+```shell
+// xcrun == Xcode Run
+// -sdk 指定系统平台
+// -arch 指定的架构
+xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc main.m -o main-arm64.cpp
+```
+
+使用 __weak 解决循环引用的时转换会报错，此时需要加上 runtime 版本
+
+```shell
+$ xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc -fobjc-arc -fobjc-runtime=ios-8.0.0 MyObject.m
+```
+
