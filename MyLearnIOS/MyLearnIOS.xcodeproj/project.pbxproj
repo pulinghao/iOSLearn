@@ -21,15 +21,12 @@
 		A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C763725B5DC88005D7B8A /* RuntimeLearn.m */; };
 		A36C764125B5DC93005D7B8A /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764025B5DC93005D7B8A /* Person.m */; };
 		A36C764725B5DCA5005D7B8A /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764625B5DCA5005D7B8A /* Dog.m */; };
-<<<<<<< Updated upstream
 		A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A60E25B99C70001E427D /* MyCopy.m */; };
 		A3E6A61F25BC32BA001E427D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A61E25BC32BA001E427D /* main.m */; };
 		A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF252E25BC797D008051CB /* RuntimeAPI.m */; };
 		A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253525BC79E6008051CB /* RuntimeVC.m */; };
 		A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253C25BC849B008051CB /* NIOPerson.m */; };
 		A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF255025BDCBBB008051CB /* PLHThread.m */; };
-		B61A6B9F25B57573004211D4 /* UIButton+BigFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A6B9E25B57573004211D4 /* UIButton+BigFrame.m */; };
-		B61A6BAB25B587A1004211D4 /* NSObject+MyKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = B61A6BAA25B587A1004211D4 /* NSObject+MyKVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +87,6 @@
 		A36C764025B5DC93005D7B8A /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		A36C764525B5DCA5005D7B8A /* Dog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
 		A36C764625B5DCA5005D7B8A /* Dog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
-<<<<<<< Updated upstream
 		A3E6A60D25B99C70001E427D /* MyCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCopy.h; sourceTree = "<group>"; };
 		A3E6A60E25B99C70001E427D /* MyCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCopy.m; sourceTree = "<group>"; };
 		A3E6A61C25BC32BA001E427D /* LearnMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnMac; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,10 +101,6 @@
 		A3EF254A25BDCA59008051CB /* CFRunLoop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFRunLoop.h; sourceTree = "<group>"; };
 		A3EF254F25BDCBBB008051CB /* PLHThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLHThread.h; sourceTree = "<group>"; };
 		A3EF255025BDCBBB008051CB /* PLHThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHThread.m; sourceTree = "<group>"; };
-		B61A6B9D25B57573004211D4 /* UIButton+BigFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+BigFrame.h"; sourceTree = "<group>"; };
-		B61A6B9E25B57573004211D4 /* UIButton+BigFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BigFrame.m"; sourceTree = "<group>"; };
-		B61A6BA925B587A1004211D4 /* NSObject+MyKVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MyKVO.h"; sourceTree = "<group>"; };
-		B61A6BAA25B587A1004211D4 /* NSObject+MyKVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MyKVO.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +163,6 @@
 				A3EF254325BDC98F008051CB /* Runloop */,
 				A3E6A60C25B99C60001E427D /* Copy */,
 				A36C763525B5DC70005D7B8A /* Runtime */,
-				B61A6B9C25B57533004211D4 /* UIButton */,
 				A36C761925B32844005D7B8A /* KVO */,
 				A36C75E125B32817005D7B8A /* AppDelegate.h */,
 				A36C75E225B32817005D7B8A /* AppDelegate.m */,
@@ -213,8 +204,6 @@
 				A36C761B25B32A1C005D7B8A /* KVOPerson.m */,
 				A36C762425B3308F005D7B8A /* KVOSecondViewController.h */,
 				A36C762525B3308F005D7B8A /* KVOSecondViewController.m */,
-				B61A6BA925B587A1004211D4 /* NSObject+MyKVO.h */,
-				B61A6BAA25B587A1004211D4 /* NSObject+MyKVO.m */,
 			);
 			path = KVO;
 			sourceTree = "<group>";
@@ -236,13 +225,6 @@
 				A3EF253C25BC849B008051CB /* NIOPerson.m */,
 			);
 			path = Runtime;
-		B61A6B9C25B57533004211D4 /* UIButton */ = {
-			isa = PBXGroup;
-			children = (
-				B61A6B9D25B57573004211D4 /* UIButton+BigFrame.h */,
-				B61A6B9E25B57573004211D4 /* UIButton+BigFrame.m */,
-			);
-			path = UIButton;
 			sourceTree = "<group>";
 		};
 		A3E6A60C25B99C60001E427D /* Copy */ = {
@@ -426,7 +408,6 @@
 				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
-				B61A6B9F25B57573004211D4 /* UIButton+BigFrame.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
@@ -434,7 +415,6 @@
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
 				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
-				B61A6BAB25B587A1004211D4 /* NSObject+MyKVO.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,
@@ -619,7 +599,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
 				INFOPLIST_FILE = MyLearnIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,7 +616,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
 				INFOPLIST_FILE = MyLearnIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

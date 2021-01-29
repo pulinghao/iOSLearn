@@ -77,7 +77,53 @@ UI跟踪模式，ScrollView滚动时切换
 
 ### NSRunLoopCommonModes
 
-commonModes并不是一个具体模式，而是一个标记，用来操作common items
+commonModes并不是一个具体模式，而是一个标记，用来操作common items。
+
+```c
+void CFRunLoopAddTimer(CFRunLoopRef rl, CFRunLoopTimerRef rlt, CFStringRef modeName) {    
+    CHECK_FOR_FORK();
+
+    //如果要添加timer的Runloop对象已经正在释放了，就不要添加了，直接返回
+    if (__CFRunLoopIsDeallocating(rl)) return;
+
+    //判断timer对象是否存在，timer关联的runloop是否存在，
+    //并且timer当前关联的runloop不能是要添加它的runloop，如果是的话直接返回，不需要添加了
+    if (!__CFIsValid(rlt) || (NULL != rlt->_runLoop && rlt->_runLoop != rl)) return;
+
+    //给当前的runloop加锁，防止在其他地方操作
+    __CFRunLoopLock(rl);
+
+    //如果当前要将timer添加到Runloop的commonModes集合下的话
+    if (modeName == kCFRunLoopCommonModes) {
+        //先判断Runloop对象是否有commonModes集合
+        //如果有 : 则直接拿到集合，否则set为NULL
+        CFSetRef set = rl->_commonModes ? CFSetCreateCopy(kCFAllocatorSystemDefault, rl->_commonModes) : NULL;
+        //如果RunLoop对象没有commonModesItems
+        if (NULL == rl->_commonModeItems) {
+            //创建一个RunLoop的commonModes集合
+            rl->_commonModeItems = CFSetCreateMutable(kCFAllocatorSystemDefault, 0, &kCFTypeSetCallBacks);
+        }
+        //将timer添加到RunLoop的commonModeItems集合里面
+        CFSetAddValue(rl->_commonModeItems, rlt);
+        //如果RunLoop的commonModes集合不为空
+        if (NULL != set) {
+            //把runloop对象和timer包装成数组
+            CFTypeRef context[2] = {rl, rlt};
+            //添加一个新的commonModesItems，也就是添加一个新的事件到RunLoop里面
+            /* add new item to all common-modes */
+            //这里就是遍历commonModes集合，然后对每一个标示(defaultMode和trackingMode)调用
+            //第二个参数那个函数,也就是在每一个commonModes的mode对象中都注册了一个timer的事件源
+            CFSetApplyFunction(set, (__CFRunLoopAddItemToCommonModes), (void *)context);
+            CFRelease(set);
+        }
+    } else {
+      
+    }
+    __CFRunLoopUnlock(rl);
+}
+```
+
+
 
 > 有时你需要一个 Timer，在两个 Mode 中都能得到回调，一种办法就是将这个 Timer 分别加入这两个 Mode。还有一种方式，就是将 Timer 加入到顶层的 RunLoop 的 “commonModeItems” 中。”commonModeItems” 被 RunLoop 自动更新到所有具有”Common”属性的 Mode 里去。
 
