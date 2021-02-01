@@ -17,15 +17,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Rc-dU-UC1">
-                                <rect key="frame" x="184" y="413" width="46" height="30"/>
+                                <rect key="frame" x="184" y="330" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="NEK-DU-44A" kind="show" id="jI2-pp-8Xa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDR-96-PyQ">
+                                <rect key="frame" x="168" y="292" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Transition"/>
+                                <connections>
+                                    <segue destination="SBx-S4-8cf" kind="show" id="zTy-7d-EHo"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhd-fg-Qfa">
-                                <rect key="frame" x="179" y="480" width="57" height="30"/>
+                                <rect key="frame" x="179" y="368" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Runtime"/>
                                 <connections>
@@ -66,6 +74,94 @@
             </objects>
             <point key="canvasLocation" x="1528" y="207"/>
         </scene>
+        <!--Transition View Controller1-->
+        <scene sceneID="Nd5-kq-HY7">
+            <objects>
+                <viewController id="SBx-S4-8cf" customClass="TransitionViewController1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HfC-zm-OF7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTI-24-Ccj">
+                                <rect key="frame" x="304" y="702" width="80" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="C2T-9U-V59"/>
+                                    <constraint firstAttribute="height" constant="80" id="CEv-t1-Z56"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="a1D-ZI-cBz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="d93-17-JPM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="g87-gI-kB9" kind="show" id="gHg-ex-Z9E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ldU-To-MPh"/>
+                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <constraints>
+                            <constraint firstItem="ldU-To-MPh" firstAttribute="trailing" secondItem="lTI-24-Ccj" secondAttribute="trailing" constant="30" id="BeL-5h-SsL"/>
+                            <constraint firstItem="ldU-To-MPh" firstAttribute="bottom" secondItem="lTI-24-Ccj" secondAttribute="bottom" constant="80" id="pvO-TV-nMi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gqv-Dp-rxR"/>
+                    <connections>
+                        <outlet property="redBtn" destination="lTI-24-Ccj" id="w5d-lZ-66N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khI-Gw-Hzn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2239.130434782609" y="-1201.3392857142856"/>
+        </scene>
+        <!--Transition View Controller2-->
+        <scene sceneID="nV7-xf-aP2">
+            <objects>
+                <viewController id="g87-gI-kB9" customClass="TransitionViewController2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XXk-zQ-LdP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvs-iT-yIk">
+                                <rect key="frame" x="306" y="702" width="78" height="80"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="I3j-1n-SK6"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="78" id="QwD-KJ-h1s"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="SPL-d3-DdD"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="d5S-ec-qec"/>
+                                    <constraint firstAttribute="height" constant="80" id="gIX-tf-g0E"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="uyk-JT-EFl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backAction:" destination="g87-gI-kB9" eventType="touchUpInside" id="dPr-xw-3fK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VDt-8p-858"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VDt-8p-858" firstAttribute="trailing" secondItem="Fvs-iT-yIk" secondAttribute="trailing" constant="30" id="EMP-wd-Wk0"/>
+                            <constraint firstItem="VDt-8p-858" firstAttribute="bottom" secondItem="Fvs-iT-yIk" secondAttribute="bottom" constant="80" id="oHI-3M-Kf7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="36E-0M-f8d"/>
+                    <connections>
+                        <outlet property="blackBtn" destination="Fvs-iT-yIk" id="HZG-PY-e4q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQ5-8m-F4N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3104" y="-1201"/>
+        </scene>
         <!--Second View Controller-->
         <scene sceneID="Tnh-cD-qlG">
             <objects>
@@ -80,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2V-rQ-GCd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2267" y="-449"/>
+            <point key="canvasLocation" x="2351" y="-449"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eOE-F6-7VZ">
@@ -104,6 +200,12 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -21,6 +21,11 @@
 		A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C763725B5DC88005D7B8A /* RuntimeLearn.m */; };
 		A36C764125B5DC93005D7B8A /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764025B5DC93005D7B8A /* Person.m */; };
 		A36C764725B5DCA5005D7B8A /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C764625B5DCA5005D7B8A /* Dog.m */; };
+		A39425FC25C3047500114F3A /* GCDLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A39425FB25C3047500114F3A /* GCDLearn.m */; };
+		A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A394260825C4609100114F3A /* NSOperationQueueLearn.m */; };
+		A394262725C6F61200114F3A /* CircleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A394262625C6F61200114F3A /* CircleTransition.m */; };
+		A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = A394263125C6F76D00114F3A /* TransitionViewController1.m */; };
+		A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = A394263825C6F77900114F3A /* TransitionViewController2.m */; };
 		A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A60E25B99C70001E427D /* MyCopy.m */; };
 		A3E6A61F25BC32BA001E427D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A61E25BC32BA001E427D /* main.m */; };
 		A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF252E25BC797D008051CB /* RuntimeAPI.m */; };
@@ -89,6 +94,16 @@
 		A36C764025B5DC93005D7B8A /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		A36C764525B5DCA5005D7B8A /* Dog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
 		A36C764625B5DCA5005D7B8A /* Dog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
+		A39425FA25C3047500114F3A /* GCDLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDLearn.h; sourceTree = "<group>"; };
+		A39425FB25C3047500114F3A /* GCDLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDLearn.m; sourceTree = "<group>"; };
+		A394260725C4609100114F3A /* NSOperationQueueLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOperationQueueLearn.h; sourceTree = "<group>"; };
+		A394260825C4609100114F3A /* NSOperationQueueLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOperationQueueLearn.m; sourceTree = "<group>"; };
+		A394262525C6F61200114F3A /* CircleTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleTransition.h; sourceTree = "<group>"; };
+		A394262625C6F61200114F3A /* CircleTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleTransition.m; sourceTree = "<group>"; };
+		A394263025C6F76D00114F3A /* TransitionViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionViewController1.h; sourceTree = "<group>"; };
+		A394263125C6F76D00114F3A /* TransitionViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController1.m; sourceTree = "<group>"; };
+		A394263725C6F77900114F3A /* TransitionViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionViewController2.h; sourceTree = "<group>"; };
+		A394263825C6F77900114F3A /* TransitionViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController2.m; sourceTree = "<group>"; };
 		A3E6A60D25B99C70001E427D /* MyCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCopy.h; sourceTree = "<group>"; };
 		A3E6A60E25B99C70001E427D /* MyCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCopy.m; sourceTree = "<group>"; };
 		A3E6A61C25BC32BA001E427D /* LearnMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnMac; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +183,9 @@
 			children = (
 				B6184DDF25C3FA7000837F2A /* Memory */,
 				B6184DCF25C3E36C00837F2A /* Lock */,
+				A394262425C6F59E00114F3A /* CustomTransition */,
+				A394260625C4607C00114F3A /* NSOperationQueue */,
+				A39425F925C3045E00114F3A /* GCD */,
 				A3EF254325BDC98F008051CB /* Runloop */,
 				A3E6A60C25B99C60001E427D /* Copy */,
 				A36C763525B5DC70005D7B8A /* Runtime */,
@@ -233,6 +251,37 @@
 				A3EF253C25BC849B008051CB /* NIOPerson.m */,
 			);
 			path = Runtime;
+			sourceTree = "<group>";
+		};
+		A39425F925C3045E00114F3A /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				A39425FA25C3047500114F3A /* GCDLearn.h */,
+				A39425FB25C3047500114F3A /* GCDLearn.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		A394260625C4607C00114F3A /* NSOperationQueue */ = {
+			isa = PBXGroup;
+			children = (
+				A394260725C4609100114F3A /* NSOperationQueueLearn.h */,
+				A394260825C4609100114F3A /* NSOperationQueueLearn.m */,
+			);
+			path = NSOperationQueue;
+			sourceTree = "<group>";
+		};
+		A394262425C6F59E00114F3A /* CustomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				A394262525C6F61200114F3A /* CircleTransition.h */,
+				A394262625C6F61200114F3A /* CircleTransition.m */,
+				A394263025C6F76D00114F3A /* TransitionViewController1.h */,
+				A394263125C6F76D00114F3A /* TransitionViewController1.m */,
+				A394263725C6F77900114F3A /* TransitionViewController2.h */,
+				A394263825C6F77900114F3A /* TransitionViewController2.m */,
+			);
+			path = CustomTransition;
 			sourceTree = "<group>";
 		};
 		A3E6A60C25B99C60001E427D /* Copy */ = {
@@ -431,17 +480,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A394262725C6F61200114F3A /* CircleTransition.m in Sources */,
 				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
+				A39425FC25C3047500114F3A /* GCDLearn.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
+				A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */,
+				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
 				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
 				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
+				A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */,
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,

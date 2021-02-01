@@ -14,6 +14,8 @@
 #import "PLHThread.h"
 #import "LockLearn.h"
 #import "TaggerPointerLearn.h"
+#import "GCDLearn.h"
+#import "NSOperationQueueLearn.h"
 extern void instrumentObjcMessageSends(BOOL);
 @interface ViewController ()
 
@@ -44,7 +46,7 @@ extern void instrumentObjcMessageSends(BOOL);
 //    }];
     
 //    [thread start];
-    
+
 //    typedef union {
 //        int a;
 //        float b;
@@ -56,9 +58,16 @@ extern void instrumentObjcMessageSends(BOOL);
 //    NSLog(@"b --> %p",&type.b);
 //    NSLog(@"zd --> %p",sizeof(UnionType));
     
+
 //    self.lockLearn = [[LockLearn alloc] init];
     self.taggerpointer = [[TaggerPointerLearn alloc] init];
     [self.taggerpointer testTaggerPointer];
+
+//    GCDLearn *gcd = [[GCDLearn alloc] init];
+//    [gcd test];
+//    
+    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
+    [quelearn testQueue];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
