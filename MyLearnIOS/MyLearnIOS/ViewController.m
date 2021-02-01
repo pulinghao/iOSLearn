@@ -12,9 +12,13 @@
 #import <objc/runtime.h>
 #import "Person.h"
 #import "PLHThread.h"
-
+#import "LockLearn.h"
+#import "TaggerPointerLearn.h"
 extern void instrumentObjcMessageSends(BOOL);
 @interface ViewController ()
+
+@property (nonatomic, strong) LockLearn *lockLearn;
+@property (nonatomic, strong) TaggerPointerLearn *taggerpointer;
 
 @end
 
@@ -29,7 +33,7 @@ extern void instrumentObjcMessageSends(BOOL);
 //    
 //    [runteim resolve];
     
-    [[Person new] walk];
+//    [[Person new] walk];
     instrumentObjcMessageSends(NO);
     
 //    PLHThread *thread = [[PLHThread alloc] initWithBlock:^{
@@ -39,20 +43,28 @@ extern void instrumentObjcMessageSends(BOOL);
 //        [[NSRunLoop currentRunLoop] run];
 //    }];
     
-    [thread start];
+//    [thread start];
     
-    typedef union {
-        int a;
-        float b;
-    }UnionType;
-    UnionType type;
-    type.a = 3;
+//    typedef union {
+//        int a;
+//        float b;
+//    }UnionType;
+//    UnionType type;
+//    type.a = 3;
+//
+//    NSLog(@"a --> %p",&type.a);
+//    NSLog(@"b --> %p",&type.b);
+//    NSLog(@"zd --> %p",sizeof(UnionType));
     
-    NSLog(@"a --> %p",&type.a);
-    NSLog(@"b --> %p",&type.b);
-    NSLog(@"zd --> %p",sizeof(UnionType));
+//    self.lockLearn = [[LockLearn alloc] init];
+    self.taggerpointer = [[TaggerPointerLearn alloc] init];
+    [self.taggerpointer testTaggerPointer];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.taggerpointer touchBegin];
+}
 
 - (void)learnRunloop
 {
@@ -79,5 +91,10 @@ extern void instrumentObjcMessageSends(BOOL);
     CFRunLoopSourceRef source0 = CFRunLoopSourceCreate(CFAllocatorGetDefault(), 0, &context);
     CFRunLoopAddSource(CFRunLoopGetCurrent(), source0, kCFRunLoopDefaultMode);
 }
+
+- (IBAction)testLock:(id)sender {
+    [self.lockLearn POSIX_Codictions];
+}
+
 
 @end

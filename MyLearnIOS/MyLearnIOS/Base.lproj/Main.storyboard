@@ -32,6 +32,14 @@
                                     <segue destination="NjZ-Fh-0lP" kind="show" id="GHq-sg-F2R"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9I-Gk-Y2I">
+                                <rect key="frame" x="191" y="549" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Lock"/>
+                                <connections>
+                                    <action selector="testLock:" destination="kLN-l8-gfK" eventType="touchUpInside" id="Ibo-Xv-fAM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yKR-Lk-maq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
