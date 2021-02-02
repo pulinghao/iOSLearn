@@ -34,6 +34,12 @@
 		A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF255025BDCBBB008051CB /* PLHThread.m */; };
 		B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184DD125C3E37D00837F2A /* LockLearn.m */; };
 		B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184DE125C3FA8200837F2A /* TaggerPointerLearn.m */; };
+		B6184E2425C7ACBA00837F2A /* NSObject+MultiDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E2325C7ACBA00837F2A /* NSObject+MultiDelegate.m */; };
+		B6184E2B25C7ACF600837F2A /* MultiDelegateOC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E2A25C7ACF600837F2A /* MultiDelegateOC.m */; };
+		B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E7E25C7C47E00837F2A /* MutiDelegateDemo.m */; };
+		B6184E8625C7C4C800837F2A /* MultiDelegateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8525C7C4C800837F2A /* MultiDelegateVC.m */; };
+		B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */; };
+		B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E9325C7C63500837F2A /* MultiDemoSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +128,18 @@
 		B6184DD125C3E37D00837F2A /* LockLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LockLearn.m; sourceTree = "<group>"; };
 		B6184DE025C3FA8200837F2A /* TaggerPointerLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaggerPointerLearn.h; sourceTree = "<group>"; };
 		B6184DE125C3FA8200837F2A /* TaggerPointerLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaggerPointerLearn.m; sourceTree = "<group>"; };
+		B6184E2225C7ACBA00837F2A /* NSObject+MultiDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MultiDelegate.h"; sourceTree = "<group>"; };
+		B6184E2325C7ACBA00837F2A /* NSObject+MultiDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MultiDelegate.m"; sourceTree = "<group>"; };
+		B6184E2925C7ACF600837F2A /* MultiDelegateOC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiDelegateOC.h; sourceTree = "<group>"; };
+		B6184E2A25C7ACF600837F2A /* MultiDelegateOC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDelegateOC.m; sourceTree = "<group>"; };
+		B6184E7D25C7C47E00837F2A /* MutiDelegateDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MutiDelegateDemo.h; sourceTree = "<group>"; };
+		B6184E7E25C7C47E00837F2A /* MutiDelegateDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MutiDelegateDemo.m; sourceTree = "<group>"; };
+		B6184E8425C7C4C800837F2A /* MultiDelegateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiDelegateVC.h; sourceTree = "<group>"; };
+		B6184E8525C7C4C800837F2A /* MultiDelegateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDelegateVC.m; sourceTree = "<group>"; };
+		B6184E8B25C7C5B500837F2A /* MutiDelegateDemo2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MutiDelegateDemo2.h; sourceTree = "<group>"; };
+		B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MutiDelegateDemo2.m; sourceTree = "<group>"; };
+		B6184E9225C7C63500837F2A /* MultiDemoSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiDemoSource.h; sourceTree = "<group>"; };
+		B6184E9325C7C63500837F2A /* MultiDemoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDemoSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +199,7 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				B6184E2125C7AC9100837F2A /* MultiDelegate */,
 				B6184DDF25C3FA7000837F2A /* Memory */,
 				B6184DCF25C3E36C00837F2A /* Lock */,
 				A394262425C6F59E00114F3A /* CustomTransition */,
@@ -328,6 +347,25 @@
 				B6184DE125C3FA8200837F2A /* TaggerPointerLearn.m */,
 			);
 			path = Memory;
+			sourceTree = "<group>";
+		};
+		B6184E2125C7AC9100837F2A /* MultiDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B6184E2225C7ACBA00837F2A /* NSObject+MultiDelegate.h */,
+				B6184E2325C7ACBA00837F2A /* NSObject+MultiDelegate.m */,
+				B6184E2925C7ACF600837F2A /* MultiDelegateOC.h */,
+				B6184E2A25C7ACF600837F2A /* MultiDelegateOC.m */,
+				B6184E7D25C7C47E00837F2A /* MutiDelegateDemo.h */,
+				B6184E7E25C7C47E00837F2A /* MutiDelegateDemo.m */,
+				B6184E8425C7C4C800837F2A /* MultiDelegateVC.h */,
+				B6184E8525C7C4C800837F2A /* MultiDelegateVC.m */,
+				B6184E8B25C7C5B500837F2A /* MutiDelegateDemo2.h */,
+				B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */,
+				B6184E9225C7C63500837F2A /* MultiDemoSource.h */,
+				B6184E9325C7C63500837F2A /* MultiDemoSource.m */,
+			);
+			path = MultiDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +522,7 @@
 				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
+				B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A39425FC25C3047500114F3A /* GCDLearn.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
@@ -492,14 +531,19 @@
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
 				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
+				B6184E2425C7ACBA00837F2A /* NSObject+MultiDelegate.m in Sources */,
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
+				B6184E2B25C7ACF600837F2A /* MultiDelegateOC.m in Sources */,
 				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
 				A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */,
+				B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */,
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,
+				B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */,
+				B6184E8625C7C4C800837F2A /* MultiDelegateVC.m in Sources */,
 				A36C75E625B32817005D7B8A /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

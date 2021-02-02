@@ -41,11 +41,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9I-Gk-Y2I">
-                                <rect key="frame" x="191" y="549" width="33" height="30"/>
+                                <rect key="frame" x="191" y="406" width="33" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Lock"/>
                                 <connections>
                                     <action selector="testLock:" destination="kLN-l8-gfK" eventType="touchUpInside" id="Ibo-Xv-fAM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDK-XF-sBf">
+                                <rect key="frame" x="160" y="444" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="MultiDelegate"/>
+                                <connections>
+                                    <segue destination="cPZ-gE-H1U" kind="show" id="1eM-6s-FSC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -72,7 +80,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Vy-B5-fXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="207"/>
+            <point key="canvasLocation" x="730" y="285"/>
+        </scene>
+        <!--Multi DelegateVC-->
+        <scene sceneID="SuK-bN-uVg">
+            <objects>
+                <viewController id="cPZ-gE-H1U" customClass="MultiDelegateVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="moO-hL-WAU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WEf-zD-mms"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0jW-ut-fkc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jQn-HU-Niw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528" y="285"/>
         </scene>
         <!--Transition View Controller1-->
         <scene sceneID="Nd5-kq-HY7">
