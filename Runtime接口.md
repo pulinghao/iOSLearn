@@ -324,10 +324,9 @@
   ```objective-c
   @selector(yourname) //与下面的方法等价
   sel_registerName("yourname");
-  
   ```
-
   
+
 
 # clang
 

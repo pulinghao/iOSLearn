@@ -139,12 +139,28 @@
         RecursiveBlock = ^(int value) {
             pthread_mutex_lock(&pLock);
             if (value > 0) {
-                NSLog(@"value: %d", value);
+                NSLog(@"value1: %d", value);
+                NSLog(@"current thread:%@",[NSThread currentThread]);
                 RecursiveBlock(value - 1);
             }
             pthread_mutex_unlock(&pLock);
         };
-        RecursiveBlock(5);
+        RecursiveBlock(3);
+    });
+    
+    //2. 线程2
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        static void (^RecursiveBlock)(int);
+        RecursiveBlock = ^(int value) {
+            pthread_mutex_lock(&pLock);
+            if (value > 0) {
+                NSLog(@"value2: %d", value);
+                NSLog(@"current thread:%@",[NSThread currentThread]);
+                RecursiveBlock(value - 1);
+            }
+            pthread_mutex_unlock(&pLock);
+        };
+        RecursiveBlock(3);
     });
 }
 

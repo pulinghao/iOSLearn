@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testConditionLock2;
 
+- (void)testRecursiveLock;
 
 - (void)POSIX_Codictions;
 @end

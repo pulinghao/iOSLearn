@@ -36,4 +36,28 @@
 
 }
 
+
+- (void)test2
+{
+    dispatch_queue_t queue = dispatch_queue_create("com.demo.queue", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t conqueue = dispatch_queue_create("com.demo.queue", DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        NSLog(@"%@",[NSThread currentThread]);
+        dispatch_sync(conqueue, ^{
+            NSLog(@"%@",[NSThread currentThread]);
+            NSLog(@"1");
+        });
+        
+        NSLog(@"2");
+
+        dispatch_async(conqueue, ^{
+            NSLog(@"%@",[NSThread currentThread]);
+            NSLog(@"3");
+        });
+
+        NSLog(@"4");
+    });
+    
+}
 @end

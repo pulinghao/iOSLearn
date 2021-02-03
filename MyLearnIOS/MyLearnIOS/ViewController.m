@@ -29,9 +29,11 @@ extern void instrumentObjcMessageSends(BOOL);
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     instrumentObjcMessageSends(YES);
 //    RuntimeLearn *runteim = [[RuntimeLearn alloc] init];
+    
+    self.lockLearn = [[LockLearn alloc] init];
 //    
 //    [runteim resolve];
     
@@ -59,15 +61,15 @@ extern void instrumentObjcMessageSends(BOOL);
 //    NSLog(@"zd --> %p",sizeof(UnionType));
     
 
-//    self.lockLearn = [[LockLearn alloc] init];
-    self.taggerpointer = [[TaggerPointerLearn alloc] init];
-    [self.taggerpointer testTaggerPointer];
+    
+//    self.taggerpointer = [[TaggerPointerLearn alloc] init];
+//    [self.taggerpointer testTaggerPointer];
 
 //    GCDLearn *gcd = [[GCDLearn alloc] init];
 //    [gcd test];
 //    
-    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
-    [quelearn testQueue];
+//    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
+//    [quelearn testQueue];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -102,7 +104,7 @@ extern void instrumentObjcMessageSends(BOOL);
 }
 
 - (IBAction)testLock:(id)sender {
-    [self.lockLearn POSIX_Codictions];
+    [self.lockLearn testRecursiveLock];
 }
 
 

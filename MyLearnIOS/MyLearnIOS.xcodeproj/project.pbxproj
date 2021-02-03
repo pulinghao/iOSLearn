@@ -26,6 +26,10 @@
 		A394262725C6F61200114F3A /* CircleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A394262625C6F61200114F3A /* CircleTransition.m */; };
 		A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = A394263125C6F76D00114F3A /* TransitionViewController1.m */; };
 		A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = A394263825C6F77900114F3A /* TransitionViewController2.m */; };
+		A3E0D6A725C9725500DDA689 /* NSObject+MyKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6A625C9725500DDA689 /* NSObject+MyKVO.m */; };
+		A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6AF25C982B400DDA689 /* LoadPerson.m */; };
+		A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6BA25C982C600DDA689 /* LoadStudent.m */; };
+		A3E0D6C225C982FF00DDA689 /* LoadStudent+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6C125C982FF00DDA689 /* LoadStudent+Class.m */; };
 		A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A60E25B99C70001E427D /* MyCopy.m */; };
 		A3E6A61F25BC32BA001E427D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A61E25BC32BA001E427D /* main.m */; };
 		A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF252E25BC797D008051CB /* RuntimeAPI.m */; };
@@ -110,6 +114,14 @@
 		A394263125C6F76D00114F3A /* TransitionViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController1.m; sourceTree = "<group>"; };
 		A394263725C6F77900114F3A /* TransitionViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionViewController2.h; sourceTree = "<group>"; };
 		A394263825C6F77900114F3A /* TransitionViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController2.m; sourceTree = "<group>"; };
+		A3E0D6A525C9725500DDA689 /* NSObject+MyKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MyKVO.h"; sourceTree = "<group>"; };
+		A3E0D6A625C9725500DDA689 /* NSObject+MyKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MyKVO.m"; sourceTree = "<group>"; };
+		A3E0D6AE25C982B400DDA689 /* LoadPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadPerson.h; sourceTree = "<group>"; };
+		A3E0D6AF25C982B400DDA689 /* LoadPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadPerson.m; sourceTree = "<group>"; };
+		A3E0D6B925C982C600DDA689 /* LoadStudent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadStudent.h; sourceTree = "<group>"; };
+		A3E0D6BA25C982C600DDA689 /* LoadStudent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadStudent.m; sourceTree = "<group>"; };
+		A3E0D6C025C982FF00DDA689 /* LoadStudent+Class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoadStudent+Class.h"; sourceTree = "<group>"; };
+		A3E0D6C125C982FF00DDA689 /* LoadStudent+Class.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LoadStudent+Class.m"; sourceTree = "<group>"; };
 		A3E6A60D25B99C70001E427D /* MyCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCopy.h; sourceTree = "<group>"; };
 		A3E6A60E25B99C70001E427D /* MyCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCopy.m; sourceTree = "<group>"; };
 		A3E6A61C25BC32BA001E427D /* LearnMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnMac; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +211,7 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				A3E0D6AD25C9828200DDA689 /* Load&Initialize */,
 				B6184E2125C7AC9100837F2A /* MultiDelegate */,
 				B6184DDF25C3FA7000837F2A /* Memory */,
 				B6184DCF25C3E36C00837F2A /* Lock */,
@@ -245,6 +258,8 @@
 		A36C761925B32844005D7B8A /* KVO */ = {
 			isa = PBXGroup;
 			children = (
+				A3E0D6A525C9725500DDA689 /* NSObject+MyKVO.h */,
+				A3E0D6A625C9725500DDA689 /* NSObject+MyKVO.m */,
 				A36C761A25B32A1C005D7B8A /* KVOPerson.h */,
 				A36C761B25B32A1C005D7B8A /* KVOPerson.m */,
 				A36C762425B3308F005D7B8A /* KVOSecondViewController.h */,
@@ -301,6 +316,19 @@
 				A394263825C6F77900114F3A /* TransitionViewController2.m */,
 			);
 			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		A3E0D6AD25C9828200DDA689 /* Load&Initialize */ = {
+			isa = PBXGroup;
+			children = (
+				A3E0D6AE25C982B400DDA689 /* LoadPerson.h */,
+				A3E0D6AF25C982B400DDA689 /* LoadPerson.m */,
+				A3E0D6B925C982C600DDA689 /* LoadStudent.h */,
+				A3E0D6BA25C982C600DDA689 /* LoadStudent.m */,
+				A3E0D6C025C982FF00DDA689 /* LoadStudent+Class.h */,
+				A3E0D6C125C982FF00DDA689 /* LoadStudent+Class.m */,
+			);
+			path = "Load&Initialize";
 			sourceTree = "<group>";
 		};
 		A3E6A60C25B99C60001E427D /* Copy */ = {
@@ -522,13 +550,16 @@
 				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
+				A3E0D6A725C9725500DDA689 /* NSObject+MyKVO.m in Sources */,
 				B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A39425FC25C3047500114F3A /* GCDLearn.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
 				A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */,
+				A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */,
 				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
+				A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
 				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
 				B6184E2425C7ACBA00837F2A /* NSObject+MultiDelegate.m in Sources */,
@@ -542,6 +573,7 @@
 				B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */,
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,
+				A3E0D6C225C982FF00DDA689 /* LoadStudent+Class.m in Sources */,
 				B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */,
 				B6184E8625C7C4C800837F2A /* MultiDelegateVC.m in Sources */,
 				A36C75E625B32817005D7B8A /* SceneDelegate.m in Sources */,
