@@ -22,14 +22,22 @@ void walk(){
     NSLog(@"%s",__func__);
 }
 
-//+ (BOOL)resolveInstanceMethod:(SEL)sel
-//{
-//    NSLog(@"%s",__func__);
-//    if (sel == @selector(walk)) {
-//        return class_addMethod(self, sel, (IMP)walk, "v@:");
-//    }
-//    return [super resolveInstanceMethod:sel];
-//}
+void swim(id self, SEL sel){
+    NSLog(@"swim");
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)sel
+{
+    NSLog(@"%s",__func__);
+    if (sel == @selector(walk)) {
+        return class_addMethod(self, sel, (IMP)walk, "v@:");
+    }
+    
+    if (sel == @selector(swim)) {
+        return class_addMethod(self, sel, (IMP)swim, "v@:");
+    }
+    return [super resolveInstanceMethod:sel];
+}
 //
 //
 //+ (BOOL)resolveClassMethod:(SEL)sel
@@ -47,12 +55,12 @@ void walk(){
 //    return [super resolveClassMethod:sel];
 //}
 //
-//- (id)forwardingTargetForSelector:(SEL)aSelector{
-//    if (@selector(walk) == aSelector) {
-//        return [Dog new];
-//    }
-//    return [super forwardingTargetForSelector:aSelector];
-//}
+- (id)forwardingTargetForSelector:(SEL)aSelector{
+    if (@selector(walk) == aSelector) {
+        return [Dog new];
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
     if (@selector(walk) == aSelector) {
@@ -80,4 +88,11 @@ void walk(){
 {
     NSLog(@"nio_introduce");
 }
+
+
+//- (void)sleep{
+//    NSLog(@"sleep");
+//}
+
+
 @end

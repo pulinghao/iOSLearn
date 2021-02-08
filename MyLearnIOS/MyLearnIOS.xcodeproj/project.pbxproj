@@ -44,6 +44,8 @@
 		B6184E8625C7C4C800837F2A /* MultiDelegateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8525C7C4C800837F2A /* MultiDelegateVC.m */; };
 		B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */; };
 		B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E9325C7C63500837F2A /* MultiDemoSource.m */; };
+		B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */; };
+		B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EC824425CAC3FA00689DF4 /* MyProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,10 @@
 		B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MutiDelegateDemo2.m; sourceTree = "<group>"; };
 		B6184E9225C7C63500837F2A /* MultiDemoSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiDemoSource.h; sourceTree = "<group>"; };
 		B6184E9325C7C63500837F2A /* MultiDemoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDemoSource.m; sourceTree = "<group>"; };
+		B689DDC225D1157F0039B245 /* UIButton+BigFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BigFrame.h"; sourceTree = "<group>"; };
+		B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BigFrame.m"; sourceTree = "<group>"; };
+		B6EC824325CAC3FA00689DF4 /* MyProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProxy.h; sourceTree = "<group>"; };
+		B6EC824425CAC3FA00689DF4 /* MyProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,8 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				B689DDC125D1157F0039B245 /* UIButton */,
+				B6EC824225CAC3E900689DF4 /* NSProxy */,
 				A3E0D6AD25C9828200DDA689 /* Load&Initialize */,
 				B6184E2125C7AC9100837F2A /* MultiDelegate */,
 				B6184DDF25C3FA7000837F2A /* Memory */,
@@ -396,6 +404,24 @@
 			path = MultiDelegate;
 			sourceTree = "<group>";
 		};
+		B689DDC125D1157F0039B245 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				B689DDC225D1157F0039B245 /* UIButton+BigFrame.h */,
+				B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		B6EC824225CAC3E900689DF4 /* NSProxy */ = {
+			isa = PBXGroup;
+			children = (
+				B6EC824325CAC3FA00689DF4 /* MyProxy.h */,
+				B6EC824425CAC3FA00689DF4 /* MyProxy.m */,
+			);
+			path = NSProxy;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -558,6 +584,7 @@
 				A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */,
 				A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */,
 				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
+				B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
 				A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
@@ -570,6 +597,7 @@
 				A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */,
+				B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */,
 				B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */,
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,

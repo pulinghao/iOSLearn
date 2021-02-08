@@ -6,10 +6,10 @@
 //
 
 #import "ViewController.h"
+#import <objc/runtime.h>
 #import "KVOPerson.h"
 #import "RuntimeLearn.h"
 #import "MyCopy.h"
-#import <objc/runtime.h>
 #import "Person.h"
 #import "PLHThread.h"
 #import "LockLearn.h"
@@ -21,6 +21,7 @@ extern void instrumentObjcMessageSends(BOOL);
 
 @property (nonatomic, strong) LockLearn *lockLearn;
 @property (nonatomic, strong) TaggerPointerLearn *taggerpointer;
+@property (nonatomic, strong) RuntimeLearn *runtimeLearn;
 
 @end
 
@@ -34,10 +35,12 @@ extern void instrumentObjcMessageSends(BOOL);
 //    RuntimeLearn *runteim = [[RuntimeLearn alloc] init];
     
     self.lockLearn = [[LockLearn alloc] init];
+    self.runtimeLearn = [[RuntimeLearn alloc] init];
 //    
 //    [runteim resolve];
     
-//    [[Person new] walk];
+    Person *person = [[Person alloc] init];
+    [person performSelector:@selector(swim)];
     instrumentObjcMessageSends(NO);
     
 //    PLHThread *thread = [[PLHThread alloc] initWithBlock:^{
