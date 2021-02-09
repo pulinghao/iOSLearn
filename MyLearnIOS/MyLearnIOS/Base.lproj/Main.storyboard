@@ -56,6 +56,14 @@
                                     <segue destination="cPZ-gE-H1U" kind="show" id="1eM-6s-FSC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOm-D3-NPM">
+                                <rect key="frame" x="147" y="254" width="110" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="autoreleasePool"/>
+                                <connections>
+                                    <action selector="autoReleasePoolClick:" destination="kLN-l8-gfK" eventType="touchUpInside" id="LOM-7W-bZF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yKR-Lk-maq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

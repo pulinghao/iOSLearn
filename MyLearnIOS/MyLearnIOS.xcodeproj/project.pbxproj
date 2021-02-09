@@ -30,6 +30,11 @@
 		A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6AF25C982B400DDA689 /* LoadPerson.m */; };
 		A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6BA25C982C600DDA689 /* LoadStudent.m */; };
 		A3E0D6C225C982FF00DDA689 /* LoadStudent+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6C125C982FF00DDA689 /* LoadStudent+Class.m */; };
+		A3E0D76325CAEB1C00DDA689 /* AutoReleasePoolLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D76225CAEB1C00DDA689 /* AutoReleasePoolLearn.m */; };
+		A3E0D76F25D008E800DDA689 /* HItTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D76E25D008E800DDA689 /* HItTestView.m */; };
+		A3E0D77A25D008F900DDA689 /* HitTestSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D77925D008F900DDA689 /* HitTestSubView.m */; };
+		A3E0D78125D043A200DDA689 /* LoadStudent+PersonClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D78025D043A200DDA689 /* LoadStudent+PersonClass.m */; };
+		A3E0D78825D043DB00DDA689 /* LoadPerson+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D78725D043DB00DDA689 /* LoadPerson+Base.m */; };
 		A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A60E25B99C70001E427D /* MyCopy.m */; };
 		A3E6A61F25BC32BA001E427D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A61E25BC32BA001E427D /* main.m */; };
 		A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF252E25BC797D008051CB /* RuntimeAPI.m */; };
@@ -124,6 +129,16 @@
 		A3E0D6BA25C982C600DDA689 /* LoadStudent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadStudent.m; sourceTree = "<group>"; };
 		A3E0D6C025C982FF00DDA689 /* LoadStudent+Class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoadStudent+Class.h"; sourceTree = "<group>"; };
 		A3E0D6C125C982FF00DDA689 /* LoadStudent+Class.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LoadStudent+Class.m"; sourceTree = "<group>"; };
+		A3E0D76125CAEB1C00DDA689 /* AutoReleasePoolLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoReleasePoolLearn.h; sourceTree = "<group>"; };
+		A3E0D76225CAEB1C00DDA689 /* AutoReleasePoolLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoReleasePoolLearn.m; sourceTree = "<group>"; };
+		A3E0D76D25D008E800DDA689 /* HItTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HItTestView.h; sourceTree = "<group>"; };
+		A3E0D76E25D008E800DDA689 /* HItTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HItTestView.m; sourceTree = "<group>"; };
+		A3E0D77825D008F900DDA689 /* HitTestSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestSubView.h; sourceTree = "<group>"; };
+		A3E0D77925D008F900DDA689 /* HitTestSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestSubView.m; sourceTree = "<group>"; };
+		A3E0D77F25D043A200DDA689 /* LoadStudent+PersonClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoadStudent+PersonClass.h"; sourceTree = "<group>"; };
+		A3E0D78025D043A200DDA689 /* LoadStudent+PersonClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LoadStudent+PersonClass.m"; sourceTree = "<group>"; };
+		A3E0D78625D043DB00DDA689 /* LoadPerson+Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoadPerson+Base.h"; sourceTree = "<group>"; };
+		A3E0D78725D043DB00DDA689 /* LoadPerson+Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LoadPerson+Base.m"; sourceTree = "<group>"; };
 		A3E6A60D25B99C70001E427D /* MyCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCopy.h; sourceTree = "<group>"; };
 		A3E6A60E25B99C70001E427D /* MyCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCopy.m; sourceTree = "<group>"; };
 		A3E6A61C25BC32BA001E427D /* LearnMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnMac; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +234,9 @@
 			children = (
 				B689DDC125D1157F0039B245 /* UIButton */,
 				B6EC824225CAC3E900689DF4 /* NSProxy */,
+				A3E0D76C25D0084F00DDA689 /* UIView */,
+				A3E0D76025CAEB0200DDA689 /* AutoReleasePool */,
+				A3E0D75F25CAE96B00DDA689 /* NSString */,
 				A3E0D6AD25C9828200DDA689 /* Load&Initialize */,
 				B6184E2125C7AC9100837F2A /* MultiDelegate */,
 				B6184DDF25C3FA7000837F2A /* Memory */,
@@ -330,13 +348,44 @@
 			isa = PBXGroup;
 			children = (
 				A3E0D6AE25C982B400DDA689 /* LoadPerson.h */,
+				A3E0D78625D043DB00DDA689 /* LoadPerson+Base.h */,
+				A3E0D78725D043DB00DDA689 /* LoadPerson+Base.m */,
 				A3E0D6AF25C982B400DDA689 /* LoadPerson.m */,
 				A3E0D6B925C982C600DDA689 /* LoadStudent.h */,
 				A3E0D6BA25C982C600DDA689 /* LoadStudent.m */,
 				A3E0D6C025C982FF00DDA689 /* LoadStudent+Class.h */,
 				A3E0D6C125C982FF00DDA689 /* LoadStudent+Class.m */,
+				A3E0D77F25D043A200DDA689 /* LoadStudent+PersonClass.h */,
+				A3E0D78025D043A200DDA689 /* LoadStudent+PersonClass.m */,
 			);
 			path = "Load&Initialize";
+			sourceTree = "<group>";
+		};
+		A3E0D75F25CAE96B00DDA689 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		A3E0D76025CAEB0200DDA689 /* AutoReleasePool */ = {
+			isa = PBXGroup;
+			children = (
+				A3E0D76125CAEB1C00DDA689 /* AutoReleasePoolLearn.h */,
+				A3E0D76225CAEB1C00DDA689 /* AutoReleasePoolLearn.m */,
+			);
+			path = AutoReleasePool;
+			sourceTree = "<group>";
+		};
+		A3E0D76C25D0084F00DDA689 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				A3E0D76D25D008E800DDA689 /* HItTestView.h */,
+				A3E0D76E25D008E800DDA689 /* HItTestView.m */,
+				A3E0D77825D008F900DDA689 /* HitTestSubView.h */,
+				A3E0D77925D008F900DDA689 /* HitTestSubView.m */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		A3E6A60C25B99C60001E427D /* Copy */ = {
@@ -581,8 +630,10 @@
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A39425FC25C3047500114F3A /* GCDLearn.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
+				A3E0D78825D043DB00DDA689 /* LoadPerson+Base.m in Sources */,
 				A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */,
 				A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */,
+				A3E0D77A25D008F900DDA689 /* HitTestSubView.m in Sources */,
 				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
 				B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
@@ -593,9 +644,12 @@
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
 				B6184E2B25C7ACF600837F2A /* MultiDelegateOC.m in Sources */,
+				A3E0D76F25D008E800DDA689 /* HItTestView.m in Sources */,
+				A3E0D78125D043A200DDA689 /* LoadStudent+PersonClass.m in Sources */,
 				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
 				A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
+				A3E0D76325CAEB1C00DDA689 /* AutoReleasePoolLearn.m in Sources */,
 				B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */,
 				B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */,
 				B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */,

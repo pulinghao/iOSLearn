@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testQueue;
 
+- (void)reloadData:(NSString *)str;
+
+- (void)clearData;
+
 @end
 
 NS_ASSUME_NONNULL_END

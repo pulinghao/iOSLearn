@@ -9,4 +9,9 @@
 
 @implementation LoadStudent
 
++ (void)load
+{
+    NSLog(@"LoadStudent +load");
+}
+
 @end

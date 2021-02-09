@@ -60,4 +60,40 @@
     });
     
 }
+
+- (void)test3
+{
+    __block int i = 10;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"%d",i);
+    });
+    i = 20;
+}
+
+- (void)test4
+{
+    NSLog(@"A");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"B");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"C");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"D");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"E");
+                });
+            });
+        });
+        
+        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"F");
+            NSLog(@"current thread:%@",[NSThread currentThread]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"G");
+            });
+        });
+    });
+    NSLog(@"I");
+    
+}
 @end

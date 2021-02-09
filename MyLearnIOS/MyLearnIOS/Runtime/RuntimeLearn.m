@@ -42,6 +42,6 @@ struct method_t {
     Person *p = [[Person alloc] init];
     [p walk];
     
-    [Person walkwalk];
+//    [Person walkwalk];
 }
 @end

@@ -107,4 +107,13 @@
 //    [queue cancelAllOperations]; // 取消所有任务
 //    [queue waitUntilAllOperationsAreFinished]; // 阻塞当前线程，直到所有任务执行完毕后继续(最好不要在主线程中等待，会阻塞)
 }
+
+- (void)reloadData:(NSString *)str
+{
+    
+}
+
+- (void)clearData{
+    
+}
 @end

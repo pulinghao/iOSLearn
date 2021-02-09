@@ -7,8 +7,11 @@
 
 #import "RuntimeVC.h"
 #import <objc/runtime.h>
+#import "RuntimeLearn.h"
 
 @interface RuntimeVC ()
+
+@property (nonatomic, strong) RuntimeLearn *learn;
 
 @end
 
@@ -18,6 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self classTest];
+    _learn = [[RuntimeLearn alloc] init];
+    [_learn resolve];
+    
 }
 
 void hunting(id self, SEL _cmd){

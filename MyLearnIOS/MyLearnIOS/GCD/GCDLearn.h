@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)test;
 
+
+- (void)test3;
+
+- (void)test4;
+
 @end
 
 NS_ASSUME_NONNULL_END

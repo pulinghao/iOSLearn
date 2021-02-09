@@ -7,6 +7,12 @@
 
 #import "LoadPerson.h"
 
+
+
+@interface LoadPerson()
+
+@end
+
 @implementation LoadPerson
 
 + (void)load

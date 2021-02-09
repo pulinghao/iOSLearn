@@ -14,8 +14,8 @@
             filePath = "MyLearnIOS/Runtime/Person.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "Person"
             landmarkType = "3">
          </BreakpointContent>
@@ -62,9 +62,41 @@
             filePath = "MyLearnIOS/ViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-testLock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25B7E164-B52A-4B4C-B4B4-CE3D2A76FEF2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLearnIOS/UIView/HItTestView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-pointInside:withEvent:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DF98E49-3A3B-42A4-BDC2-6F103E5656CB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLearnIOS/UIView/HItTestView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-hitTest:withEvent:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

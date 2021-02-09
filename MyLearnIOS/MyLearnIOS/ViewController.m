@@ -16,13 +16,64 @@
 #import "TaggerPointerLearn.h"
 #import "GCDLearn.h"
 #import "NSOperationQueueLearn.h"
+#import "AutoReleasePoolLearn.h"
+#import "HItTestView.h"
 extern void instrumentObjcMessageSends(BOOL);
+
+typedef void (^MyBlock)(void);
+typedef void(^OtherBlk)(int a);
+
+@interface homeViewControler : UIViewController
+{
+    NSOperationQueueLearn *_manager;
+}
+@property (nonatomic, assign) NSNumber *flag;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UIButton *button;
+@property (nonatomic, copy)   MyBlock blk;
+
+
+
+@end
+
+@implementation homeViewControler
+- (void)viewDidLoad
+{
+    self.blk = ^(void){
+        if (self.flag) {
+            self.name = @"the name";
+            [_manager reloadData:self.name];
+        }
+        else
+        {
+            self.name = nil;
+            [_manager clearData];
+        }
+    };
+    
+    
+//    self.button.onClick = ^{
+//        if (self.flag) {
+//            self.name = @"the name";
+//            [_manager reloadData:self.name];
+//        }
+//        else
+//        {
+//            self.name = nil;
+//            [_manager clearData];
+//        }
+//    };
+}
+@end
+
 @interface ViewController ()
 
 @property (nonatomic, strong) LockLearn *lockLearn;
 @property (nonatomic, strong) TaggerPointerLearn *taggerpointer;
 @property (nonatomic, strong) RuntimeLearn *runtimeLearn;
 
+@property (nonatomic, strong) AutoReleasePoolLearn *poolearn;
+@property (nonatomic, strong) HItTestView *hitTestView;
 @end
 
 @implementation ViewController
@@ -41,7 +92,17 @@ extern void instrumentObjcMessageSends(BOOL);
     
     Person *person = [[Person alloc] init];
     [person performSelector:@selector(swim)];
+    _poolearn = [[AutoReleasePoolLearn alloc] init];
+   
+//    
+//    [runteim resolve];
+    
+    [[Person new] testKindOfClass];
     instrumentObjcMessageSends(NO);
+    
+    self.hitTestView = [[HItTestView alloc] initWithFrame:CGRectMake(50, 100, 100, 50)];
+    self.hitTestView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:self.hitTestView];
     
 //    PLHThread *thread = [[PLHThread alloc] initWithBlock:^{
 //        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -68,8 +129,8 @@ extern void instrumentObjcMessageSends(BOOL);
 //    self.taggerpointer = [[TaggerPointerLearn alloc] init];
 //    [self.taggerpointer testTaggerPointer];
 
-//    GCDLearn *gcd = [[GCDLearn alloc] init];
-//    [gcd test];
+    GCDLearn *gcd = [[GCDLearn alloc] init];
+    [gcd test4];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];
@@ -110,5 +171,8 @@ extern void instrumentObjcMessageSends(BOOL);
     [self.lockLearn testRecursiveLock];
 }
 
+- (IBAction)autoReleasePoolClick:(id)sender {
+    [_poolearn withoutAutoreleasepoolClick];
+}
 
 @end

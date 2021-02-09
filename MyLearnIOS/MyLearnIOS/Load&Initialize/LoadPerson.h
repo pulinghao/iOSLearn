@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoadPerson : NSObject
 
+@property (nonatomic, assign) NSNumber *date;
+
 @end
 
 NS_ASSUME_NONNULL_END

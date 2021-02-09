@@ -8,18 +8,33 @@
 #import "Person.h"
 #import <objc/runtime.h>
 #import "Dog.h"
+
+@interface Person()
+
+@property (nonatomic, strong) NSObject *A;
+
+@end
 @implementation Person
 
 //- (void)walk{
 //    NSLog(@"%s",__func__);
 //}
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.A = [[NSObject alloc] init];
+    }
+    return self;
+}
+
 + (void)run{
     NSLog(@"%s",__func__);
 }
 
 void walk(){
-    NSLog(@"%s",__func__);
+    NSLog(@"add %s",__func__);
 }
 
 void swim(id self, SEL sel){
@@ -38,6 +53,25 @@ void swim(id self, SEL sel){
     }
     return [super resolveInstanceMethod:sel];
 }
+- (void)testKindOfClass
+{
+    BOOL res1 = [self isKindOfClass:[NSObject class]];
+    id obj = NSObject.self;
+    id obj2 = [NSObject class];
+    BOOL res2 = [NSObject.self isKindOfClass:[NSObject class]];
+    
+    NSLog(@"res1 [self isKindOfClass:[NSObject class]]:%d" , res1);
+    NSLog(@"res2 [NSObject.self isKindOfClass:[NSObject class]] : %d",res2);
+}
+//+ (BOOL)resolveInstanceMethod:(SEL)sel
+//{
+//    NSLog(@"%s",__func__);
+//    if (sel == @selector(walk)) {
+//        return class_addMethod(self, sel, (IMP)walk, "v@:");
+//    }
+//    return [super resolveInstanceMethod:sel];
+//}
+
 //
 //
 //+ (BOOL)resolveClassMethod:(SEL)sel
@@ -72,10 +106,10 @@ void swim(id self, SEL sel){
 - (void)forwardInvocation:(NSInvocation *)anInvocation{
     
     // 转发给别人
-    //[anInvocation invokeWithTarget:[Dog new]];
+//    [anInvocation invokeWithTarget:[Dog new]];
     
     // 转发给自己
-    anInvocation.selector = @selector(run);
+    anInvocation.selector = @selector(introduce);
     anInvocation.target = self;
     [anInvocation invoke];
 } 
