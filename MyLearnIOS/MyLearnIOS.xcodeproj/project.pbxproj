@@ -35,6 +35,7 @@
 		A3E0D77A25D008F900DDA689 /* HitTestSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D77925D008F900DDA689 /* HitTestSubView.m */; };
 		A3E0D78125D043A200DDA689 /* LoadStudent+PersonClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D78025D043A200DDA689 /* LoadStudent+PersonClass.m */; };
 		A3E0D78825D043DB00DDA689 /* LoadPerson+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D78725D043DB00DDA689 /* LoadPerson+Base.m */; };
+		A3E0D7EE25D584F500DDA689 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D7ED25D584F500DDA689 /* NetworkViewController.m */; };
 		A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A60E25B99C70001E427D /* MyCopy.m */; };
 		A3E6A61F25BC32BA001E427D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E6A61E25BC32BA001E427D /* main.m */; };
 		A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF252E25BC797D008051CB /* RuntimeAPI.m */; };
@@ -139,6 +140,8 @@
 		A3E0D78025D043A200DDA689 /* LoadStudent+PersonClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LoadStudent+PersonClass.m"; sourceTree = "<group>"; };
 		A3E0D78625D043DB00DDA689 /* LoadPerson+Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoadPerson+Base.h"; sourceTree = "<group>"; };
 		A3E0D78725D043DB00DDA689 /* LoadPerson+Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LoadPerson+Base.m"; sourceTree = "<group>"; };
+		A3E0D7EC25D584F500DDA689 /* NetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkViewController.h; sourceTree = "<group>"; };
+		A3E0D7ED25D584F500DDA689 /* NetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkViewController.m; sourceTree = "<group>"; };
 		A3E6A60D25B99C70001E427D /* MyCopy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCopy.h; sourceTree = "<group>"; };
 		A3E6A60E25B99C70001E427D /* MyCopy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCopy.m; sourceTree = "<group>"; };
 		A3E6A61C25BC32BA001E427D /* LearnMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnMac; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +235,7 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				A3E0D7EB25D584DB00DDA689 /* Network */,
 				B689DDC125D1157F0039B245 /* UIButton */,
 				B6EC824225CAC3E900689DF4 /* NSProxy */,
 				A3E0D76C25D0084F00DDA689 /* UIView */,
@@ -386,6 +390,15 @@
 				A3E0D77925D008F900DDA689 /* HitTestSubView.m */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		A3E0D7EB25D584DB00DDA689 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A3E0D7EC25D584F500DDA689 /* NetworkViewController.h */,
+				A3E0D7ED25D584F500DDA689 /* NetworkViewController.m */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A3E6A60C25B99C60001E427D /* Copy */ = {
@@ -637,6 +650,7 @@
 				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
 				B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
+				A3E0D7EE25D584F500DDA689 /* NetworkViewController.m in Sources */,
 				A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
 				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
