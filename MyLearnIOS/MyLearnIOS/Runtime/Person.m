@@ -63,6 +63,8 @@ void swim(id self, SEL sel){
     NSLog(@"res1 [self isKindOfClass:[NSObject class]]:%d" , res1);
     NSLog(@"res2 [NSObject.self isKindOfClass:[NSObject class]] : %d",res2);
 }
+
+// 动态方法解析
 //+ (BOOL)resolveInstanceMethod:(SEL)sel
 //{
 //    NSLog(@"%s",__func__);
@@ -89,6 +91,8 @@ void swim(id self, SEL sel){
 //    return [super resolveClassMethod:sel];
 //}
 //
+
+// 备用接收者
 - (id)forwardingTargetForSelector:(SEL)aSelector{
     if (@selector(walk) == aSelector) {
         return [Dog new];
@@ -96,6 +100,8 @@ void swim(id self, SEL sel){
     return [super forwardingTargetForSelector:aSelector];
 }
 
+
+// 完整消息转发
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
     if (@selector(walk) == aSelector) {
         return [NSMethodSignature signatureWithObjCTypes:"v@:"];
