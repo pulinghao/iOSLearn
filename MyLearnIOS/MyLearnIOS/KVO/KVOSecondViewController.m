@@ -8,6 +8,12 @@
 #import "KVOSecondViewController.h"
 #import "KVOPerson.h"
 
+
+
+static void *BWNaviGPSLocationObserverContext = &BWNaviGPSLocationObserverContext;   //借鉴AFN的思路，把静态指针的地址，赋值给静态指针，static void *A; A = &A;
+static void *BWNaviVPSLocationObserverContext = &BWNaviVPSLocationObserverContext;
+
+
 @interface KVOSecondViewController ()
 
 @property (nonatomic, strong) KVOPerson *p;

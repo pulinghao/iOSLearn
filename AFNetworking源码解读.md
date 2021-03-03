@@ -983,6 +983,40 @@ iPhone 10以前，使用AFN在网络监控回调后，进行测试
 
 # 代码Tips
 
+- 方法交换
+
+```objective-c
+
++ (void)swizzleResumeAndSuspendMethodForClass:(Class)theClass {
+    // 因为af_resume和af_suspend都是类的实例方法，所以使用class_getInstanceMethod获取这两个方法
+    Method afResumeMethod = class_getInstanceMethod(self, @selector(af_resume));
+    Method afSuspendMethod = class_getInstanceMethod(self, @selector(af_suspend));
+// 给theClass添加一个名为af_resume的方法，使用@selector(af_resume)获取方法名，使用afResumeMethod作为方法实现
+    if (af_addMethod(theClass, @selector(af_resume), afResumeMethod)) {
+        // 交换resume和af_resume的方法实现
+        af_swizzleSelector(theClass, @selector(resume), @selector(af_resume));
+    }
+
+    if (af_addMethod(theClass, @selector(af_suspend), afSuspendMethod)) {
+        af_swizzleSelector(theClass, @selector(suspend), @selector(af_suspend));
+    }
+}
+
+static inline void af_swizzleSelector(Class theClass, SEL originalSelector, SEL swizzledSelector) {
+    Method originalMethod = class_getInstanceMethod(theClass, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(theClass, swizzledSelector);
+    //涉及到runtime
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
+// 给theClass添加名为selector，对应实现为method的方法
+static inline BOOL af_addMethod(Class theClass, SEL selector, Method method) {
+    // 内部实现使用的是class_addMethod方法，注意method_getTypeEncoding是为了获得该方法的参数和返回类型
+    return class_addMethod(theClass, selector,  method_getImplementation(method),  method_getTypeEncoding(method));
+}
+```
+
+
+
 -  确保方法在主线程调用，如果不在主线程，则再调用一次
 
 ```objc
@@ -1061,7 +1095,7 @@ if (self.validatesDomainName) {
 
 如果函数指针是一个临时变量，那么很有可能被释放。我们可以看下AFN是如何做的
 
-```
+```objc
 /*
      保存的是回调函数以及相关的一些数据操作
      1. 第一个参数 版本号，是传递给 SCDynamicStore （系统配置动态存储库）来创建函数用的。这个结构体的版本号是 0
@@ -1281,7 +1315,22 @@ createdTask = [self.sessionManager
 }
 ```
 
+- 创建void *数据
 
+在AFN中，KVO创建`context`的使用，用了下面的秀操作语法：
+
+```c
+static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerObserverContext;
+```
+
+这句话等价于
+
+```c
+static void *AFHTTPRequestSerializerObserverContext;
+AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerObserverContext;
+```
+
+先声明一个静态指针，在声明时候，这个指针就有了地址；然后将这个指针的地址，赋值给这个指针的值。也就是说，这个指针指向的地址，就是这个指针自己。
 
 # 面试
 

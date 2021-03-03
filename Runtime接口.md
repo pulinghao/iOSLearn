@@ -326,7 +326,14 @@
   sel_registerName("yourname");
   ```
   
+- 将`SEL`转成C字符串
 
+  ```objc
+  NSLog(@"%s", sel_getName(selB));
+  // setTitle:
+  ```
+
+  
 
 # clang
 

@@ -21,5 +21,22 @@
 }
 
 
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
+{
+    if ([key isEqualToString: @"firstName"]) {
+        return NO;
+    }
+    return [super automaticallyNotifiesObserversForKey:key];
+}
 
+
+- (void)setFirstName:(NSString *)firstName
+{
+    if ([_firstName isEqualToString:firstName]) {
+        return;
+    }
+    [self willChangeValueForKey:firstName];
+    _firstName = firstName;
+    [self didChangeValueForKey:firstName];
+}
 @end
