@@ -104,6 +104,7 @@ void swim(id self, SEL sel){
 // 完整消息转发
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
     if (@selector(walk) == aSelector) {
+        // 提供方法签名
         return [NSMethodSignature signatureWithObjCTypes:"v@:"];
     }
     return [super methodSignatureForSelector:aSelector];
@@ -111,10 +112,14 @@ void swim(id self, SEL sel){
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation{
     
-    // 转发给别人
-//    [anInvocation invokeWithTarget:[Dog new]];
+    // 方式一：转发给别人
+//    SEL sel = [anInvocation selector];
+//    Dog *dog = [Dog new];
+//    if ([dog respondsToSelector:sel]) {
+//        [anInvocation invokeWithTarget:[Dog new]];
+//    }
     
-    // 转发给自己
+    // 方式二：转发给自己
     anInvocation.selector = @selector(introduce);
     anInvocation.target = self;
     [anInvocation invoke];

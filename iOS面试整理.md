@@ -1,5 +1,56 @@
 # iOS面试整理
 
+## 内存管理
+
+### 静态检测
+
+- 使用Profile->Analyze
+- 打开僵尸对象，检测是否有野指针
+
+![image](iOS面试整理.assets/image.png)
+
+
+
+### 动态检测
+
+- Instruments工具，使用Leaks
+- 第三方工具检测，例如MLeaksFinder，FBRetainCycleDetector
+
+```shell
+target '002-Memory' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for 002-Memory
+  pod 'MLeaksFinder', '~> 1.0.0'
+```
+
+注意，工具检测不出隐式的循环引用
+
+```objective-c
+//  GVBlockViewController.m
+
+typedef void (^Block)(void);
+
+@interface GVBlockViewController ()
+@property (copy, nonatomic) Block block;
+@property (strong, nonatomic) GVObject* obj;
+@end
+
+@implementation GVBlockViewController
+
+- (void) block1 {
+    self.block = ^{
+        //[self doSomework];
+        _obj = [GVObject new];
+    };
+}
+
+@end
+```
+
+
+
 ## Runtime
 
 ### 消息发送机制和消息转发机制
@@ -28,6 +79,81 @@ void (*sendVoidMessage)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))ob
 ### 为什么OC不支持重载？
 
 相同的方法有相同的SEL，如果SEL相同的话，IMP地址也相同，而不是跟参数有关（参数不同时，可以C++重载）
+
+### Runtime使用
+
+#### 1. 改变变量值
+
+- 获取变量个数
+- 获取所有实例变量`class_copyIvarList()`
+- 获取实例变量的名字`ivar_getName()`
+- 设置实例变量的某个属性`object_setIvar()`
+
+```objective-c
+/// 1. 使用runtime改变实例成员的值
+- (void) changeVarName {
+    /// 实例变量个数
+    unsigned int count = 0;
+    
+    /// 获取所以的实例变量
+    Ivar* ivar = class_copyIvarList([self.persion class], &count);
+    
+    /// 遍历
+    for (int i = 0; i < count; i++) {
+        /// 实例变量
+        Ivar var = ivar[i];
+        
+        /// 实例变量名字
+        const char * varName = ivar_getName(var);
+        
+        /// 转化一下
+        NSString* name = [NSString stringWithUTF8String:varName];
+        if ([name isEqualToString:@"_name"]) {
+            object_setIvar(self.persion, var, @"Jerrry");
+            break;
+        }
+    }
+}
+```
+
+
+
+#### 2.交换方法
+
+`method_exchangeImplementations`
+
+#### 3.添加方法
+
+`class_addMethod`
+
+#### 4.为category添加属性
+
+category能添加属性，但是不能生成get和set方法
+
+```objc
+@interface Persion (mult)
+
+@property (nonatomic,copy) NSString* nick;
+
+@end
+
+
+@implementation Persion (mult)
+
+const char* name = "nick";
+
+- (void) setNick:(NSString *)nick {
+    objc_setAssociatedObject(self, &name, nick, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSString*) nick {
+    return objc_getAssociatedObject(self, &name);
+}
+
+@end
+```
+
+
 
 ## 设计模式
 
@@ -167,6 +293,130 @@ MVP（面向协议编程）
 
 
 
+## 组件化
+
+### 组件间的通讯是通过什么方式来实现的？
+
+组件间通讯使用路由(Router)的方式，自定义的路由方式。Router的设计思路：
+
+- 组件间解耦，没有数据的耦合，在组件间不知道对方接口的情况下设计
+- 能够对组件返回的值妥善处理
+
+路由的实现方式如下：
+
+```objc
+- (id)performTarget:(NSString *)targetName action:(NSString *)actionName param:(NSDictionary *)para {
+    
+    // 这个目标的类名字符串
+    NSString *targetClassString = [NSString stringWithFormat:@"OCTarget_%@",targetName];
+    NSString *actionMethondString = [NSString stringWithFormat:@"action_%@:",actionName];
+    
+    Class targetClass = NSClassFromString(targetClassString);
+  	SEL action = NSSelectorFromString(actionMethondString);
+  
+    NSObject *target = [[targetClass alloc] init];
+    
+    // 判断
+    if ([target respondsToSelector:action]) {
+        return [self safePerformAction:action target:target param:para];
+    } else {
+        SEL action = NSSelectorFromString(@"notFound:");
+        if ([target respondsToSelector:action]) {
+            return [self safePerformAction:action target:target param:para];  
+        } else {
+            return nil;
+        }
+    }
+}
+
+// 1.通过对象调用指定的方法
+// 2.传参
+- (id)safePerformAction:(SEL)action target:(NSObject *)target param:(NSDictionary *)para {
+    // 方法签名
+    NSMethodSignature *methodSig = [target methodSignatureForSelector:action];
+    
+    if (methodSig == nil) {
+        return nil;
+    }
+    
+    // 获取这个方法返回值的地址
+    const char *retType = [methodSig methodReturnType];
+    
+    // id 是可以返回任意对象 所以 我们单独处理基本变量. NSInteger Bool Void...
+    if (strcmp(retType, @encode(void)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        
+        // 为什么传2? 前面0和1这两个位置已经被target和action给占用了.
+        [invocation setArgument:&para atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        [invocation invoke];
+        
+//        NSInteger result = 0;
+//        [invocation getReturnValue:&result];
+//        return @(result);
+        return nil;
+    }
+    
+    if (strcmp(retType, @encode(NSInteger)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        
+        // 为什么传2? 前面0和1这两个位置已经被target和action给占用了.
+        [invocation setArgument:&para atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        [invocation invoke];
+        
+        NSInteger result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+    
+    if (strcmp(retType, @encode(NSUInteger)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&para atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        [invocation invoke];
+        
+        NSInteger result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+    
+    if (strcmp(retType, @encode(BOOL)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&para atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        [invocation invoke];
+        
+        NSInteger result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+    
+    if (strcmp(retType, @encode(CGFloat)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&para atIndex:2];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        [invocation invoke];
+        
+        NSInteger result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    return [target performSelector:action withObject:target withObject:para];
+#pragma clang diagnostic pop
+}
+```
+
+
+
 ## APP
 
 ### 怎么解决iOS打包成功后，运行在iPhone端会闪退，黑屏的问题？
@@ -179,6 +429,69 @@ MVP（面向协议编程）
 security cms -D -i embedded.mobileprovision > entitlements_full.plist
 ```
 
+### 静态库与动态库的区别
+
+- 区别
+
+静态库
+
+链接时会被**完整的复制**到可执行文件中，被多次使用就有多份拷贝。比如说，如果一个静态库被两个APP使用，就会有两份拷贝。
+
+动态库
+
+链接时**不复制**，程序运行时由系统动态加载到内存，系统**只加载一次**，多个程序共用，节省内存。
+
+
+
+- 打包
+
+静态库
+
+static Library，.a，.framework（在Build Setting中Mach-O Type中设置为静态）
+
+动态库
+
+不支持tbd，dylib的动态库，支持.framework打包，需要Embbed操作。Swift只支持动态库。
+
+
+
+
+
+
+
+### 查看程序的编译步骤命令
+
+对main.m文件编译并运行的时候，会经过哪些步骤？
+
+执行命令如下：
+
+```shell
+$clang -ccc-print-phases main.m
+
+#输出如下
++- 0: input, "main.m", objective-c
++- 1: preprocessor, {0}, objective-c-cpp-output
++- 2: compiler, {1}, ir
++- 3: backend, {2}, assembler
++- 4: assembler, {3}, object
++- 5: linker, {4}, image
+6: bind-arch, "x86_64", {5}, image
+```
+
+1. 输入源代码
+2. 预处理
+3. 中间代码编译 IR
+4. 编译器转汇编，编程机器码
+5. 链接可执行文件
+
+### 因为编译不通过，遇到Undefined symbols for archtecture x86_64
+
+使用下面的命令检查，输出库支持的架构
+
+```
+$lipo -info XXXX.a
+```
+
 
 
 ## OC的数据结构
@@ -187,3 +500,44 @@ security cms -D -i embedded.mobileprovision > entitlements_full.plist
 
 哈希表
 
+## 三方库
+
+### SDWebImage
+
+#### 如何清理缓存的？
+
+SDWebImage使用的是磁盘缓存，即文件系统`NSFileManager`
+
+1. 根据时间顺序删除，超过7天
+2. 把之前存下来的，未被删除的图片，按照时间顺序存起来，
+3. 根据自定义的最大缓存来删除一半，前提是设置了最大缓存
+
+场景：当手机存储空间比较小的时候，需要自定义一个最大缓存
+
+
+
+#### 如何处理内存警告
+
+1. `clearMemory`,把缓存`NSCache`全部清空
+
+#### 怎么计算图片成本的？
+
+```objective-c
+//计算图片所占内存大小
+FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
+    // 计算图片所消耗的内存注意乘以屏幕的比例因子
+    return image.size.height * image.size.width * image.scale * image.scale;
+}
+```
+
+#### 注意：`clearDisk`和`cleanDisk`的区别
+
+`clearDisk`
+
+清空磁盘缓存，删除目录
+
+
+
+`cleanDisk`
+
+清理文件，会保留部分文件
