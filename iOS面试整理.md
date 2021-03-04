@@ -155,6 +155,20 @@ const char* name = "nick";
 
 
 
+## Block
+
+Block的三种类型
+
+global 1.无外部变量使用 2.使用了全局变量 3.使用了静态变量
+
+stack （ARC和MRC有区别） MRC：普通的赋值  ARC：没有强引用（赋值），刚生成就被销毁
+
+malloc MRC调用copy，ARC有强引用
+
+#### 修改外部变量
+
+<img src="iOS面试整理.assets/image-20210304003118803.png" alt="image-20210304003118803" style="zoom:50%;" />
+
 ## 设计模式
 
 
