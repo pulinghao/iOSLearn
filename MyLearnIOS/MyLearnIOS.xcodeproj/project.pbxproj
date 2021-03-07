@@ -26,6 +26,12 @@
 		A394262725C6F61200114F3A /* CircleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A394262625C6F61200114F3A /* CircleTransition.m */; };
 		A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = A394263125C6F76D00114F3A /* TransitionViewController1.m */; };
 		A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = A394263825C6F77900114F3A /* TransitionViewController2.m */; };
+		A39E689925F3D10A00AB0A35 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = A39E689825F3D10A00AB0A35 /* Hero.m */; };
+		A39E68A425F3D1AA00AB0A35 /* BuffDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = A39E68A325F3D1AA00AB0A35 /* BuffDecorator.m */; };
+		A39E68AB25F3D2A200AB0A35 /* DecoratorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A39E68AA25F3D2A200AB0A35 /* DecoratorVC.m */; };
+		A3DE419C25F28ED700DD7312 /* KKCallStackSymbol.c in Sources */ = {isa = PBXBuildFile; fileRef = A3DE419725F28ED700DD7312 /* KKCallStackSymbol.c */; };
+		A3DE419D25F28ED700DD7312 /* KKCallStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE419825F28ED700DD7312 /* KKCallStack.m */; };
+		A3DE419E25F28ED700DD7312 /* KKThreadMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE419B25F28ED700DD7312 /* KKThreadMonitor.m */; };
 		A3E0D6A725C9725500DDA689 /* NSObject+MyKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6A625C9725500DDA689 /* NSObject+MyKVO.m */; };
 		A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6AF25C982B400DDA689 /* LoadPerson.m */; };
 		A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E0D6BA25C982C600DDA689 /* LoadStudent.m */; };
@@ -123,6 +129,18 @@
 		A394263125C6F76D00114F3A /* TransitionViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController1.m; sourceTree = "<group>"; };
 		A394263725C6F77900114F3A /* TransitionViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionViewController2.h; sourceTree = "<group>"; };
 		A394263825C6F77900114F3A /* TransitionViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController2.m; sourceTree = "<group>"; };
+		A39E689725F3D10A00AB0A35 /* Hero.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		A39E689825F3D10A00AB0A35 /* Hero.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
+		A39E68A225F3D1AA00AB0A35 /* BuffDecorator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuffDecorator.h; sourceTree = "<group>"; };
+		A39E68A325F3D1AA00AB0A35 /* BuffDecorator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuffDecorator.m; sourceTree = "<group>"; };
+		A39E68A925F3D2A200AB0A35 /* DecoratorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecoratorVC.h; sourceTree = "<group>"; };
+		A39E68AA25F3D2A200AB0A35 /* DecoratorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecoratorVC.m; sourceTree = "<group>"; };
+		A3DE419625F28ED700DD7312 /* KKCallStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCallStack.h; sourceTree = "<group>"; };
+		A3DE419725F28ED700DD7312 /* KKCallStackSymbol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KKCallStackSymbol.c; sourceTree = "<group>"; };
+		A3DE419825F28ED700DD7312 /* KKCallStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCallStack.m; sourceTree = "<group>"; };
+		A3DE419925F28ED700DD7312 /* KKCallStackSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCallStackSymbol.h; sourceTree = "<group>"; };
+		A3DE419A25F28ED700DD7312 /* KKThreadMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKThreadMonitor.h; sourceTree = "<group>"; };
+		A3DE419B25F28ED700DD7312 /* KKThreadMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKThreadMonitor.m; sourceTree = "<group>"; };
 		A3E0D6A525C9725500DDA689 /* NSObject+MyKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MyKVO.h"; sourceTree = "<group>"; };
 		A3E0D6A625C9725500DDA689 /* NSObject+MyKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MyKVO.m"; sourceTree = "<group>"; };
 		A3E0D6AE25C982B400DDA689 /* LoadPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadPerson.h; sourceTree = "<group>"; };
@@ -238,6 +256,8 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				A39E689425F3C1D900AB0A35 /* DesignPatterns */,
+				A3DE419425F28ED700DD7312 /* KKThreadMonitor */,
 				A3E0D89D25DD80D900DDA689 /* Instruments */,
 				A3E0D7EB25D584DB00DDA689 /* Network */,
 				B689DDC125D1157F0039B245 /* UIButton */,
@@ -350,6 +370,48 @@
 				A394263825C6F77900114F3A /* TransitionViewController2.m */,
 			);
 			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		A39E689425F3C1D900AB0A35 /* DesignPatterns */ = {
+			isa = PBXGroup;
+			children = (
+				A39E689625F3D0F900AB0A35 /* Decorators */,
+			);
+			path = DesignPatterns;
+			sourceTree = "<group>";
+		};
+		A39E689625F3D0F900AB0A35 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				A39E689725F3D10A00AB0A35 /* Hero.h */,
+				A39E689825F3D10A00AB0A35 /* Hero.m */,
+				A39E68A225F3D1AA00AB0A35 /* BuffDecorator.h */,
+				A39E68A325F3D1AA00AB0A35 /* BuffDecorator.m */,
+				A39E68A925F3D2A200AB0A35 /* DecoratorVC.h */,
+				A39E68AA25F3D2A200AB0A35 /* DecoratorVC.m */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
+		A3DE419425F28ED700DD7312 /* KKThreadMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE419525F28ED700DD7312 /* CallStack */,
+				A3DE419A25F28ED700DD7312 /* KKThreadMonitor.h */,
+				A3DE419B25F28ED700DD7312 /* KKThreadMonitor.m */,
+			);
+			path = KKThreadMonitor;
+			sourceTree = "<group>";
+		};
+		A3DE419525F28ED700DD7312 /* CallStack */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE419625F28ED700DD7312 /* KKCallStack.h */,
+				A3DE419725F28ED700DD7312 /* KKCallStackSymbol.c */,
+				A3DE419825F28ED700DD7312 /* KKCallStack.m */,
+				A3DE419925F28ED700DD7312 /* KKCallStackSymbol.h */,
+			);
+			path = CallStack;
 			sourceTree = "<group>";
 		};
 		A3E0D6AD25C9828200DDA689 /* Load&Initialize */ = {
@@ -650,16 +712,20 @@
 				A394262725C6F61200114F3A /* CircleTransition.m in Sources */,
 				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
+				A39E689925F3D10A00AB0A35 /* Hero.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
 				A3E0D6A725C9725500DDA689 /* NSObject+MyKVO.m in Sources */,
 				B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
+				A3DE419C25F28ED700DD7312 /* KKCallStackSymbol.c in Sources */,
+				A3DE419D25F28ED700DD7312 /* KKCallStack.m in Sources */,
 				A39425FC25C3047500114F3A /* GCDLearn.m in Sources */,
 				A36C761C25B32A1C005D7B8A /* KVOPerson.m in Sources */,
 				A3E0D78825D043DB00DDA689 /* LoadPerson+Base.m in Sources */,
 				A394263925C6F77900114F3A /* TransitionViewController2.m in Sources */,
 				A3E0D6B025C982B400DDA689 /* LoadPerson.m in Sources */,
 				A3E0D8A025DD80F000DDA689 /* AllocationLearn.m in Sources */,
+				A39E68AB25F3D2A200AB0A35 /* DecoratorVC.m in Sources */,
 				A3E0D77A25D008F900DDA689 /* HitTestSubView.m in Sources */,
 				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
 				B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */,
@@ -668,6 +734,7 @@
 				A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
 				A36C763825B5DC88005D7B8A /* RuntimeLearn.m in Sources */,
+				A3DE419E25F28ED700DD7312 /* KKThreadMonitor.m in Sources */,
 				B6184E2425C7ACBA00837F2A /* NSObject+MultiDelegate.m in Sources */,
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
@@ -678,6 +745,7 @@
 				A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				A3E0D76325CAEB1C00DDA689 /* AutoReleasePoolLearn.m in Sources */,
+				A39E68A425F3D1AA00AB0A35 /* BuffDecorator.m in Sources */,
 				B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */,
 				B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */,
 				B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */,

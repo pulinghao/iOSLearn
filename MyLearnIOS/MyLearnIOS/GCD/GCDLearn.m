@@ -32,8 +32,6 @@
             });
         });
     });
-    
-
 }
 
 
@@ -95,5 +93,19 @@
     });
     NSLog(@"I");
     
+}
+
+- (void)test5
+{
+    dispatch_queue_t serial = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t con = dispatch_queue_create("conqueue", DISPATCH_QUEUE_CONCURRENT);
+    for (int i = 0; i < 20; i++) {
+//        dispatch_async(con, ^{
+            wait(1);
+            dispatch_async(serial, ^{
+                NSLog(@"plh %d",i);
+            });
+//        });
+    }
 }
 @end

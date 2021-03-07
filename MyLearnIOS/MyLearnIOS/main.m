@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "KKThreadMonitor.h"
 #import "RuntimeLearn.h"
 
 int main(int argc, char * argv[]) {
@@ -14,6 +15,7 @@ int main(int argc, char * argv[]) {
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
+        [KKThreadMonitor startMonitor];
     }
     return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }

@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AutoReleasePoolLearn : NSObject
 
+@property (nonatomic, strong) NSString *myStr;
+
 - (void)withoutAutoreleasepoolClick;
 
 @end

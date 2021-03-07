@@ -167,6 +167,8 @@ malloc MRC调用copy，ARC有强引用
 
 #### 修改外部变量
 
+a的地址在block内变了，原因在于block会把a的地址从栈上拷贝到堆上
+
 <img src="iOS面试整理.assets/image-20210304003118803.png" alt="image-20210304003118803" style="zoom:50%;" />
 
 ## 设计模式
@@ -555,3 +557,8 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 `cleanDisk`
 
 清理文件，会保留部分文件
+
+### YYKit
+
+#### YYModel
+

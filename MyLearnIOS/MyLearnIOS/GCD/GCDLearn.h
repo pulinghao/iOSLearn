@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)test4;
 
+- (void)test5;
+
 @end
 
 NS_ASSUME_NONNULL_END
