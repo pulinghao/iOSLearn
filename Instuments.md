@@ -180,8 +180,8 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 
 **Cached memory**: App中仍然被使用的内存，而且为了更好的性能，可能被再次使用
 
-- 1、 Leaked memory 和 Abandoned memory 都属于应该释放而没释放的内存，都是【内存泄露】。
-- 2、而 Leaks 工具只负责检测 Leaked memory，而不管 Abandoned memory。在 MRC 时代 Leaked memory 很常见，因为很容易忘了调用 release，但在 ARC 时代更常见的内存泄露是循环引用导致的 Abandoned memory，Leaks 工具查不出这类内存泄露，应用有限。
+- Leaked memory 和 Abandoned memory 都属于应该释放而没释放的内存，都是【内存泄露】。
+- 而 Leaks 工具只负责检测 Leaked memory，而不管 Abandoned memory。在 MRC 时代 Leaked memory 很常见，因为很容易忘了调用 release，但在 ARC 时代更常见的内存泄露是循环引用导致的 Abandoned memory，Leaks 工具查不出这类内存泄露，应用有限。
 
 # Allocation
 

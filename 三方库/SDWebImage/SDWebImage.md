@@ -228,6 +228,8 @@ cache.delegate = self;
 
 ### 查找图片
 
+#### 从磁盘中找图片（异步）
+
 这里使用了autoreleasepool，原因是查询接口可能被大量调用，使用autoreleasepool来管理临时变量
 
 ```objective-c
@@ -282,17 +284,44 @@ _ioQueue = dispatch_queue_create("com.hackemist.SDWebImageCache", DISPATCH_QUEUE
 
 - 有返回值时，大部分情况下用`同步`，除非这个返回值跟读写操作无关
 - 没有返回值时，用`异步`
+- 对磁盘的操作，一般都是`异步`的，除非需要立刻返回磁盘的数据
+
+#### 从磁盘中找图片（同步）
+
+```objc
+// 根据key从磁盘缓存中获取图片
+- (UIImage *)imageFromDiskCacheForKey:(NSString *)key {
+    // First check the in-memory cache...
+    UIImage *image = [self imageFromMemoryCacheForKey:key];
+    if (image) {
+        return image;
+    }
+
+    // Second check the disk cache...
+    UIImage *diskImage = [self diskImageForKey:key];
+    if (diskImage && self.shouldCacheImagesInMemory) {
+        NSUInteger cost = SDCacheCostForImage(diskImage);
+      	// 将磁盘中的图片，拷贝到缓存中
+        [self.memCache setObject:diskImage forKey:key cost:cost];
+    }
+    return diskImage;
+}
+```
+
+
 
 # 下载
 
-最大并发数为**6**
+## 基本配置
+
+最大并发数为**<font color='red'>6</font>**
 
 ```objective-c
 // 最大并发数: 6
 _downloadQueue.maxConcurrentOperationCount = 6;
 ```
 
-超时时间
+超时时间 **15s**
 
 ```objective-c
 // 下载超时时长
@@ -308,6 +337,27 @@ _downloadTimeout = 15.0;
 - tif git中的一张图
 
 SDWebImage根据每个文件的**前8个字节**，来判断是什么类型
+
+## 私有属性
+
+```objc
+@interface SDWebImageDownloader () <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
+
+@property (strong, nonatomic) NSOperationQueue *downloadQueue;
+@property (weak, nonatomic) NSOperation *lastAddedOperation;
+@property (assign, nonatomic) Class operationClass;
+@property (strong, nonatomic) NSMutableDictionary *URLCallbacks;
+@property (strong, nonatomic) NSMutableDictionary *HTTPHeaders;
+// This queue is used to serialize the handling of the network responses of all the download operation in a single queue
+@property (SDDispatchQueueSetterSementics, nonatomic) dispatch_queue_t barrierQueue;
+
+// The session in which data tasks will run
+@property (strong, nonatomic) NSURLSession *session;
+
+@end
+```
+
+
 
 ## 取消下载操作
 
@@ -352,6 +402,161 @@ static char loadOperationKey;
     return operations;
 }
 
+```
+
+## 下载队列
+
+### 队列的初始化
+
+```objc
+_downloadQueue = [NSOperationQueue new];
+        
+// 最大并发数: 6
+_downloadQueue.maxConcurrentOperationCount = 6;
+_downloadQueue.name = @"com.hackemist.SDWebImageDownloader";
+```
+
+
+
+### 栅栏函数
+
+使用并发队列
+
+```objective-c
+_barrierQueue = dispatch_queue_create("com.hackemist.SDWebImageDownloaderBarrierQueue", DISPATCH_QUEUE_CONCURRENT);
+```
+
+
+
+### 创建下载任务
+
+在创建下载任务的时候，先使用了栅栏函数，做了数据的同步
+
+- 使用同步操作，确保在`createCallback`中塞数据是同步的
+- 使用栅栏函数，目的是确保在这之前所有的任务都被执行完了
+- 由于涉及到`NSMutableDictionary`的添加操作操作，为了确保线程安全，所以需要用到`栅栏`函数
+
+```objective-c
+dispatch_barrier_sync(self.barrierQueue, ^{
+        BOOL first = NO;
+        if (!self.URLCallbacks[url]) {
+            self.URLCallbacks[url] = [NSMutableArray new];
+            first = YES;
+        }
+
+        // Handle single download of simultaneous download request for the same URL
+        NSMutableArray *callbacksForURL = self.URLCallbacks[url];
+        NSMutableDictionary *callbacks = [NSMutableDictionary new];
+        if (progressBlock) callbacks[kProgressCallbackKey] = [progressBlock copy];
+        if (completedBlock) callbacks[kCompletedCallbackKey] = [completedBlock copy];
+        [callbacksForURL addObject:callbacks];
+        self.URLCallbacks[url] = callbacksForURL;
+
+        if (first) {
+            createCallback();
+        }
+    });
+```
+
+<img src="SDWebImage.assets/image-20210309233654169.png" alt="image-20210309233654169" style="zoom:50%;" />
+
+这一步做了如下操作：
+
+1. 从`URLCallbacks`回调字典中，获取对应URL的可变数组
+2. 创建一个新的字典，字典中存取这个URL新的`process`和`complete`回调
+3. 将这个字典，添加到这个URL对应的可变数组中
+4. 将这个数组赋值到这个URL对应的字典位置
+
+
+
+这样的目的：解决了一个URL被多次重复下载的问题，总是取到最新的一个下载
+
+
+
+然后创建了下载任务
+
+```objective-c
+[self addProgressCallback:progressBlock completedBlock:completedBlock forURL:url createCallback:^{
+        operation = [[wself.operationClass alloc] initWithRequest:request
+                                                        inSession:self.session
+                                                          options:options
+                                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                             SDWebImageDownloader *sself = wself;
+                                                             if (!sself) return;
+                                                             __block NSArray *callbacksForURL;
+                                                             dispatch_sync(sself.barrierQueue, ^{
+                                                                 callbacksForURL = [sself.URLCallbacks[url] copy];
+                                                             });
+                                                             for (NSDictionary *callbacks in callbacksForURL) {
+                                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                                     SDWebImageDownloaderProgressBlock callback = callbacks[kProgressCallbackKey];
+                                                                     if (callback) callback(receivedSize, expectedSize);
+                                                                 });
+                                                             }
+                                                         }
+                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                            SDWebImageDownloader *sself = wself;
+                                                            if (!sself) return;
+                                                            __block NSArray *callbacksForURL;
+                                                            dispatch_barrier_sync(sself.barrierQueue, ^{
+                                                                callbacksForURL = [sself.URLCallbacks[url] copy];
+                                                                if (finished) {
+                                                                    [sself.URLCallbacks removeObjectForKey:url];
+                                                                }
+                                                            });
+                                                            for (NSDictionary *callbacks in callbacksForURL) {
+                                                                SDWebImageDownloaderCompletedBlock callback = callbacks[kCompletedCallbackKey];
+                                                                if (callback) callback(image, data, error, finished);
+                                                            }
+                                                        }
+                                                        cancelled:^{
+                                                            SDWebImageDownloader *sself = wself;
+                                                            if (!sself) return;
+                                                            dispatch_barrier_async(sself.barrierQueue, ^{
+                                                                [sself.URLCallbacks removeObjectForKey:url];
+                                                            });
+                                                        }];
+        operation.shouldDecompressImages = wself.shouldDecompressImages;
+        
+        if (wself.urlCredential) {
+            operation.credential = wself.urlCredential;
+        } else if (wself.username && wself.password) {
+            operation.credential = [NSURLCredential credentialWithUser:wself.username password:wself.password persistence:NSURLCredentialPersistenceForSession];
+        }
+        
+        if (options & SDWebImageDownloaderHighPriority) {
+            operation.queuePriority = NSOperationQueuePriorityHigh;
+        } else if (options & SDWebImageDownloaderLowPriority) {
+            operation.queuePriority = NSOperationQueuePriorityLow;
+        }
+
+        [wself.downloadQueue addOperation:operation];
+        if (wself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder) {
+            // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
+            [wself.lastAddedOperation addDependency:operation];
+            wself.lastAddedOperation = operation;
+        }
+    }];
+```
+
+### 任务的添加
+
+添加任务之后，系统便会自动运行任务，执行operation的`start`方法
+
+```objective-c
+ [wself.downloadQueue addOperation:operation];
+```
+
+### 任务挂起与取消
+
+```objective-c
+- (void)setSuspended:(BOOL)suspended {
+    [self.downloadQueue setSuspended:suspended];
+}
+
+- (void)cancelAllDownloads {
+    [self.downloadQueue cancelAllOperations];
+}
 ```
 
 
@@ -580,6 +785,8 @@ inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image) {}
 }
 ```
 
+> 这样写，就不用在SDImageCache的文件中，使用.mm后缀了
+
 ### 8. 对操作队列数组加锁
 
 在声明nontomic的数组，不是线程安全的。SDWebImage提供了一个方案
@@ -631,12 +838,17 @@ if (self.shouldDisableiCloud) {
 
 ### 12. dispatch_barrier的使用
 
+使用`dispatch_barrier_sync`和`dispatch_barrier_async`也是看任务需要，barrier本身提供了数据同步的操作，就是等当前队列上所有的任务都执行完，再执行。
+
+如果，要求立刻返回结果，那么用同步
+
+如果，不要求返回结果，那么用异步
+
 ```objc
 
 // 初始化，必须是并发队列
 _barrierQueue = dispatch_queue_create("com.hackemist.SDWebImageDownloaderBarrierQueue", DISPATCH_QUEUE_CONCURRENT);
         
-
 // copy progressblock，completedBlock
 dispatch_barrier_sync(self.barrierQueue, ^{
         BOOL first = NO;
@@ -661,20 +873,103 @@ dispatch_barrier_sync(self.barrierQueue, ^{
 
 // progressBlock
 dispatch_sync(sself.barrierQueue, ^{
-                                                                 callbacksForURL = [sself.URLCallbacks[url] copy];
-                                                             });
+      callbacksForURL = [sself.URLCallbacks[url] copy];
+});
 // completedBlock 中 同步读，等之前的任务全部处理完以后，再执行
 dispatch_barrier_sync(sself.barrierQueue, ^{
-                                                                callbacksForURL = [sself.URLCallbacks[url] copy];
-                                                                if (finished) {
-                                                                    [sself.URLCallbacks removeObjectForKey:url];
-                                                                }
-                                                            });
+     callbacksForURL = [sself.URLCallbacks[url] copy];
+     if (finished) {
+        [sself.URLCallbacks removeObjectForKey:url];
+     }
+});
 // cancelBlock 异步取消任务
 dispatch_barrier_async(sself.barrierQueue, ^{
                                                                 [sself.URLCallbacks removeObjectForKey:url];
                                                             });
 ```
+
+### 13. 自定义operation
+
+SDWebImage中`SDWebImageDownloaderOperation`是自定义的，继承自`NSOperation`
+
+如果要自定义实现一个operation的话，必须实现重写下面两个方法中的一个：
+
+- start
+- main
+
+```objective-c
+- (void)start {
+    // 防止其他线程更改了属性
+    @synchronized (self) {
+        if (self.isCancelled) {
+            self.finished = YES;
+            [self reset];
+            return;
+        }
+
+        NSURLSession *session = self.unownedSession;
+        if (!self.unownedSession) {
+            NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+            sessionConfig.timeoutIntervalForRequest = 15;
+            
+            /**
+             *  Create the session for this task
+             *  We send nil as delegate queue so that the session creates a serial operation queue for performing all delegate
+             *  method calls and completion handler calls.
+             */
+            self.ownedSession = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                              delegate:self
+                                                         delegateQueue:nil];
+            session = self.ownedSession;
+        }
+        
+        self.dataTask = [session dataTaskWithRequest:self.request];
+        self.executing = YES;
+        self.thread = [NSThread currentThread];
+    }
+    
+    [self.dataTask resume];
+
+    if (self.dataTask) {
+        if (self.progressBlock) {
+            self.progressBlock(0, NSURLResponseUnknownLength);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
+        });
+    }
+    else {
+        if (self.completedBlock) {
+            self.completedBlock(nil, nil, [NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Connection can't be initialized"}], YES);
+        }
+    }
+
+#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+    Class UIApplicationClass = NSClassFromString(@"UIApplication");
+    if(!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]) {
+        return;
+    }
+    if (self.backgroundTaskId != UIBackgroundTaskInvalid) {
+        UIApplication * app = [UIApplication performSelector:@selector(sharedApplication)];
+        [app endBackgroundTask:self.backgroundTaskId];
+        self.backgroundTaskId = UIBackgroundTaskInvalid;
+    }
+#endif
+}
+
+- (void)cancel {
+    @synchronized (self) {
+        if (self.thread) {
+            [self performSelector:@selector(cancelInternalAndStop) onThread:self.thread withObject:nil waitUntilDone:NO];
+        }
+        else {
+            [self cancelInternal];
+        }
+    }
+}
+```
+
+SDWebImage中Downloader有一个session，但真正的网络回调操作，都是给了Operation执行的。
 
 # 参考链接
 

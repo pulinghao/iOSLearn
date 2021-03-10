@@ -42,14 +42,14 @@
 
     dispatch_async(queue, ^{
         NSLog(@"%@",[NSThread currentThread]);
-        dispatch_sync(conqueue, ^{
+        dispatch_async(queue, ^{
             NSLog(@"%@",[NSThread currentThread]);
             NSLog(@"1");
         });
         
         NSLog(@"2");
 
-        dispatch_async(conqueue, ^{
+        dispatch_async(queue, ^{
             NSLog(@"%@",[NSThread currentThread]);
             NSLog(@"3");
         });

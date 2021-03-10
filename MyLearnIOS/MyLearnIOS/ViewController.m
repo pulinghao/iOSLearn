@@ -87,7 +87,13 @@ typedef void(^OtherBlk)(int a);
     
     self.lockLearn = [[LockLearn alloc] init];
     self.runtimeLearn = [[RuntimeLearn alloc] init];
-//    
+//
+    
+    BOOL ok = YES;
+    BOOL not = YES;
+    ok = not ?:not;
+    
+    
 //    [runteim resolve];
     
     Person *person = [[Person alloc] init];
@@ -130,7 +136,7 @@ typedef void(^OtherBlk)(int a);
 //    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
-    [gcd test5];
+    [gcd test2];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];
