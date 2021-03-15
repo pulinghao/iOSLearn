@@ -136,7 +136,7 @@ typedef void(^OtherBlk)(int a);
 //    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
-    [gcd test2];
+    [gcd useTargetQueue2];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];

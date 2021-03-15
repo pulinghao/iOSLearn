@@ -21,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)test5;
 
+
+/// 学习使用 dispatch_set_target_queue
+- (void)useTargetQueue;
+
+
+- (void)useTargetQueue2;
+
 @end
 
 NS_ASSUME_NONNULL_END
