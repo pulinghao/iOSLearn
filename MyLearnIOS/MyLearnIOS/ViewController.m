@@ -34,6 +34,7 @@ typedef void(^OtherBlk)(int a);
 
 
 
+
 @end
 
 @implementation homeViewControler
@@ -74,6 +75,7 @@ typedef void(^OtherBlk)(int a);
 
 @property (nonatomic, strong) AutoReleasePoolLearn *poolearn;
 @property (nonatomic, strong) HItTestView *hitTestView;
+@property (nonatomic, assign) Person *person;
 @end
 
 @implementation ViewController
@@ -100,6 +102,14 @@ typedef void(^OtherBlk)(int a);
     [person performSelector:@selector(swim)];
     _poolearn = [[AutoReleasePoolLearn alloc] init];
    
+    Person *a = [[Person alloc] init];
+    NSLog(@"%p",&a);
+    NSLog(@"%p",a);
+    self.person = a;
+    NSLog(@"%p",&_person);
+    NSLog(@"%p",_person);
+    [self.person doSomeThing];
+    
 //    
 //    [runteim resolve];
     
@@ -142,6 +152,12 @@ typedef void(^OtherBlk)(int a);
 //    [quelearn testQueue];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"%p",&_person);
+    NSLog(@"%p",_person);
+    [self.person doSomeThing];
+}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.taggerpointer touchBegin];

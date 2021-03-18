@@ -238,3 +238,80 @@ LOCK(
 
 ### 使用NSProxy解决CADisplayLink的循环引用
 
+#### Timer的循环引用
+
+如果按照下面构造timer，那么就会产生循环引用，dealloc方法永远不会被调用，因为self的引用计数一直不为0
+
+```objective-c
+@interface MyViewController : UIViewController
+
+@property (nonatomic, strong) NSTimer *timer;
+
+@end
+  
+@implementation MyViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(tick) userInfo:nil repeats:YES];
+    }
+    return self;
+}
+
+- (void)tick
+{
+    
+}
+
+- (void)dealloc
+{
+  [self.timer invalidate];
+}
+
+@end
+```
+
+<img src="YYKit.assets/image-20210315231821565.png" alt="image-20210315231821565" style="zoom:50%;" />
+
+#### 解决思路-引用中间变量
+
+<img src="YYKit.assets/image-20210315232058562.png" alt="image-20210315232058562" style="zoom:50%;" />
+
+- 让Timer持有一个中间变量WeakObj
+- WeakObj弱持有ViewController
+- 当外部对ViewController不再引用时，ViewController的引用计数为0，此时`dealloc`方法被调用
+- 从而释放Timer
+- Timer释放WeakObj
+
+```objective-c
+@interface YYWeakProxy : NSProxy
+
+/**
+ The proxy target.
+ */
+@property (nullable, nonatomic, weak, readonly) id target;
+@end
+
+@implementation YYWeakProxy
+- (instancetype)initWithTarget:(id)target {
+    _target = target;
+    return self;
+}
+
++ (instancetype)proxyWithTarget:(id)target {
+    return [[YYWeakProxy alloc] initWithTarget:target];
+}
+
+// 使用备用接收者响应方法，这里的备用接收者就是target，或者说是ViewController
+- (id)forwardingTargetForSelector:(SEL)selector {
+    return _target;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    return [_target respondsToSelector:aSelector];
+}
+@end
+```
+

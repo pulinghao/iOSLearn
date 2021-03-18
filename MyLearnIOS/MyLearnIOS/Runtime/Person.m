@@ -29,6 +29,11 @@
     return self;
 }
 
+
+- (void)doSomeThing
+{
+    NSLog(@"do some thing");
+}
 + (void)run{
     NSLog(@"%s",__func__);
 }

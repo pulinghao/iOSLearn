@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testKindOfClass;
 
+
+- (void)doSomeThing;
 @end
 
 NS_ASSUME_NONNULL_END
