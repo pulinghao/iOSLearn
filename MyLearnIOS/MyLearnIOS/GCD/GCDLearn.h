@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)useTargetQueue2;
 
+- (void)deadLocktTest;
+
 @end
 
 NS_ASSUME_NONNULL_END

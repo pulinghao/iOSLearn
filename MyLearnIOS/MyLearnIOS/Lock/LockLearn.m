@@ -319,4 +319,33 @@
     pthread_rwlock_unlock(&rwLock);
   });
 }
+
+
+- (void)testTwoThreadLock
+{
+    //主线程中
+    NSLock *lock = [[NSLock alloc] init];
+    
+    //线程1
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [lock lock];
+        NSLog(@"线程1");
+        sleep(12);
+        [lock unlock];
+        NSLog(@"线程1解锁成功");
+    });
+
+    //线程2
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        sleep(1);//以保证让线程2的代码后执行
+        [lock lock];
+        NSLog(@"线程2");
+        [lock unlock];
+    });
+
+//    2016-08-19 14:23:09.659 ThreadLockControlDemo[1754:129663] 线程1
+//    2016-08-19 14:23:11.663 ThreadLockControlDemo[1754:129663] 线程1解锁成功
+//    2016-08-19 14:23:11.665 ThreadLockControlDemo[1754:129659] 线程2
+
+}
 @end

@@ -789,7 +789,7 @@ inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image) {}
 
 ### 8. 对操作队列数组加锁
 
-在声明nontomic的数组，不是线程安全的。SDWebImage提供了一个方案
+在声明`nonatomic`的数组，不是线程安全的。SDWebImage提供了一个方案
 
 ```objective-c
 @property (strong, nonatomic) NSMutableArray *runningOperations;

@@ -7,6 +7,11 @@
 
 #import "GCDLearn.h"
 
+typedef struct Student{
+    char *name;
+    int  age;
+    int  classNum;
+}Student;
 @implementation GCDLearn
 
 - (instancetype)init
@@ -17,8 +22,18 @@
         dispatch_block_create_with_qos_class(0, QOS_CLASS_UTILITY, 0, ^{
             
         });
-        dispatch_async(dispatch_get_main_queue(), blk);
         
+        
+        Student s ={
+            .name = "Kt",
+            .age = 13,
+            .classNum = 1,
+        };
+        Student p;
+        p.name = "pP";
+        p.age = 11;
+        p.classNum = 2;
+        dispatch_async(dispatch_get_main_queue(), blk);
     }
     return self;
 }
@@ -239,5 +254,22 @@
         NSLog(@"5");
     });
     
+}
+
+- (void)deadLocktTest
+{
+    // 串行死锁的例子（这里不会crash，在线程A执行串行任务task1的过程中，又在线程B中投递了一个task2到串行队列同时使用dispatch_sync等待，死锁，但GCD不会测出）
+        //==============================
+    dispatch_queue_t sQ1 = dispatch_queue_create("st01", 0);
+    dispatch_async(sQ1, ^{
+        NSLog(@"Enter");
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_sync(sQ1, ^{
+                NSArray *a = [NSArray new];
+                NSLog(@"Enter again %@", a);
+            });
+        });
+        NSLog(@"Done");
+    });
 }
 @end

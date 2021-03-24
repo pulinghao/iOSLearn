@@ -337,7 +337,7 @@
 
 # clang
 
-编译带UIKit的文件
+用C++编译带`UIKit`的文件
 
 ```shell
 clang -x objective-c -rewrite-objc -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk  XXX.m文件

@@ -4,7 +4,21 @@
 //
 //  Created by zhanghuiqiang on 2021/1/16.
 //
+/**
+ Union的用法
+ typedef union {
+     int a;
+     float b;
+ }UnionType;
+ UnionType type;
+ type.a = 3;
 
+ NSLog(@"a --> %p",&type.a);
+ NSLog(@"b --> %p",&type.b);
+ NSLog(@"zd --> %p",sizeof(UnionType));
+ */
+
+    
 #import "ViewController.h"
 #import <objc/runtime.h>
 #import "KVOPerson.h"
@@ -22,6 +36,8 @@ extern void instrumentObjcMessageSends(BOOL);
 
 typedef void (^MyBlock)(void);
 typedef void(^OtherBlk)(int a);
+
+
 
 @interface homeViewControler : UIViewController
 {
@@ -129,34 +145,31 @@ typedef void(^OtherBlk)(int a);
     
 //    [thread start];
 
-//    typedef union {
-//        int a;
-//        float b;
-//    }UnionType;
-//    UnionType type;
-//    type.a = 3;
-//
-//    NSLog(@"a --> %p",&type.a);
-//    NSLog(@"b --> %p",&type.b);
-//    NSLog(@"zd --> %p",sizeof(UnionType));
-    
+
 
     
 //    self.taggerpointer = [[TaggerPointerLearn alloc] init];
 //    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
-    [gcd useTargetQueue2];
+    [gcd deadLocktTest];
+//    [gcd useTargetQueue2];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];
+    
+    NSLog(@"1");
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"2");
+    });
+    NSLog(@"3");
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"%p",&_person);
     NSLog(@"%p",_person);
-    [self.person doSomeThing];
+//    [self.person doSomeThing];
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -190,7 +203,8 @@ typedef void(^OtherBlk)(int a);
 }
 
 - (IBAction)testLock:(id)sender {
-    [self.lockLearn testRecursiveLock];
+//    [self.lockLearn testRecursiveLock];
+    [self.lockLearn testTwoThreadLock];
 }
 
 - (IBAction)autoReleasePoolClick:(id)sender {
