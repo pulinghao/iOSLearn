@@ -42,7 +42,7 @@ CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 
 ARKit有步骑行上层的ARCameraView接管，基于此设置ARSession和ARConfiguration。初始化做了如下工作：
 
-1. 初始化ARSession，是整个ARKit驱动的核心，并把delegate设置为self；
+1. 初始化`ARSession`，是整个ARKit驱动的核心，并把delegate设置为self；
 2. 设置ARContentView，并设置缓存大小为`1280 * 720`，这是AR区域的展示大小
 3. 设置ARConfiguration为`Tracking`模式，并将输出格式设置为720
 4. 不启动ARSession

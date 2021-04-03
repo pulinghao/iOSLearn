@@ -37,7 +37,7 @@ extern void instrumentObjcMessageSends(BOOL);
 typedef void (^MyBlock)(void);
 typedef void(^OtherBlk)(int a);
 
-
+typedef void(^testBlock)();
 
 @interface homeViewControler : UIViewController
 {
@@ -92,6 +92,8 @@ typedef void(^OtherBlk)(int a);
 @property (nonatomic, strong) AutoReleasePoolLearn *poolearn;
 @property (nonatomic, strong) HItTestView *hitTestView;
 @property (nonatomic, assign) Person *person;
+
+@property (nonatomic, copy) testBlock block;
 @end
 
 @implementation ViewController
@@ -105,26 +107,34 @@ typedef void(^OtherBlk)(int a);
     
     self.lockLearn = [[LockLearn alloc] init];
     self.runtimeLearn = [[RuntimeLearn alloc] init];
+    
+    
 //
+//
+//    BOOL ok = YES;
+//    BOOL not = YES;
+//    ok = not ?:not;
     
-    BOOL ok = YES;
-    BOOL not = YES;
-    ok = not ?:not;
-    
-    
+//    [self testBlock];
+//    self.block();
+//
 //    [runteim resolve];
     
-    Person *person = [[Person alloc] init];
-    [person performSelector:@selector(swim)];
-    _poolearn = [[AutoReleasePoolLearn alloc] init];
-   
-    Person *a = [[Person alloc] init];
-    NSLog(@"%p",&a);
-    NSLog(@"%p",a);
-    self.person = a;
-    NSLog(@"%p",&_person);
-    NSLog(@"%p",_person);
-    [self.person doSomeThing];
+//    Person *person = [[Person alloc] init];
+//    [person performSelector:@selector(swim)];
+//    _poolearn = [[AutoReleasePoolLearn alloc] init];
+//
+//    Person *a = [[Person alloc] init];
+//    NSLog(@"%p",&a);
+//    NSLog(@"%p",a);
+//    self.person = a;
+//    NSLog(@"%p",&_person);
+//    NSLog(@"%p",_person);
+//    [self.person doSomeThing];
+//
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [self performSelector:@selector(delayFunc) withObject:nil afterDelay:1.0];
+//    });
     
 //    
 //    [runteim resolve];
@@ -152,7 +162,7 @@ typedef void(^OtherBlk)(int a);
 //    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
-    [gcd deadLocktTest];
+    [gcd meituanInterview];
 //    [gcd useTargetQueue2];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
@@ -211,4 +221,18 @@ typedef void(^OtherBlk)(int a);
     [_poolearn withoutAutoreleasepoolClick];
 }
 
+- (void)testBlock
+{
+    __block int a = 10;
+    self.block = ^{
+        NSLog(@"%s",__func__);
+        NSLog(@"a = %d",a);
+    };
+    a = 20;
+}
+
+- (void)delayFunc
+{
+    NSLog(@"%s",__func__);
+}
 @end

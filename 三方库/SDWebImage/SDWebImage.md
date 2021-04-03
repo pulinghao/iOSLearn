@@ -728,7 +728,6 @@ dispatch_sync(_ioQueue, ^{
 }
 
 
-
 /**
  *  根据key判断是否Image是否存在磁盘中：异步处理
  *
@@ -892,10 +891,10 @@ dispatch_barrier_async(sself.barrierQueue, ^{
 
 SDWebImage中`SDWebImageDownloaderOperation`是自定义的，继承自`NSOperation`
 
-如果要自定义实现一个operation的话，必须实现重写下面两个方法中的一个：
+如果要自定义实现一个`operation`的话，必须实现重写`main`和`start`中的一个：
 
-- start
-- main
+- start：用于并发。方法执行完毕，finish属性不变，可以控制整个operation 的生命周期。任务完成后，手动cancel调任务即可
+- main：用于非并发。方法执行完毕后，operation会从队列中移除。问题：如果有代理方法的回调，那么由于任务被移除了，造成找不到代理的出错
 
 ```objective-c
 - (void)start {

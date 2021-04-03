@@ -1,6 +1,146 @@
-# GCD
+# GCD的使用
 
-源码库位置：libdispatch
+队列挂起，任务能否继续执行？
+
+## 主队列
+
+- 主队列在APP的`main`函数之前，就被创建出来了
+
+NSThread有两个函数`main`和`start`
+
+## 栅栏函数
+
+- 封装网络请求的时候，不可以用<font color='red'>栅栏函数！！！</font>(AFN的网络队列，与这个添加网络任务的队列，不是一个队列)
+- 栅栏函数，必须创建在**并发队列**上
+
+## 调度组
+
+多线程执行的两个问题
+
+- 顺序执行
+- 线程安全
+- 解决在不同队列中，任务同步执行的问题，都放到一个组中
+
+设计思路
+
+- 创建要同步的组
+- 设置超时时间`dispatch_group_wait`，在规定时间内执行完，返回0；否则返回非0
+- 使用`dispatch_group_notify`同步结果
+
+```objective-c
+/**
+ 调度组测试
+ */
+- (void)groupDemo{
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    
+    dispatch_group_async(group, queue, ^{
+        //创建调度组
+        // AFN task
+    });
+    
+    dispatch_group_async(group, queue, ^{
+        //创建调度组
+        // AFN task
+    });
+    
+    long timeout = dispatch_group_wait(group, 0.5); //DISPATCH_TIME_FOREVER 一直等待完成
+    if (timeout == 0) {
+        dispatch_group_notify(group, queue, ^{
+            // Your task
+        });
+        
+    }
+}
+```
+
+## 源
+
+1. 创建queue和source
+
+```objective-c
+self.queue = dispatch_queue_create("com.tz.cn.cooci", 0);
+// source依赖main queue
+self.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+```
+
+2. 将source作用于整个线程中
+3. 封装source事件，需要回调的触发函数
+
+```c
+// 保存代码块 ---> 异步 dispatch_source_set_event_handler()
+    // 封装我们需要回调的触发函数
+dispatch_source_set_event_handler(self.source, ^{
+    NSUInteger value = dispatch_source_get_data(self.source);
+    self.totalComplete += value;
+    NSLog(@"进度：%.2f", self.totalComplete/100.0);
+    self.progressView.progress = self.totalComplete/100.0;
+});
+```
+
+4. 开始任务resume，原因是**source创建后，默认挂起**
+
+```c
+// resume (OC): dispatch_resume (c)
+// [task resume]
+
+dispatch_resume(self.source);   
+
+void dispatch_resume(dispatch_object_t object);
+```
+
+`dispatch_resume`可以继续任何dispatch_object_t对象，前提是必须这个对象被挂起了。如果这个对象销毁了
+
+5. 外部事件传入，暂停任务
+
+```objective-c
+- (IBAction)didClickStartOrPauseAction:(id)sender {
+    if (self.isRunning) {// 正在跑就暂停
+        dispatch_suspend(self.source);
+        dispatch_suspend(self.queue);// mainqueue 挂起
+        self.isRunning = NO;
+        [sender setTitle:@"暂停中..." forState:UIControlStateNormal];
+    }else{
+        dispatch_resume(self.source);
+        dispatch_resume(self.queue);
+        self.isRunning = YES;
+        [sender setTitle:@"加载中..." forState:UIControlStateNormal];
+    }
+}
+```
+
+6. 设置触发函数`dispatch_source_merge_data`
+
+```objective-c
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"点击开始加载");
+    for (NSUInteger index = 0; index < 100; index++) {
+        dispatch_async(self.queue, ^{
+            if (!self.isRunning) {
+                NSLog(@"暂停下载");
+                return ;
+            }
+            sleep(2);
+
+            dispatch_source_merge_data(self.source, 1);
+        });
+    }
+}
+```
+
+
+
+```
+void dispatch_source_merge_data(dispatch_source_t source, uintptr_t value);
+```
+
+- source：源
+- value：
+
+# GCD源码
+
+源码库位置：`libdispatch`
 
 ## dispatch_object_c 联合抽象类
 
@@ -500,8 +640,6 @@ _dispatch_queue_try_acquire_barrier_sync_and_suspend(dispatch_queue_t dq,
 
 
 
-
-
 - 串行队列宽度:dq_width = 1，触发`dispatch_barrier_sync_f`
 
 	- 上锁：`_dispatch_queue_try_acquire_barrier_sync`
@@ -589,18 +727,336 @@ _dispatch_lock_is_locked_by(dispatch_lock lock_value, dispatch_tid tid)
 
 
 
-### 参数：dispatch_queue_t，dispatch_block_t
+### 
+
+
 
 ## 异步`dispatch_async`
 
-### 任务打包 _dispatch_continuation_init
+实现：
+
+```c
+void
+dispatch_async(dispatch_queue_t dq, dispatch_block_t work)
+{
+	
+	dispatch_continuation_t dc = _dispatch_continuation_alloc();
+	// 设置标志位
+	uintptr_t dc_flags = DISPATCH_OBJ_CONSUME_BIT;
+    // 将work打包成dispatch_continuation_t
+	_dispatch_continuation_init(dc, dq, work, 0, 0, dc_flags);
+	_dispatch_continuation_async(dq, dc);
+}
+```
+
+这里需要说一下`dispatch_continuation_t`的大致结构
+
+```c
+#define DISPATCH_CONTINUATION_HEADER(x) \
+	union { \
+		const void *do_vtable; \
+		uintptr_t dc_flags; \
+	}; \
+	union { \
+		pthread_priority_t dc_priority; \
+		int dc_cache_cnt; \
+		uintptr_t dc_pad; \
+	}; \
+	struct dispatch_##x##_s *volatile do_next; \
+	struct voucher_s *dc_voucher; \
+	dispatch_function_t dc_func; \  
+	void *dc_ctxt; \
+	void *dc_data; \
+	void *dc_other
+```
+
+dc_flags：标志位
+
+dc_func：方法回调
+
+dc_ctxt：当前的任务
+
+### 任务打包 `_dispatch_continuation_init`
+
+```c
+static inline void
+_dispatch_continuation_init(dispatch_continuation_t dc,
+		dispatch_queue_class_t dqu, dispatch_block_t work,
+		pthread_priority_t pp, dispatch_block_flags_t flags, uintptr_t dc_flags)
+{
+  //dc_flags = DISPATCH_OBJ_CONSUME_BIT
+	dc->dc_flags = dc_flags | DISPATCH_OBJ_BLOCK_BIT;
+	// 将work封装到dispatch_continuation_t中
+	dc->dc_ctxt = _dispatch_Block_copy(work);
+	_dispatch_continuation_priority_set(dc, pp, flags);
+
+	if (unlikely(_dispatch_block_has_private_data(work))) {
+		// always sets dc_func & dc_voucher
+		// may update dc_priority & do_vtable
+		return _dispatch_continuation_init_slow(dc, dqu, flags);
+	}
+
+	
+	if (dc_flags & DISPATCH_OBJ_CONSUME_BIT) {// 之前的flag 被设置为DISPATCH_OBJ_CONSUME_BIT，因此会走这里
+		dc->dc_func = _dispatch_call_block_and_release;// 这里是设置dc的功能函数：1. 执行block 2. release block对象
+	} else {
+		dc->dc_func = _dispatch_Block_invoke(work);  // 执行函数
+	}
+	_dispatch_continuation_voucher_set(dc, dqu, flags);
+}
+```
+
+任务打包的实现过程：
+
+1. 复制任务
+
+```c
+dc->dc_ctxt = _dispatch_Block_copy(work);
+```
+
+2. 根据串行还是并发，设置保存方式
+
+```c
+if (dc_flags & DISPATCH_OBJ_CONSUME_BIT) {// 之前的flag 被设置为DISPATCH_OBJ_CONSUME_BIT，因此会走这里
+		dc->dc_func = _dispatch_call_block_and_release;// 这里是设置dc的功能函数：1. 执行block 2. release block对象
+	} else {
+		dc->dc_func = _dispatch_Block_invoke(work);
+	}
+```
+
+
 
 - work的代码放在这个里面，控制执行和释放_dispatch_call_block_and_release
 
-### _dispatch_continuation_async
+### 异步入口
 
-- 串行队列：_dispatch_continuation_push
-- 并行队列：_dispatch_async_f2
+```c
+void
+_dispatch_continuation_async(dispatch_queue_t dq, dispatch_continuation_t dc)
+{
+	_dispatch_continuation_async2(dq, dc,
+			dc->dc_flags & DISPATCH_OBJ_BARRIER_BIT);
+}
+
+static inline void
+_dispatch_continuation_async2(dispatch_queue_t dq, dispatch_continuation_t dc,
+		bool barrier)
+{
+	// 如果是用barrier插进来的任务或者是串行队列，直接将任务加入到队列
+	if (fastpath(barrier || !DISPATCH_QUEUE_USES_REDIRECTION(dq->dq_width))) {
+		return _dispatch_continuation_push(dq, dc);
+	}
+	 // 并行队列走这里
+	return _dispatch_async_f2(dq, dc);
+}
+```
+
+#### 串行队列
+
+将block推进到队列里，并且更新
+
+```c
+static inline void
+_dispatch_queue_push_inline(dispatch_queue_t dq, dispatch_object_t _tail,
+		dispatch_qos_t qos)
+{
+	struct dispatch_object_s *tail = _tail._do;
+	dispatch_wakeup_flags_t flags = 0;
+	// If we are going to call dx_wakeup(), the queue must be retained before
+	// the item we're pushing can be dequeued, which means:
+	// - before we exchange the tail if we may have to override
+	// - before we set the head if we made the queue non empty.
+	// Otherwise, if preempted between one of these and the call to dx_wakeup()
+	// the blocks submitted to the queue may release the last reference to the
+	// queue when invoked by _dispatch_queue_drain. <rdar://problem/6932776>
+	bool overriding = _dispatch_queue_need_override_retain(dq, qos);
+	// 加入到自己的队列
+	// block --> 队列 更新
+	if (unlikely(_dispatch_queue_push_update_tail(dq, tail))) {
+		if (!overriding) _dispatch_retain_2(dq->_as_os_obj);
+		_dispatch_queue_push_update_head(dq, tail); //更新头部
+		flags = DISPATCH_WAKEUP_CONSUME_2 | DISPATCH_WAKEUP_MAKE_DIRTY;
+	} else if (overriding) {
+		flags = DISPATCH_WAKEUP_CONSUME_2;
+	} else {
+		return;
+	}
+	return dx_wakeup(dq, qos, flags);
+}
+```
+
+异步串行的原因，执行了`_dispatch_queue_push_queue`，顺序压栈
+
+```c
+DISPATCH_NOINLINE
+void
+_dispatch_queue_class_wakeup(dispatch_queue_t dq, dispatch_qos_t qos,
+		dispatch_wakeup_flags_t flags, dispatch_queue_wakeup_target_t target)
+{
+	
+	// 这里target 如果dq是root queue大概率为null，否则，target == DISPATCH_QUEUE_WAKEUP_TARGET, 调用_dispatch_queue_push_queue，将自定义dq入队，然后会在调用一遍wake up，最终在root queue中执行方法
+	if (target) {
+		uint64_t old_state, new_state, enqueue = DISPATCH_QUEUE_ENQUEUED;
+		if (target == DISPATCH_QUEUE_WAKEUP_MGR) {
+			enqueue = DISPATCH_QUEUE_ENQUEUED_ON_MGR;
+		}
+		qos = _dispatch_queue_override_qos(dq, qos);
+		os_atomic_rmw_loop2o(dq, dq_state, old_state, new_state, release, {
+			new_state = _dq_state_merge_qos(old_state, qos);
+			if (likely(!_dq_state_is_suspended(old_state) &&
+					!_dq_state_is_enqueued(old_state) &&
+					(!_dq_state_drain_locked(old_state) ||
+					(enqueue != DISPATCH_QUEUE_ENQUEUED_ON_MGR &&
+					_dq_state_is_base_wlh(old_state))))) {
+				new_state |= enqueue;
+			}
+			if (flags & DISPATCH_WAKEUP_MAKE_DIRTY) {
+				new_state |= DISPATCH_QUEUE_DIRTY;
+			} else if (new_state == old_state) {
+				os_atomic_rmw_loop_give_up(goto done);
+			}
+		});
+
+		if (likely((old_state ^ new_state) & enqueue)) {
+			dispatch_queue_t tq;
+			if (target == DISPATCH_QUEUE_WAKEUP_TARGET) {
+				// the rmw_loop above has no acquire barrier, as the last block
+				// of a queue asyncing to that queue is not an uncommon pattern
+				// and in that case the acquire would be completely useless
+				//
+				// so instead use depdendency ordering to read
+				// the targetq pointer.
+				os_atomic_thread_fence(dependency);
+				tq = os_atomic_load_with_dependency_on2o(dq, do_targetq,
+						(long)new_state);
+			} else {
+				tq = target;
+			}
+			
+			// 异步串行 也会 顺序执行
+			// 异步并发 创建线程
+			dispatch_assert(_dq_state_is_enqueued(new_state));
+			return _dispatch_queue_push_queue(tq, dq, new_state);
+		}
+#if HAVE_PTHREAD_WORKQUEUE_QOS
+		if (unlikely((old_state ^ new_state) & DISPATCH_QUEUE_MAX_QOS_MASK)) {
+			if (_dq_state_should_override(new_state)) {
+				return _dispatch_queue_class_wakeup_with_override(dq, new_state,
+						flags);
+			}
+		}
+	} else if (qos) {
+		//
+		// Someone is trying to override the last work item of the queue.
+		//
+		uint64_t old_state, new_state;
+		os_atomic_rmw_loop2o(dq, dq_state, old_state, new_state, relaxed, {
+			if (!_dq_state_drain_locked(old_state) ||
+					!_dq_state_is_enqueued(old_state)) {
+				os_atomic_rmw_loop_give_up(goto done);
+			}
+			new_state = _dq_state_merge_qos(old_state, qos);
+			if (new_state == old_state) {
+				os_atomic_rmw_loop_give_up(goto done);
+			}
+		});
+		if (_dq_state_should_override(new_state)) {
+			return _dispatch_queue_class_wakeup_with_override(dq, new_state,
+					flags);
+		}
+#endif // HAVE_PTHREAD_WORKQUEUE_QOS
+	}
+done:
+	if (likely(flags & DISPATCH_WAKEUP_CONSUME_2)) {
+		return _dispatch_release_2_tailcall(dq);
+	}
+}
+```
+
+
+
+#### 并发队列
+
+执行`_dispatch_async_f2`
+
+```c
+static void
+_dispatch_async_f2(dispatch_queue_t dq, dispatch_continuation_t dc)
+{
+	// <rdar://problem/24738102&24743140> reserving non barrier width
+	// doesn't fail if only the ENQUEUED bit is set (unlike its barrier width
+	// equivalent), so we have to check that this thread hasn't enqueued
+	// anything ahead of this call or we can break ordering
+	// 如果还有任务，slowpath表示很大可能队尾是没有任务的。
+	// 实际开发中也的确如此，一般情况下我们不会dispatch_async之后又马上跟着一个dispatch_async
+	if (slowpath(dq->dq_items_tail)) {
+		return _dispatch_continuation_push(dq, dc);
+	}
+
+	if (slowpath(!_dispatch_queue_try_acquire_async(dq))) {
+		return _dispatch_continuation_push(dq, dc);
+	}
+    // async 重定向，任务的执行由自动定义queue转入root queue
+	return _dispatch_async_f_redirect(dq, dc,
+			_dispatch_continuation_override_qos(dq, dc));
+}
+```
+
+##### 任务重定向
+
+1. 在并发队列池中(root queue)，找到合适的队列
+
+```c
+static void
+_dispatch_async_f_redirect(dispatch_queue_t dq,
+		dispatch_object_t dou, dispatch_qos_t qos)
+{
+	// 这里会走进if的语句，因为_dispatch_object_is_redirection内部的dx_type(dou._do) == type条件为否
+	if (!slowpath(_dispatch_object_is_redirection(dou))) {
+		dou._dc = _dispatch_async_redirect_wrap(dq, dou);
+	}
+	// dq换成所绑定的root队列
+	dq = dq->do_targetq;
+
+	// Find the queue to redirect to
+	// 基本不会走里面的循环，主要做的就是找到根root队列
+	while (slowpath(DISPATCH_QUEUE_USES_REDIRECTION(dq->dq_width))) {
+		if (!fastpath(_dispatch_queue_try_acquire_async(dq))) {
+			break;
+		}
+		if (!dou._dc->dc_ctxt) {
+			// find first queue in descending target queue order that has
+			// an autorelease frequency set, and use that as the frequency for
+			// this continuation.
+			dou._dc->dc_ctxt = (void *)
+					(uintptr_t)_dispatch_queue_autorelease_frequency(dq);
+		}
+		dq = dq->do_targetq;
+	}
+
+	// 把装有block信息的结构体装进所在队列对应的root_queue里面
+	dx_push(dq, dou, qos);
+}
+```
+
+#### 添加线程
+
+在`_dispatch_global_queue_poke_slow`方法中，有一个添加线程的接口。
+
+```c
+static void
+_dispatch_global_queue_poke_slow(dispatch_queue_t dq, int n, int floor){
+#if HAVE_PTHREAD_WORKQUEUE_QOS
+		r = _pthread_workqueue_addthreads(remaining,
+				_dispatch_priority_to_pp(dq->dq_priority));
+#elif DISPATCH_USE_PTHREAD_WORKQUEUE_SETDISPATCH_NP
+		r = pthread_workqueue_addthreads_np(qc->dgq_wq_priority,
+				qc->dgq_wq_options, remaining);
+#endif
+}
+```
+
+从其他的资料来看，其实是workqueue添加了线程。
 
 ## 数据结构
 
@@ -721,6 +1177,8 @@ dispatch_async(serialQueue3, ^{
 ```
 
 # 参考链接
+
+[iOS多线程——Dispatch Source](https://www.jianshu.com/p/880c2f9301b6)
 
 [iOS libdispatch浅析](https://www.jianshu.com/p/b99f6a2e3b78)
 

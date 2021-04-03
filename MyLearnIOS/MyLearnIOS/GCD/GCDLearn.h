@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deadLocktTest;
 
+
+- (void)meituanInterview;
 @end
 
 NS_ASSUME_NONNULL_END

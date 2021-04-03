@@ -6,7 +6,7 @@
 
 - 创建`NSURLSessionConfig`对象
 - 用`NSURLSessionConfig`创建`NSURLSession`对象
-- 用NSURLSession 创建对应的task对象，并用`resume`执行
+- 用`NSURLSession` 创建对应的task对象，并用`resume`执行
 - 在`NSURLSessionDelegate` 和`NSURLSessionTaskDelegate`代理中或者`completionHandler block`中响应网络事件及数据 
 
 ### 两种响应数据的方式

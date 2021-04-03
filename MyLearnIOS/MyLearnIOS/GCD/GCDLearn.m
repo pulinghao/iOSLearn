@@ -12,6 +12,15 @@ typedef struct Student{
     int  age;
     int  classNum;
 }Student;
+
+typedef void(^myBlock)();
+@interface GCDLearn()
+
+@property (nonatomic, copy) myBlock block;
+
+
+@end
+
 @implementation GCDLearn
 
 - (instancetype)init
@@ -271,5 +280,21 @@ typedef struct Student{
         });
         NSLog(@"Done");
     });
+}
+
+// 美团的面试题
+- (void)meituanInterview
+{
+    __block int a = 0;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    while (a < 5) {
+        
+            NSLog(@"%@ ==== %d",[NSThread currentThread],a);
+            a ++;
+        
+    }
+    });
+    
+    NSLog(@"%@ *** %d",[NSThread currentThread],a);
 }
 @end
