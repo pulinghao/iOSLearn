@@ -695,15 +695,14 @@ if (self.automaticallyInflatesResponseImage) {
 
 ​	      管道机制，客户端能同时发送多个请求，但是服务端还是单管道，对头堵塞
 
-2.0 ：多工，修复管道机制，避免对头阻塞（Socket半全工）
+2.0 ：
 
-​		   头信息压缩，每次请求会携带很多信息，都是一模一样的相同内容
-
-​            服务器自推送
-
-​		    无状态 节省依赖性
-
-​			cookie 
+- 多路复用，修复管道机制，避免对头阻塞（Socket半全工）
+- 二进制分帧
+- 头信息压缩，每次请求会携带很多信息，都是一模一样的相同内容
+- 服务器自推送
+- 无状态 节省依赖性
+- cookie 
 
 #### 缺点
 
@@ -1373,4 +1372,7 @@ AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerObserverContext
 - NSAllowArbitraryLoadsInWebContent：webview加载时不受限制
 - NSAllowsLocalNetworking
 
-相关博客：
+# 参考链接
+
+[有关HTTP2.0详解](https://blog.csdn.net/yexudengzhidao/article/details/98207149)
+

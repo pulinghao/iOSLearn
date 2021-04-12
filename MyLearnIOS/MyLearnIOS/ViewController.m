@@ -162,7 +162,7 @@ typedef void(^testBlock)();
 //    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
-    [gcd meituanInterview];
+    [gcd test5];
 //    [gcd useTargetQueue2];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];

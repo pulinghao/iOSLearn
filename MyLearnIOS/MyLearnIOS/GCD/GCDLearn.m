@@ -142,16 +142,30 @@ typedef void(^myBlock)();
 
 - (void)test5
 {
-    dispatch_queue_t serial = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
-    dispatch_queue_t con = dispatch_queue_create("conqueue", DISPATCH_QUEUE_CONCURRENT);
-    for (int i = 0; i < 20; i++) {
-//        dispatch_async(con, ^{
-            wait(1);
-            dispatch_async(serial, ^{
-                NSLog(@"plh %d",i);
-            });
-//        });
-    }
+//    dispatch_queue_t serial = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
+//    dispatch_queue_t con = dispatch_queue_create("conqueue", DISPATCH_QUEUE_CONCURRENT);
+//    for (int i = 0; i < 20; i++) {
+//            dispatch_async(serial, ^{
+//                NSLog(@"plh %d",i);
+//            });
+//    }
+    dispatch_queue_t serial1 = dispatch_queue_create("myqueue1", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t serial2 = dispatch_queue_create("myqueue2", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(serial1, ^{
+        dispatch_async(serial2, ^{
+            //
+            NSLog(@"task1--%@",[NSThread currentThread]);
+        });
+        
+        dispatch_sync(serial2, ^{
+            // 这个任务会等待task1执行完，因为队列里现在有一个任务了，等待执行
+            NSLog(@"task2--%@",[NSThread currentThread]);
+        });
+        
+        // 这个任务会等待task 2执行完
+        NSLog(@"task3--%@",[NSThread currentThread]);
+
+    });
 }
 
 - (void)threadExplosion
