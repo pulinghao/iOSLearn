@@ -46,7 +46,7 @@
     [self.view addSubview:getNoReturn];
     
     self.source = [[MultiDemoSource alloc]init];
-    self.source.delegate = (id)self.source.multiDelegate;
+    self.source.delegate = (id)self.source.multiDelegate;  //把事件都交给multiDelegate来处理
     self.demo1 = [[MutiDelegateDemo alloc]init];
     self.demo2 = [[MutiDelegateDemo2 alloc]init];
     
