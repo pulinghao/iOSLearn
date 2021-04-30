@@ -28,7 +28,7 @@ expression XXX.delegate = self
 
 ## 3. 如果是跟到了未开源库里的函数
 
-在iOS中，大部分的库是不开源的。如果要跟踪参数的话，必须了解OC语言的工作原理，既msg_send方法
+在iOS中，大部分的库是不开源的。如果要跟踪参数的话，必须了解OC语言的工作原理，既`msg_send`方法
 
 <img src="wwdc2018-通过Xcode和LLDB进行高级调试.assets/image-20210404001942093.png" alt="image-20210404001942093" style="zoom:50%;" />
 

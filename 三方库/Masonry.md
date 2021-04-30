@@ -81,13 +81,17 @@
 
 # 代码Tip
 
-- 当前未实现，子类实现宏定义
+- 父类未实现，子类实现的宏定义
 
-```c
+如果子类没有实现，那么会崩溃，在输出信息中，打印出异常信息
+
+```objective-c
 #define MASMethodNotImplemented() \
     @throw [NSException exceptionWithName:NSInternalInconsistencyException \
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)] \
                                  userInfo:nil]
+// 使用
+- (MASConstraint * (^)(CGFloat multiplier))multipliedBy { MASMethodNotImplemented(); }
 ```
 
 - 用约束实现动画效果

@@ -69,6 +69,7 @@ void swim(id self, SEL sel){
     NSLog(@"res2 [NSObject.self isKindOfClass:[NSObject class]] : %d",res2);
 }
 
+<<<<<<< Updated upstream
 // 动态方法解析
 //+ (BOOL)resolveInstanceMethod:(SEL)sel
 //{
@@ -79,6 +80,24 @@ void swim(id self, SEL sel){
 //    return [super resolveInstanceMethod:sel];
 //}
 
+=======
+void swim(id self, SEL sel){
+    NSLog(@"swim");
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)sel
+{
+    NSLog(@"%s",__func__);
+    if (sel == @selector(walk)) {
+        return class_addMethod(self, sel, (IMP)walk, "v@:");
+    }
+    
+    if (sel == @selector(swim)) {
+        return class_addMethod(self, sel, (IMP)swim, "v@:");
+    }
+    return [super resolveInstanceMethod:sel];
+}
+>>>>>>> Stashed changes
 //
 //
 //+ (BOOL)resolveClassMethod:(SEL)sel
@@ -96,6 +115,15 @@ void swim(id self, SEL sel){
 //    return [super resolveClassMethod:sel];
 //}
 //
+<<<<<<< Updated upstream
+=======
+- (id)forwardingTargetForSelector:(SEL)aSelector{
+    if (@selector(walk) == aSelector) {
+        return [Dog new];
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+>>>>>>> Stashed changes
 
 // 备用接收者
 - (id)forwardingTargetForSelector:(SEL)aSelector{
