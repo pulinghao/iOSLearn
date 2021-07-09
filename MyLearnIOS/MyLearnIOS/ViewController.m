@@ -120,6 +120,7 @@ typedef void(^testBlock)();
 //
 //    [runteim resolve];
     
+<<<<<<< Updated upstream
 //    Person *person = [[Person alloc] init];
 //    [person performSelector:@selector(swim)];
 //    _poolearn = [[AutoReleasePoolLearn alloc] init];
@@ -136,10 +137,19 @@ typedef void(^testBlock)();
 //        [self performSelector:@selector(delayFunc) withObject:nil afterDelay:1.0];
 //    });
     
+=======
+    Person *person = [[Person alloc] init];
+    [person performSelector:@selector(swim)];
+<<<<<<< Updated upstream
+    _poolearn = [[AutoReleasePoolLearn alloc] init];
+   
+>>>>>>> Stashed changes
 //    
 //    [runteim resolve];
     
     [[Person new] testKindOfClass];
+=======
+>>>>>>> Stashed changes
     instrumentObjcMessageSends(NO);
     
     self.hitTestView = [[HItTestView alloc] initWithFrame:CGRectMake(50, 100, 100, 50)];
