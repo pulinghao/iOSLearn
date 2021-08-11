@@ -38,6 +38,14 @@
     Boolean ready_to_go;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+       
+    }
+    return self;
+}
 
 /// 自旋锁
 - (void)testOSSpinLock{

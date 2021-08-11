@@ -58,6 +58,9 @@
 		B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */; };
 		B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E9325C7C63500837F2A /* MultiDemoSource.m */; };
 		B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */; };
+		B6E1EB5426C114B2002C2A66 /* NSOperationQueueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB5326C114B2002C2A66 /* NSOperationQueueVC.m */; };
+		B6E1EB6326C21ECB002C2A66 /* RunLoopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB6226C21ECB002C2A66 /* RunLoopVC.m */; };
+		B6E1EB6626C21FAA002C2A66 /* RunLoopLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB6526C21FAA002C2A66 /* RunLoopLearn.m */; };
 		B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EC824425CAC3FA00689DF4 /* MyProxy.m */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +198,12 @@
 		B6184E9325C7C63500837F2A /* MultiDemoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDemoSource.m; sourceTree = "<group>"; };
 		B689DDC225D1157F0039B245 /* UIButton+BigFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BigFrame.h"; sourceTree = "<group>"; };
 		B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BigFrame.m"; sourceTree = "<group>"; };
+		B6E1EB5226C114B2002C2A66 /* NSOperationQueueVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOperationQueueVC.h; sourceTree = "<group>"; };
+		B6E1EB5326C114B2002C2A66 /* NSOperationQueueVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOperationQueueVC.m; sourceTree = "<group>"; };
+		B6E1EB6126C21ECB002C2A66 /* RunLoopVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopVC.h; sourceTree = "<group>"; };
+		B6E1EB6226C21ECB002C2A66 /* RunLoopVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoopVC.m; sourceTree = "<group>"; };
+		B6E1EB6426C21FAA002C2A66 /* RunLoopLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopLearn.h; sourceTree = "<group>"; };
+		B6E1EB6526C21FAA002C2A66 /* RunLoopLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoopLearn.m; sourceTree = "<group>"; };
 		B6EC824325CAC3FA00689DF4 /* MyProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProxy.h; sourceTree = "<group>"; };
 		B6EC824425CAC3FA00689DF4 /* MyProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,8 +269,6 @@
 				A3DE419425F28ED700DD7312 /* KKThreadMonitor */,
 				A3E0D89D25DD80D900DDA689 /* Instruments */,
 				A3E0D7EB25D584DB00DDA689 /* Network */,
-				B689DDC125D1157F0039B245 /* UIButton */,
-				B6EC824225CAC3E900689DF4 /* NSProxy */,
 				A3E0D76C25D0084F00DDA689 /* UIView */,
 				A3E0D76025CAEB0200DDA689 /* AutoReleasePool */,
 				A3E0D75F25CAE96B00DDA689 /* NSString */,
@@ -357,6 +364,8 @@
 			children = (
 				A394260725C4609100114F3A /* NSOperationQueueLearn.h */,
 				A394260825C4609100114F3A /* NSOperationQueueLearn.m */,
+				B6E1EB5226C114B2002C2A66 /* NSOperationQueueVC.h */,
+				B6E1EB5326C114B2002C2A66 /* NSOperationQueueVC.m */,
 			);
 			path = NSOperationQueue;
 			sourceTree = "<group>";
@@ -502,6 +511,10 @@
 				A3EF254425BDCA4F008051CB /* CFRunLoop.c */,
 				A3EF254F25BDCBBB008051CB /* PLHThread.h */,
 				A3EF255025BDCBBB008051CB /* PLHThread.m */,
+				B6E1EB6126C21ECB002C2A66 /* RunLoopVC.h */,
+				B6E1EB6226C21ECB002C2A66 /* RunLoopVC.m */,
+				B6E1EB6426C21FAA002C2A66 /* RunLoopLearn.h */,
+				B6E1EB6526C21FAA002C2A66 /* RunLoopLearn.m */,
 			);
 			path = Runloop;
 			sourceTree = "<group>";
@@ -717,6 +730,7 @@
 				A39E689925F3D10A00AB0A35 /* Hero.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
 				A3E0D6A725C9725500DDA689 /* NSObject+MyKVO.m in Sources */,
+				B6E1EB6626C21FAA002C2A66 /* RunLoopLearn.m in Sources */,
 				B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */,
 				A36C75E925B32817005D7B8A /* ViewController.m in Sources */,
 				A3DE419C25F28ED700DD7312 /* KKCallStackSymbol.c in Sources */,
@@ -741,6 +755,7 @@
 				A36C75E325B32817005D7B8A /* AppDelegate.m in Sources */,
 				A3E6A60F25B99C70001E427D /* MyCopy.m in Sources */,
 				B6184E2B25C7ACF600837F2A /* MultiDelegateOC.m in Sources */,
+				B6E1EB6326C21ECB002C2A66 /* RunLoopVC.m in Sources */,
 				A3E0D76F25D008E800DDA689 /* HItTestView.m in Sources */,
 				A3E0D78125D043A200DDA689 /* LoadStudent+PersonClass.m in Sources */,
 				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
@@ -754,6 +769,7 @@
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
 				A36C75F425B32819005D7B8A /* main.m in Sources */,
 				A3E0D6C225C982FF00DDA689 /* LoadStudent+Class.m in Sources */,
+				B6E1EB5426C114B2002C2A66 /* NSOperationQueueVC.m in Sources */,
 				B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */,
 				B6184E8625C7C4C800837F2A /* MultiDelegateVC.m in Sources */,
 				A36C75E625B32817005D7B8A /* SceneDelegate.m in Sources */,
@@ -936,7 +952,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
 				INFOPLIST_FILE = MyLearnIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -945,6 +962,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.MyLearnIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = mapMap22;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -954,7 +972,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
 				INFOPLIST_FILE = MyLearnIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -963,6 +982,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.MyLearnIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = mapMap22;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -32,6 +32,8 @@
 #import "NSOperationQueueLearn.h"
 #import "AutoReleasePoolLearn.h"
 #import "HItTestView.h"
+#import "NSOperationQueueVC.h"
+#import "RunLoopVC.h"
 extern void instrumentObjcMessageSends(BOOL);
 
 typedef void (^MyBlock)(void);
@@ -93,7 +95,9 @@ typedef void(^testBlock)();
 @property (nonatomic, strong) HItTestView *hitTestView;
 @property (nonatomic, assign) Person *person;
 
+@property (weak, nonatomic) IBOutlet UIButton *runLoopBtn;
 @property (nonatomic, copy) testBlock block;
+@property (weak, nonatomic) IBOutlet UIButton *showOpQueueVC;
 @end
 
 @implementation ViewController
@@ -120,7 +124,6 @@ typedef void(^testBlock)();
 //
 //    [runteim resolve];
     
-<<<<<<< Updated upstream
 //    Person *person = [[Person alloc] init];
 //    [person performSelector:@selector(swim)];
 //    _poolearn = [[AutoReleasePoolLearn alloc] init];
@@ -137,19 +140,10 @@ typedef void(^testBlock)();
 //        [self performSelector:@selector(delayFunc) withObject:nil afterDelay:1.0];
 //    });
     
-=======
-    Person *person = [[Person alloc] init];
-    [person performSelector:@selector(swim)];
-<<<<<<< Updated upstream
+
     _poolearn = [[AutoReleasePoolLearn alloc] init];
    
->>>>>>> Stashed changes
-//    
-//    [runteim resolve];
-    
-    [[Person new] testKindOfClass];
-=======
->>>>>>> Stashed changes
+
     instrumentObjcMessageSends(NO);
     
     self.hitTestView = [[HItTestView alloc] initWithFrame:CGRectMake(50, 100, 100, 50)];
@@ -178,17 +172,17 @@ typedef void(^testBlock)();
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];
     
-    NSLog(@"1");
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"2");
-    });
-    NSLog(@"3");
+//    NSLog(@"1");
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        NSLog(@"2");
+//    });
+//    NSLog(@"3");
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"%p",&_person);
-    NSLog(@"%p",_person);
+//    NSLog(@"%p",&_person);
+//    NSLog(@"%p",_person);
 //    [self.person doSomeThing];
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -244,5 +238,39 @@ typedef void(^testBlock)();
 - (void)delayFunc
 {
     NSLog(@"%s",__func__);
+}
+
+
+- (IBAction)showVC2:(id)sender {
+   
+    NSOperationQueueVC *vc = [NSOperationQueueVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+    NSDictionary *userInfo = @{
+        @"name":@"Notification",
+        @"age":@"18",
+        @"height":@"188cm"
+    };
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"kFirstToSecondNotification" object:nil userInfo:userInfo];
+    
+    // method1
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            NSDictionary *userInfo = @{
+//                @"name":@"Notification",
+//                @"age":@"18",
+//                @"height":@"188cm"
+//            };
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"kFirstToSecondNotification" object:nil userInfo:userInfo];
+//        [vc doSomething];
+//    }];
+    
+    
+    // method2
+    dispatch_async(dispatch_get_main_queue(), ^{
+//            NSDictionary *userInfo = @{@"name":@"Notification",@"age":@"18",@"height":@"188cm"};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"kFirstToSecondNotification" object:nil userInfo:userInfo];
+    [vc doSomething];
+        });
+    
 }
 @end
