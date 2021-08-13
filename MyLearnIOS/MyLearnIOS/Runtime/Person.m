@@ -69,6 +69,19 @@ void swim(id self, SEL sel){
     NSLog(@"res2 [NSObject.self isKindOfClass:[NSObject class]] : %d",res2);
 }
 
+
+// 动态方法解析
+//+ (BOOL)resolveInstanceMethod:(SEL)sel
+//{
+//    NSLog(@"%s",__func__);
+//    if (sel == @selector(walk)) {
+//        return class_addMethod(self, sel, (IMP)walk, "v@:");
+//    }
+//    return [super resolveInstanceMethod:sel];
+//}
+
+
+
 //
 //
 //+ (BOOL)resolveClassMethod:(SEL)sel

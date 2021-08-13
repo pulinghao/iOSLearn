@@ -428,6 +428,77 @@ typedef enum {
 
 ![image-20210806171937021](/Users/pulinghao/Library/Application Support/typora-user-images/image-20210806171937021.png)
 
+
+
+# 第二十二章 代理
+
+使用`NSProxy`技术，不需要创建对象，只是弱持有，并实现方法的转发，主要实现下面两个接口：
+
+```objc
+- (void)forwardInvocation:(NSInvocation *)invocation;
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel;
+```
+
+举个例子：
+
+```objective-c
+@interface MyProxy : NSProxy{
+//再内部hold住一个要hook的对象
+id _innerObject;
+}
++(instancetype)proxyWithObj:(id)object;
+@end
+
+@interface Dog : NSObject
+-(NSString *)barking:(NSInteger)months;
+@end
+
+
+@implementation MyProxy
++(instancetype)proxyWithObj:(id)object{
+    MyProxy *proxy = [MyProxy alloc];
+    //hold住要hook的对象
+    proxy->_innerObject = object;
+    //注意返回的值是Proxy对象
+    return proxy;
+}
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel{
+    //这里可以返回任何NSMethodSignature对象，你也可以完全自己构造一个
+    return [_innerObject methodSignatureForSelector:sel];
+}
+- (void)forwardInvocation:(NSInvocation *)invocation{
+    if([_innerObject respondsToSelector:invocation.selector]){
+        NSString *selectorName = NSStringFromSelector(invocation.selector);
+        NSLog(@"Before calling %@",selectorName);
+       
+        //消息转发
+        [invocation invokeWithTarget:_innerObject];
+      
+       // 或者
+       // [invocation setTarget:self.objc];
+       // [invocation invoke];
+        const char *retType = [sig methodReturnType];
+        if(strcmp(retType, "@") == 0){
+            NSObject *ret;
+            [invocation getReturnValue:&ret];
+            //这里输出的是:"return value is wang wang!"
+            NSLog(@"return value is %@",ret);
+        }
+        NSLog(@"After calling %@",selectorName);
+    }
+}
+@end
+
+@implementation Dog
+-(NSString *)barking:(NSInteger)months{
+    return months > 3 ? @"wang wang!" : @"eng eng!";
+}
+@end
+```
+
+
+
 # Coding Tips
 
 ## 协议的使用

@@ -9,7 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyProxy : NSProxy
+@interface MyProxy : NSProxy{
+
+}
+
+
++ (instancetype)proxyWithObj:(id)obj;
+
+@end
+
+@interface MyDog : NSObject
+
+-(NSString *)barking:(NSInteger)months;
+
 
 @end
 

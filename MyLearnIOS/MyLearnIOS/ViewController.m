@@ -34,6 +34,7 @@
 #import "HItTestView.h"
 #import "NSOperationQueueVC.h"
 #import "RunLoopVC.h"
+#import "MyProxy.h"
 extern void instrumentObjcMessageSends(BOOL);
 
 typedef void (^MyBlock)(void);
@@ -112,6 +113,9 @@ typedef void(^testBlock)();
     self.lockLearn = [[LockLearn alloc] init];
     self.runtimeLearn = [[RuntimeLearn alloc] init];
     
+    MyDog *dog = [MyDog new];
+    id proxy = [MyProxy proxyWithObj:dog];
+    [proxy barking:4];
     
 //
 //
@@ -123,7 +127,6 @@ typedef void(^testBlock)();
 //    self.block();
 //
 //    [runteim resolve];
-    
 //    Person *person = [[Person alloc] init];
 //    [person performSelector:@selector(swim)];
 //    _poolearn = [[AutoReleasePoolLearn alloc] init];
@@ -143,6 +146,11 @@ typedef void(^testBlock)();
 
     _poolearn = [[AutoReleasePoolLearn alloc] init];
    
+   
+//    
+//    [runteim resolve];
+    
+    [[Person new] testKindOfClass];
 
     instrumentObjcMessageSends(NO);
     
