@@ -478,14 +478,6 @@ id _innerObject;
        // 或者
        // [invocation setTarget:self.objc];
        // [invocation invoke];
-        const char *retType = [sig methodReturnType];
-        if(strcmp(retType, "@") == 0){
-            NSObject *ret;
-            [invocation getReturnValue:&ret];
-            //这里输出的是:"return value is wang wang!"
-            NSLog(@"return value is %@",ret);
-        }
-        NSLog(@"After calling %@",selectorName);
     }
 }
 @end
@@ -495,6 +487,15 @@ id _innerObject;
     return months > 3 ? @"wang wang!" : @"eng eng!";
 }
 @end
+```
+
+
+
+注意，调用获取参数接口时，需要声明为`__weak`或者`__unsafe_unretained`的属性，否则会出现崩溃
+
+```objective-c
+__weak id obj;    //这儿必须用弱持有修饰
+[invocation getArgument:&obj atIndex:i];
 ```
 
 
