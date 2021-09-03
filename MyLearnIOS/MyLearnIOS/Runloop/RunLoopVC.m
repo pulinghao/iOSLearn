@@ -7,7 +7,7 @@
 
 #import "RunLoopVC.h"
 #import "RunLoopLearn.h"
-
+#import "RunloopMonitor.h"
 
 
 @interface RunLoopVC ()
@@ -23,6 +23,7 @@
     
     [[RunLoopLearn sharedInstance] startMonitor];
     
+    [[RunloopMonitor sharedInstance] startMonitor];
     
 }
 
@@ -56,6 +57,12 @@
     [[RunLoopLearn sharedInstance] stopMonitor];
 }
 
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touchesBegan");
+    [NSThread sleepForTimeInterval:2];
+}
 /*
 #pragma mark - Navigation
 

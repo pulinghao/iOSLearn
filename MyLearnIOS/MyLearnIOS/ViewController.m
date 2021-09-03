@@ -99,6 +99,9 @@ typedef void(^testBlock)();
 @property (weak, nonatomic) IBOutlet UIButton *runLoopBtn;
 @property (nonatomic, copy) testBlock block;
 @property (weak, nonatomic) IBOutlet UIButton *showOpQueueVC;
+
+
+@property (nonatomic, strong) UIView* myView;
 @end
 
 @implementation ViewController
@@ -116,6 +119,31 @@ typedef void(^testBlock)();
     MyDog *dog = [MyDog new];
     id proxy = [MyProxy proxyWithObj:dog];
     [proxy barking:4];
+    
+    [self gcd_dispatch_semaphore];
+    
+   
+    
+    _myView = [[UIView alloc] initWithFrame:CGRectMake(10, 120, 100, 50)];
+    _myView.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:_myView];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 200, 100, 50)];
+        view2.backgroundColor = [UIColor redColor];
+        [self.view addSubview:view2];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        });
+
+    });
+    
+    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 200, 100, 50)];
+    view2.backgroundColor = [UIColor redColor];
+    [self.view addSubview:view2];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.view addSubview:view2];
+//    });
     
 //
 //
@@ -147,6 +175,7 @@ typedef void(^testBlock)();
     _poolearn = [[AutoReleasePoolLearn alloc] init];
    
    
+    
 //    
 //    [runteim resolve];
     
@@ -154,10 +183,10 @@ typedef void(^testBlock)();
 
     instrumentObjcMessageSends(NO);
     
-    self.hitTestView = [[HItTestView alloc] initWithFrame:CGRectMake(50, 100, 100, 50)];
-    self.hitTestView.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:self.hitTestView];
-    
+//    self.hitTestView = [[HItTestView alloc] initWithFrame:CGRectMake(50, 100, 100, 50)];
+//    self.hitTestView.backgroundColor = [UIColor greenColor];
+//    [self.view addSubview:self.hitTestView];
+//
 //    PLHThread *thread = [[PLHThread alloc] initWithBlock:^{
 //        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 //            NSLog(@"定时打招呼!!!");
@@ -281,4 +310,39 @@ typedef void(^testBlock)();
         });
     
 }
+
+#pragma mark dispatch_semaphore信号量
+- (void)gcd_dispatch_semaphore {
+    //打印当前线程
+    NSLog(@"currentThread---%@",[NSThread currentThread]);
+    NSLog(@"semaphore---begin");
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    __block NSInteger number = 0;
+    dispatch_async(queue, ^{
+        // 追加任务1
+        //模拟耗时操作
+        [NSThread sleepForTimeInterval:2];
+        //打印当前线程
+        NSLog(@"1---%@",[NSThread currentThread]);
+        number = 100;
+        dispatch_semaphore_signal(semaphore);
+        [NSThread sleepForTimeInterval:0.01];
+        NSLog(@"2---%@",[NSThread currentThread]);
+        
+        number = 200;
+        NSLog(@"3---%@",[NSThread currentThread]);
+    });
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"semaphore---end,number = %ld",(long)number);
+}
+
+//输出结果：
+//2020-07-06 15:28:49.979677+0800 GCD[2989:1190741] currentThread---<NSThread: 0x2804b4f80>{number = 1, name = main}
+//2020-07-06 15:28:49.979764+0800 GCD[2989:1190741] semaphore---begin
+//2020-07-06 15:28:51.984955+0800 GCD[2989:1190767] 1---<NSThread: 0x28048f400>{number = 3, name = (null)}
+//2020-07-06 15:28:51.985111+0800 GCD[2989:1190741] semaphore---end,number = 100
+
 @end
