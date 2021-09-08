@@ -122,8 +122,16 @@ typedef void(^testBlock)();
     
     [self gcd_dispatch_semaphore];
     
-   
-    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"jack" forKey:@"name"];
+    dict[@"name"] = @"jack"; //@{@"name":@"jack"},等效于[mutableDictionary setObject:value forKeyedSubscript:@"name"];
+    dict[@"name"] = nil;     //@{}
+
+    [dict setObject:nil forKeyedSubscript:@"sex"];
+//    [dict setObject:nil forKey:@"sex"];   //崩溃
+//    id value = @"someValue";
+//    dict[@"someKey"] = value; //
+    [self testMultiBlock];
     _myView = [[UIView alloc] initWithFrame:CGRectMake(10, 120, 100, 50)];
     _myView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:_myView];
@@ -339,10 +347,42 @@ typedef void(^testBlock)();
     NSLog(@"semaphore---end,number = %ld",(long)number);
 }
 
+
 //输出结果：
 //2020-07-06 15:28:49.979677+0800 GCD[2989:1190741] currentThread---<NSThread: 0x2804b4f80>{number = 1, name = main}
 //2020-07-06 15:28:49.979764+0800 GCD[2989:1190741] semaphore---begin
 //2020-07-06 15:28:51.984955+0800 GCD[2989:1190767] 1---<NSThread: 0x28048f400>{number = 3, name = (null)}
 //2020-07-06 15:28:51.985111+0800 GCD[2989:1190741] semaphore---end,number = 100
+- (void)testMultiBlock
+{
+    [self sendIntBlock:^(int x) {
+        NSLog(@"x:%d",x);
+    }];
+    
+    int c = [self returnIntBlock:^int(double x) {
+        return x + 10;
+    }];
+    
+    NSLog(@"mulitiBlock c:%d",c);
+}
 
+- (void)sendBlock:(void (^)(void))blk{
+    blk();
+}
+
+- (void)sendIdBlock:(void (^)(id x))blk
+{
+    id obj = [[NSObject alloc] init];
+    blk(obj);
+}
+- (void)sendIntBlock:(void (^)(int x))blk{
+    int x = 10;
+    blk(x);
+}
+
+- (int)returnIntBlock:(int (^)(double x))blk
+{
+    int a = 10;
+    return blk(a);
+}
 @end
