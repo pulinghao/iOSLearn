@@ -244,6 +244,10 @@ map方法中，大量使用到了block的包装
 
 
 
+## 3. 信号生成与订阅
+
+<img src="/Users/pulinghao/Library/Application Support/typora-user-images/image-20210908185856841.png" alt="image-20210908185856841" style="zoom:50%;" />
+
 ## Tips
 
 1. 参数为空警告
