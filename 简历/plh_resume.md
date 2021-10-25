@@ -22,7 +22,7 @@
 
  - 男，1992年3月
  - 求职意向：iOS 研发工程师
- - 工作经验：3 年 8 月
+ - 工作经验：4 年 5 月
 
 ## <img src="assets/graduation-cap-solid.svg" width="30px"> 教育经历
 
@@ -59,14 +59,6 @@
 
   【关键技术及框架】GCD、AVFoundation、CoreMotion、CoreAnimation、ARKit、CoreGraphics等
 
-- 小度农庄运营活动
-
-  1）负责小度农庄运营入口的展示，包括树苗翻转动画，积分联动动画等
-
-  2）负责
-
-  【关键技术】CALayer、CoreAnimation等
-
 - **室内图导览**
 
   1）步骑行内部的图层方案已无法对模拟导航的效果提供支持。基于路线插值算法及现有的图层引擎协议，设计并实现了游标图层的展示及跟随动画；
@@ -98,6 +90,7 @@
 ##  <img src="assets/info-circle-solid.svg" width="30px">职级奖项
 
 - 连续四年（2017-2020）年终绩效 M+
+- 2021.2 获TPG 技术中台群组技术激励奖
 - 2019.7 获出行业务部Q2季度个人小赞奖
 - 2018.11 获出行业务部Q3季度之星
 

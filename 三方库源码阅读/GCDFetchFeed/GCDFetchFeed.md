@@ -264,3 +264,65 @@ NSCParameterAssert(format != nil);
 
 [对setObject:forKey:与setObject:forKeyedSubscript:的理解](https://blog.csdn.net/weixin_34220179/article/details/88061007)
 
+
+
+
+
+# FMDB
+
+FMDB本质实现了对`sqlite3`的封装
+
+## 1.可变参数接口设计
+
+```objc
+ rs = [db executeQuery:@"select * from feeditem where iscached = ? and isread = ? order by iid desc", @(0), @(0)];
+
+- (FMResultSet *)executeQuery:(NSString*)sql, ... {
+    va_list args;
+    va_start(args, sql);
+    
+    id result = [self executeQuery:sql withArgumentsInArray:nil orDictionary:nil orVAList:args];
+    // 内部实现还有
+  	// obj = va_arg(args, id);
+    va_end(args);
+    return result;
+}
+```
+
+- `va_list args`定义一个`va_list`变量，
+- `va_start(args, sql);`让args指向`sql`后面的那个参数的地址
+- `obj = va_arg(args, id);`获取可变参数args的内容，它的类型为id类型
+- `va_end(args)`清空args
+
+## 参考链接
+
+[va_list原理及用法](https://blog.csdn.net/aihao1984/article/details/5953668?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link)
+
+
+
+# 宏
+
+##  双井号`##`
+
+- `##`的意思是连接后面的参数
+- 当可变参数的个数为0时，且前面有`逗号`时，省略`逗号`
+
+```
+(NSLog)((format), ##__VA_ARGS__);
+// 当__VA_ARGS为0时,等价于下面
+(NSLog)((format))
+```
+
+## 单井号 `#`
+
+- 字符串化，给后面的内容两头加上""
+
+```
+#expression
+// 等价于 "expression"
+```
+
+## 参考链接
+
+[宏定义的黑魔法 - 宏菜鸟起飞手册](https://onevcat.com/2014/01/black-magic-in-macro/)
+
