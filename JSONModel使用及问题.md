@@ -128,6 +128,8 @@ Person *person = [[Person alloc] initWithDictionary:data error:nil];
 
 # 2. 注意点
 
+## 2.1 嵌套结构
+
 - 嵌套的数据结构，即模型A包括模型B时，一定要写模型B的`protocol`，否则无法正常解析模型B
 
 ```objective-c
@@ -157,6 +159,27 @@ Person *person = [[Person alloc] initWithDictionary:data error:nil];
 *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSDictionaryI modelB]: unrecognized selector sent to instance 0x280c2e400'
 terminating with uncaught exception of type NSException
 ```
+
+## 2.2 key与属性不匹配
+
+本地模型有个一个新增属性`isLocal`，但服务端没有
+
+```objective-c
+@property (nonatomic, assign) BOOL isLocal;       //本地属性
+```
+
+需要在类的方法中声明可选属性
+
+```objective-c
++ (BOOL)propertyIsOptional:(NSString *)propertyName{
+    if ([propertyName isEqualToString:@"isLocal"]) {
+        return YES;
+    }
+    return NO;
+}
+```
+
+
 
 # 3. 原理
 

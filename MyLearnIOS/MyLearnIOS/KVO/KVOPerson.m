@@ -20,7 +20,7 @@
     return [NSSet setWithObjects:@"lastName", @"firstName", nil];
 }
 
-
+// 手动
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
 {
     if ([key isEqualToString: @"firstName"]) {
