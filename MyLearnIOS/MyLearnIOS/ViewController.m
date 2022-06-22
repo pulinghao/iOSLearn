@@ -31,10 +31,11 @@
 #import "GCDLearn.h"
 #import "NSOperationQueueLearn.h"
 #import "AutoReleasePoolLearn.h"
-#import "HItTestView.h"
+
 #import "NSOperationQueueVC.h"
 #import "RunLoopVC.h"
 #import "MyProxy.h"
+#import "LinkPerson.h"
 extern void instrumentObjcMessageSends(BOOL);
 
 typedef void (^MyBlock)(void);
@@ -93,7 +94,7 @@ typedef void(^testBlock)();
 @property (nonatomic, strong) RuntimeLearn *runtimeLearn;
 
 @property (nonatomic, strong) AutoReleasePoolLearn *poolearn;
-@property (nonatomic, strong) HItTestView *hitTestView;
+
 @property (nonatomic, assign) Person *person;
 
 @property (weak, nonatomic) IBOutlet UIButton *runLoopBtn;
@@ -111,6 +112,18 @@ typedef void(^testBlock)();
     // Do any additional setup after loading the view.
 
     instrumentObjcMessageSends(YES);
+    
+    Calculator *calc = [[Calculator alloc] init];
+        BOOL isEqual = [[calc calculate:^int(int result) {
+            NSLog(@"init result ->%d",result);
+            result += 2;
+            result *= 5;
+            return result;
+        }] equal:^BOOL(int result) {
+            return result == 10;
+        }];
+
+        NSLog(@"isEqual:%d", isEqual);
 //    RuntimeLearn *runteim = [[RuntimeLearn alloc] init];
     
     self.lockLearn = [[LockLearn alloc] init];
@@ -191,9 +204,6 @@ typedef void(^testBlock)();
 
     instrumentObjcMessageSends(NO);
     
-//    self.hitTestView = [[HItTestView alloc] initWithFrame:CGRectMake(50, 100, 100, 50)];
-//    self.hitTestView.backgroundColor = [UIColor greenColor];
-//    [self.view addSubview:self.hitTestView];
 //
 //    PLHThread *thread = [[PLHThread alloc] initWithBlock:^{
 //        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {

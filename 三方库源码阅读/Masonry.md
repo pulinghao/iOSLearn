@@ -1,5 +1,29 @@
 # 接口
 
+## 更新视图
+
+mas_updateContraints`
+
+- 更新的约束，必须是在原来的make约束的基础之上，不能是新的约束
+
+例如，原来的约束为
+
+```objective-c
+[self.speView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.mas_centerY);
+        make.left.mas_equalTo(self.stationNameLabel.mas_right).mas_offset(nearW + 10);
+        make.size.mas_equalTo(CGSizeMake(1, 12));
+    }];
+```
+
+那么，新的约束，只能围绕着 `stationNameLabel`去布局
+
+```objective-c
+ [self.speView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.stationNameLabel.mas_right).mas_offset(5);
+        }];
+```
+
 
 
 # 原理

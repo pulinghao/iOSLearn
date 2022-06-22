@@ -49,6 +49,7 @@
 		A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253525BC79E6008051CB /* RuntimeVC.m */; };
 		A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253C25BC849B008051CB /* NIOPerson.m */; };
 		A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF255025BDCBBB008051CB /* PLHThread.m */; };
+		B60CB69B27DBA06900AF2738 /* LinkPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B60CB69A27DBA06900AF2738 /* LinkPerson.m */; };
 		B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184DD125C3E37D00837F2A /* LockLearn.m */; };
 		B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184DE125C3FA8200837F2A /* TaggerPointerLearn.m */; };
 		B6184E2425C7ACBA00837F2A /* NSObject+MultiDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E2325C7ACBA00837F2A /* NSObject+MultiDelegate.m */; };
@@ -58,6 +59,8 @@
 		B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */; };
 		B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E9325C7C63500837F2A /* MultiDemoSource.m */; };
 		B6372C5126DC819C0089E653 /* RunloopMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6372C5026DC819C0089E653 /* RunloopMonitor.m */; };
+		B66C1B87285E318D00F1C5FD /* PLHUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */; };
+		B66C1BE2286233A100F1C5FD /* AutoReleasePoolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B66C1BE1286233A100F1C5FD /* AutoReleasePoolVC.m */; };
 		B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */; };
 		B6E1EB5426C114B2002C2A66 /* NSOperationQueueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB5326C114B2002C2A66 /* NSOperationQueueVC.m */; };
 		B6E1EB6326C21ECB002C2A66 /* RunLoopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB6226C21ECB002C2A66 /* RunLoopVC.m */; };
@@ -181,6 +184,8 @@
 		A3EF254A25BDCA59008051CB /* CFRunLoop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFRunLoop.h; sourceTree = "<group>"; };
 		A3EF254F25BDCBBB008051CB /* PLHThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLHThread.h; sourceTree = "<group>"; };
 		A3EF255025BDCBBB008051CB /* PLHThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHThread.m; sourceTree = "<group>"; };
+		B60CB69927DBA06900AF2738 /* LinkPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkPerson.h; sourceTree = "<group>"; };
+		B60CB69A27DBA06900AF2738 /* LinkPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkPerson.m; sourceTree = "<group>"; };
 		B6184DD025C3E37D00837F2A /* LockLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LockLearn.h; sourceTree = "<group>"; };
 		B6184DD125C3E37D00837F2A /* LockLearn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LockLearn.m; sourceTree = "<group>"; };
 		B6184DE025C3FA8200837F2A /* TaggerPointerLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaggerPointerLearn.h; sourceTree = "<group>"; };
@@ -199,6 +204,10 @@
 		B6184E9325C7C63500837F2A /* MultiDemoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDemoSource.m; sourceTree = "<group>"; };
 		B6372C4F26DC819C0089E653 /* RunloopMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunloopMonitor.h; sourceTree = "<group>"; };
 		B6372C5026DC819C0089E653 /* RunloopMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunloopMonitor.m; sourceTree = "<group>"; };
+		B66C1B85285E318D00F1C5FD /* PLHUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLHUIViewController.h; sourceTree = "<group>"; };
+		B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHUIViewController.m; sourceTree = "<group>"; };
+		B66C1BE0286233A100F1C5FD /* AutoReleasePoolVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoReleasePoolVC.h; sourceTree = "<group>"; };
+		B66C1BE1286233A100F1C5FD /* AutoReleasePoolVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoReleasePoolVC.m; sourceTree = "<group>"; };
 		B689DDC225D1157F0039B245 /* UIButton+BigFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BigFrame.h"; sourceTree = "<group>"; };
 		B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BigFrame.m"; sourceTree = "<group>"; };
 		B6E1EB5226C114B2002C2A66 /* NSOperationQueueVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOperationQueueVC.h; sourceTree = "<group>"; };
@@ -268,6 +277,7 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				B60CB69827DBA01900AF2738 /* 函数式编程 */,
 				A39E689425F3C1D900AB0A35 /* DesignPatterns */,
 				A3DE419425F28ED700DD7312 /* KKThreadMonitor */,
 				A3E0D89D25DD80D900DDA689 /* Instruments */,
@@ -457,6 +467,8 @@
 			children = (
 				A3E0D76125CAEB1C00DDA689 /* AutoReleasePoolLearn.h */,
 				A3E0D76225CAEB1C00DDA689 /* AutoReleasePoolLearn.m */,
+				B66C1BE0286233A100F1C5FD /* AutoReleasePoolVC.h */,
+				B66C1BE1286233A100F1C5FD /* AutoReleasePoolVC.m */,
 			);
 			path = AutoReleasePool;
 			sourceTree = "<group>";
@@ -468,6 +480,8 @@
 				A3E0D76E25D008E800DDA689 /* HItTestView.m */,
 				A3E0D77825D008F900DDA689 /* HitTestSubView.h */,
 				A3E0D77925D008F900DDA689 /* HitTestSubView.m */,
+				B66C1B85285E318D00F1C5FD /* PLHUIViewController.h */,
+				B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -522,6 +536,15 @@
 				B6372C5026DC819C0089E653 /* RunloopMonitor.m */,
 			);
 			path = Runloop;
+			sourceTree = "<group>";
+		};
+		B60CB69827DBA01900AF2738 /* 函数式编程 */ = {
+			isa = PBXGroup;
+			children = (
+				B60CB69927DBA06900AF2738 /* LinkPerson.h */,
+				B60CB69A27DBA06900AF2738 /* LinkPerson.m */,
+			);
+			path = "函数式编程";
 			sourceTree = "<group>";
 		};
 		B6184DCF25C3E36C00837F2A /* Lock */ = {
@@ -751,6 +774,7 @@
 				A394263225C6F76D00114F3A /* TransitionViewController1.m in Sources */,
 				B6EC824525CAC3FA00689DF4 /* MyProxy.m in Sources */,
 				A36C764125B5DC93005D7B8A /* Person.m in Sources */,
+				B60CB69B27DBA06900AF2738 /* LinkPerson.m in Sources */,
 				A3E0D7EE25D584F500DDA689 /* NetworkViewController.m in Sources */,
 				A3E0D6BB25C982C600DDA689 /* LoadStudent.m in Sources */,
 				B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */,
@@ -768,7 +792,9 @@
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,
 				A3E0D76325CAEB1C00DDA689 /* AutoReleasePoolLearn.m in Sources */,
 				A39E68A425F3D1AA00AB0A35 /* BuffDecorator.m in Sources */,
+				B66C1BE2286233A100F1C5FD /* AutoReleasePoolVC.m in Sources */,
 				B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */,
+				B66C1B87285E318D00F1C5FD /* PLHUIViewController.m in Sources */,
 				B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */,
 				B6184E7F25C7C47E00837F2A /* MutiDelegateDemo.m in Sources */,
 				A3EF252F25BC797D008051CB /* RuntimeAPI.m in Sources */,
@@ -968,7 +994,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.MyLearnIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = mapMap22;
+				PROVISIONING_PROFILE_SPECIFIER = mapmap28;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -988,7 +1014,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.MyLearnIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = mapMap22;
+				PROVISIONING_PROFILE_SPECIFIER = mapmap28;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
