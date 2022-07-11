@@ -111,11 +111,132 @@ struct ShoolUniform{
         print("我的年级:\(myGrade.rawValue)====我的校服:\(myStyle.rawValue)")
     }
 }
+
+
+extension String {
+    func sayHello(){
+        print("say Hello")
+    }
+}
+
+extension Int{
+    // 修改计算属性
+    var squared: Int {
+        return self * self;
+    }
+}
+
+struct GenericArr<T> {
+    var items = [T]() //创建数组
+    mutating func push(item:T){
+        items.append(item)
+    }
+}
+
+protocol People {
+    var name:String{get set}
+    var race:String{get}
+    func sayHi()
+}
+
+struct human: People{
+    func sayHi() {
+        
+    }
+    
+    var name: String{
+        get{
+            return "123"
+        }
+        set{}
+    }
+    
+    var race: String{
+        get{return "1"}
+        set{}
+    }
+}
+
+
+protocol Superman : People{
+    var canFly:Bool{get set}
+    func punch()
+}
+
+struct Angel : Superman{
+    var canFly: Bool = true
+    
+    func punch() {
+        
+    }
+    
+    var name: String = "Jim"
+    var race: String = "Ameracan"
+    
+    func sayHi() {
+        print("say good")
+    }
+    
+    
+}
+// 遵循协议，就需要实现方法和变量
+struct Man:People{
+    var name:String = "Lee"
+    var race:String = "Asia"
+    func sayHi() {
+        print("hi i am \(name)")
+    }
+}
+
+class Human:People{
+    var name: String = "Hele"
+    
+    var race: String = "Africa"
+    
+    func sayHi() {
+        
+    }
+}
+
+protocol iOSGenius{
+    func point()
+}
+
+struct iOSPub : iOSGenius{
+    func point() {
+        print("ios pub")
+    }
+}
+
+class iOSDev : iOSGenius{
+    func point() {
+        print("ios dev")
+    }
+}
+
+extension iOSGenius{
+    func point(){
+        print("ios genius")
+    }
+}
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let dev = iOSDev()
+        dev.point()
+        
+        func printElementFromArray<T>(a:[T]){
+            for elememt in a {
+                print(a)
+            }
+        }
+        
+        
+        var intNum = 30
+        print(intNum.squared)
         
         let unifor = ShoolUniform(myStyle: .Suit, myGrade: .Two)
         unifor.cunstiom()

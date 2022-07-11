@@ -103,6 +103,8 @@ typedef void(^testBlock)();
 
 
 @property (nonatomic, strong) UIView* myView;
+
+@property (nonatomic, strong) UILabel *myLabel;;
 @end
 
 @implementation ViewController
@@ -133,6 +135,22 @@ typedef void(^testBlock)();
     id proxy = [MyProxy proxyWithObj:dog];
     [proxy barking:4];
     
+    _myLabel = [[UILabel alloc] init];
+    _myLabel.text = @"1000+kg";
+    _myLabel.font = [UIFont systemFontOfSize:10];
+    _myLabel.frame = CGRectMake(10, 120, 200, 50);
+    _myLabel.numberOfLines = 1;
+    _myLabel.adjustsFontSizeToFitWidth = YES;
+    _myLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    _myLabel.minimumScaleFactor = 1.0;
+    [self.view addSubview:_myLabel];
+    
+    [self addLabelWithFrame: CGRectMake(0, 100, 320, 100)
+         baselineAdjustment: UIBaselineAdjustmentAlignCenters];
+
+    [self addLabelWithFrame: CGRectMake(0, 210, 320, 100)
+         baselineAdjustment: UIBaselineAdjustmentAlignBaselines];
+    
     [self gcd_dispatch_semaphore];
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -145,14 +163,14 @@ typedef void(^testBlock)();
 //    id value = @"someValue";
 //    dict[@"someKey"] = value; //
     [self testMultiBlock];
-    _myView = [[UIView alloc] initWithFrame:CGRectMake(10, 120, 100, 50)];
-    _myView.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:_myView];
+//    _myView = [[UIView alloc] initWithFrame:CGRectMake(10, 120, 100, 50)];
+//    _myView.backgroundColor = [UIColor blueColor];
+//    [self.view addSubview:_myView];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 200, 100, 50)];
-        view2.backgroundColor = [UIColor redColor];
-        [self.view addSubview:view2];
+//        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 200, 100, 50)];
+//        view2.backgroundColor = [UIColor redColor];
+//        [self.view addSubview:view2];
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //
 //        });
@@ -243,6 +261,34 @@ typedef void(^testBlock)();
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.taggerpointer touchBegin];
+}
+
+- (void) addLabelWithFrame: (CGRect) f baselineAdjustment: (UIBaselineAdjustment) bla
+{
+    UILabel* label = [[UILabel alloc] initWithFrame: f];
+    label.baselineAdjustment = bla;
+    label.adjustsFontSizeToFitWidth = YES;
+    label.font = [UIFont fontWithName: @"Courier" size: 20];
+    label.text = @"00";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor lightGrayColor];
+    label.userInteractionEnabled = YES;
+    [self.view addSubview: label];
+
+    UIView* centerline = [[UIView alloc] initWithFrame: CGRectMake(f.origin.x, f.origin.y+(f.size.height/2.0), f.size.width, 1)];
+    centerline.backgroundColor = [UIColor redColor];
+    [self.view addSubview: centerline];
+
+    UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(onTap:)];
+    [label addGestureRecognizer: tgr];
+}
+
+
+- (void) onTap: (UITapGestureRecognizer*) tgr
+{
+    UILabel* label = (UILabel*)tgr.view;
+    NSString* t = [label.text stringByAppendingString: @":00"];
+    label.text = t;
 }
 
 - (void)learnRunloop
