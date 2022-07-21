@@ -65,6 +65,7 @@
 		B682A98628864F0E00F90124 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				B682A9ED2888028600F90124 /* sub */,
 				B682A9A2288657B700F90124 /* tiantian.png */,
 				B682A9A028864FA700F90124 /* Mount.jpeg */,
 				B682A98728864F0E00F90124 /* AppDelegate.h */,
@@ -80,6 +81,13 @@
 				B682A99928864F1000F90124 /* main.m */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		B682A9ED2888028600F90124 /* sub */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sub;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

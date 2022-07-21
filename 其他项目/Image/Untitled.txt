@@ -1,0 +1,9 @@
+Unused Resources In Project: 
+/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/其他项目/Image
+
+name	size	path
+npc.imageset	17703	/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/其他项目/Image/Image/Assets.xcassets/npc.imageset
+npc_dark.imageset	1637	/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/其他项目/Image/Image/Assets.xcassets/npc_dark.imageset
+npc2.imageset	1690	/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/其他项目/Image/Image/Assets.xcassets/npc2.imageset
+subMount.jpeg	7426601	/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/其他项目/Image/Image/sub/subMount.jpeg
+tiantian.png	17401	/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/其他项目/Image/Image/tiantian.png

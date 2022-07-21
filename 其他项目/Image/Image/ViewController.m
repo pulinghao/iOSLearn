@@ -21,9 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
-//    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+//    UIImage *img = BMThemeImage(@"npc");
     NSString *fileName = @"Mount";
+
     NSString *thumbnailFile = [NSString stringWithFormat:@"%@/%@.jpeg", [[NSBundle mainBundle] resourcePath], fileName];
 
     UIImage *image = [UIImage imageWithContentsOfFile:thumbnailFile];
@@ -40,8 +40,8 @@
 //    [_firstImage sizeToFit];
     [self.view addSubview:_firstImage];
     
-    NSString *fileName2 = @"tiantian";
-    NSString *thumbnailFile2 = [NSString stringWithFormat:@"%@/%@.png", [[NSBundle mainBundle] resourcePath], fileName2];
+//    NSString *fileName2 = @"tiantian.png";
+//    NSString *thumbnailFile2 = [NSString stringWithFormat:@"%@/%@.png", [[NSBundle mainBundle] resourcePath], fileName2];
     NSURL *url = [NSURL fileURLWithPath:thumbnailFile];  //必须用fileURLWithPath接口
     CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
     if (imageSource == NULL) {
