@@ -1,10 +1,10 @@
 梳理简历中可能会被考察到的问题
 
-# 技能清单
+# 1 技能清单
 
-# 项目经历
+# 2 项目经历
 
-## 室内导航
+## 2.1室内导航
 
 ### 背景&目的
 
@@ -268,9 +268,7 @@ SCNVector3 pos = SCNVector3Make(mat.m41,mat.m42 ,mat.m43);
 
 方案二：使用气压计
 
-
-
-## VPS室内定位
+## 2.2 VPS室内定位
 
 
 
@@ -282,9 +280,9 @@ SCNVector3 pos = SCNVector3Make(mat.m41,mat.m42 ,mat.m43);
 
 [CVPixelBufferRef 生成方式](https://blog.csdn.net/weixin_50912862/article/details/115763227)
 
+## 2.3 UIScrollView改造
 
 
-# UIScrollView改造
 
 ## 现状
 
@@ -352,11 +350,9 @@ SCNVector3 pos = SCNVector3Make(mat.m41,mat.m42 ,mat.m43);
 @interface BMXXXScene : BMDragBaseXXXScene_fake
 ```
 
+### 挑战和问题
 
-
-# 挑战和问题
-
-## 1. 滑动和惯性减速过程中，属于TrackingModeRunloop，底图不绘制怎么办
+#### 1. 滑动和惯性减速过程中，属于TrackingModeRunloop，底图不绘制怎么办
 
 方法一：提供了一个在TrackingModeRunloop下运行的DisplayLink，由该link调用底图的绘制，保证在TrackingMode时底图也可以回执。
 BMTrackingModeDisplayLink使用方式如下：
@@ -380,9 +376,7 @@ BMTrackingModeDisplayLink使用方式如下：
                    completion:(void (^)(BOOL isFinish))completion;
 ```
 
-
-
-## 2. 动态捕获内部scrollView的时机只发生下手指按下的那一刻，若当时内部scrollView的内容还没有加载出来不能滑动，那么接下来即时加载出来也不能滑动内部了
+#### 2.动态捕获内部scrollView的时机只发生下手指按下的那一刻，若当时内部scrollView的内容还没有加载出来不能滑动，那么接下来即时加载出来也不能滑动内部了
 
 使用”智能”捕获 + 监听：
 当寻找内部scrollView时，若没找到当前可以滑动的，就寻找一个“未来可能滑动”的scrollView，对其进行监听，当监听到其确实可以滑动后，再进行捕获和关联。
@@ -464,5 +458,34 @@ UIScrollVIew.delaysContentTouches
   }
   ```
 
-- 
+
+
+
+## 2.4 组件包大小优化
+
+背景：
+
+组件包大小版本约束为100KB，每次大版本迭代都有超过100KB的资源
+
+思路
+
+- 删去无用的资源图片
+  - 不再内部使用的图片
+  - 2x，3x图保留一张
+  - 运营类图片，云端存储
+  - 与其他业务相似的图片保留一张
+
+手段：
+
+1. `LSUnusedResource`加强版，能够将注释中的图片检索出来、无用的暗黑模式图片检索、仅与业务相关的无用图片检索出来
+2. 相似图片检索工具等
+
+
+
+- 无用类、无用方法删除
+  - 无用方法去除，包括静态库和动态库（C、C++的无用方法，编译时不会被编入）
+  - LinkMap方案，查找无用类、无用方法
+  - 重复代码扫描，工具`simian`
+
+
 

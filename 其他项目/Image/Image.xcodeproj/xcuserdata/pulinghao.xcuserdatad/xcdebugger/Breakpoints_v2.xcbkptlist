@@ -3,4 +3,70 @@
    uuid = "36AB51CD-F001-4E44-BB60-87E8475AC57E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CCCAC021-3FD9-4E48-BD70-E2EEEA6052CE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../../../MacHD_M2/Users/pulinghao/Github/iOSLearn/&#x5176;&#x4ed6;&#x9879;&#x76ee;/Image/Image/LookinServer&#xff08;UI&#x8c03;&#x8bd5;&#x5de5;&#x5177;&#xff09;/SourceCode/LookinServer/Category/UIImageView+LookinServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-lks_imageViewOidIfHasImage"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACD59A1D-858C-4612-AFA0-F76540B6968C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../../../MacHD_M2/Users/pulinghao/Github/iOSLearn/&#x5176;&#x4ed6;&#x9879;&#x76ee;/Image/Image/LookinServer&#xff08;UI&#x8c03;&#x8bd5;&#x5de5;&#x5177;&#xff09;/SourceCode/LookinServer/Category/UIImageView+LookinServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-lks_imageSourceName"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF26CDB0-797E-4843-8F7E-C71B83B8809F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../../../MacHD_M2/Users/pulinghao/Github/iOSLearn/&#x5176;&#x4ed6;&#x9879;&#x76ee;/Image/Image/LookinServer&#xff08;UI&#x8c03;&#x8bd5;&#x5de5;&#x5177;&#xff09;/SourceCode/LookinServer/Category/UIViewController+LookinServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "+load"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2E15454-ED30-441C-A47F-F37198478299"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../../../MacHD_M2/Users/pulinghao/Github/iOSLearn/&#x5176;&#x4ed6;&#x9879;&#x76ee;/Image/Image/LookinServer&#xff08;UI&#x8c03;&#x8bd5;&#x5de5;&#x5177;&#xff09;/SourceCode/LookinServer/Category/UIView+LookinServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "+load"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
