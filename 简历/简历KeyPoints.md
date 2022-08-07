@@ -418,7 +418,9 @@ UIScrollVIew.delaysContentTouches
 
 - ## 3. 全/半卡切换时与底图联动导致卡顿问题解决方案
 
-- 使用滑动控件制作小卡、半卡、大卡等切换效果时，如果同时触发底图的移图或者缩放等渲染操作，由于渲染操作会大量占用那个CPU，会导致强依赖CPU的ScrollView滑动、卡片切换交卡顿。
+  使用滑动控件制作小卡、半卡、大卡等切换效果时，如果同时触发底图的移图或者缩放等渲染操作，由于渲染操作会大量占用那个CPU，会导致强依赖CPU的ScrollView滑动、卡片切换交卡顿。
+
+  
 
 - ```objective-c
   /*
@@ -441,8 +443,8 @@ UIScrollVIew.delaysContentTouches
                                                      reason:(NSString *)reason;
   ```
 
-- 在代理中，实现下面的方法
-
+  在代理中，实现下面的方法
+  
 - ```objective-c
   - (BMDragScrollV2DecelerateStyle)dragScrollViewDecelerate:(BMDragScrollV2View *)dragScrollView
                                                       fromH:(CGFloat)fromH toH:(CGFloat)toH
@@ -488,4 +490,11 @@ UIScrollVIew.delaysContentTouches
   - 重复代码扫描，工具`simian`
 
 
+
+## 2.5 动态化
+
+一些动态化领域的问题
+
+- 如何渲染控件
+- web和Native通信，采用jsbridge方式还是scheme的方式？
 
