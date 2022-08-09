@@ -105,16 +105,22 @@ Unix Signal 其实是由 Mach port 抛出的信号转化的，那么都有哪些
 - SIGQUIT
    和SIGINT类似, 但由QUIT字符(通常是Ctrl-)来控制. 进程在因收到SIGQUIT退出时会产生core文件, 在这个意义上类似于一个程序错误信号。
 - SIGABRT
-   调用abort函数生成的信号。
+   调用abort函数生成的信号。例如一些C库的函数（strlen）
    `SIGABRT is a BSD signal sent by an application to itself when an NSException or obj_exception_throw is not caught.`
 - SIGBUS
    非法地址, 包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, 但其地址不是4的倍数。它与SIGSEGV的区别在于后者是由于对合法存储地址的非法访问触发的(如访问不属于自己存储空间或只读存储空间)。
 - SIGFPE
-   在发生致命的算术运算错误时发出. 不仅包括浮点运算错误, 还包括溢出及除数为0等其它所有的算术的错误。
+   在发生致命的算术运算错误时发出. 不仅包括**浮点运算错误**, 还包括溢出及**除数为0**等其它所有的算术的错误。
 - SIGKILL
    用来立即结束程序的运行. 本信号不能被阻塞、处理和忽略。如果管理员发现某个进程终止不了，可尝试发送这个信号。
-- SIGSEGV
+- **<font color='red'>SIGSEGV（常见）</font>**
    试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据.
+  - 试图访问未分配给自己的内存
+  - 试图往没有写权限的内存地址写数据
+  - 空指针
+  - 数组越界
+  - 栈溢出等
+
 - SIGPIPE
    管道破裂。这个信号通常在进程间通信产生，比如采用FIFO(管道)通信的两个进程，读管道没打开或者意外终止就往管道写，写进程会收到SIGPIPE信号。
 
@@ -156,3 +162,129 @@ void handleSignalException(int signal) {
 ```
 
 程序无法打印出日志，只能在控制台输出里看到
+
+
+
+# NSException
+
+- NSException 异常是 OC 代码导致的 crash。
+- NSException 异常和 Signal 信号异常，这两类都可以通过注册相关函数来捕获：
+- NSSetUncaughtExceptionHandler 用来做异常处理，功能非常有限。引起崩溃的大多数原因如：内存访问错误、重复释放等错误，它就无能为力了，因为这种错误它抛出的是 Signal。
+
+```objective-c
+
+// 保存注册的 exception 捕获方法
+	NSUncaughtExceptionHandler * oldExceptionHandler;
+	// 自定义的 exception 异常处理
+	void ExceptionHandler(NSException * exception);
+	
+	void RegisterExceptionHandler()  {
+	    if(NSGetUncaughtExceptionHandler() != ExceptionHandler) {
+	        oldExceptionHandler = NSGetUncaughtExceptionHandler();
+	    }
+	    NSSetUncaughtExceptionHandler(ExceptionHandler);
+	}
+
+
+/**
+	 *  @brief  exception 崩溃处理
+	 */
+	void ExceptionHandler(NSException * exception) {
+	    // 使 UncaughtExceptionCount 递增
+	    int32_t exceptionCount = OSAtomicIncrement32(&UncaughtExceptionCount);
+	    
+	    // 超出允许捕获错误的次数
+	    if (exceptionCount > UncaughtExceptionMaximum) {
+	        return;
+	    }
+	    
+	    // 获取调用堆栈
+	    NSMutableDictionary * userInfo = [NSMutableDictionary dictionaryWithDictionary:[exception userInfo]];
+	    userInfo[kUncaughtCallStackKey] = [exception callStackSymbols];
+	    
+	    NSException * exp = [NSException exceptionWithName:exception.name
+	                                                reason:exception.reason
+	                                              userInfo:userInfo];
+	    // 在主线程中执行方法
+	    [[[UncaughtExceptionHandler alloc] init] performSelectorOnMainThread:@selector(dealException:)
+	                                                              withObject:exp
+	                                                           waitUntilDone:YES];
+	    
+	    // 调用保存的 handler
+	    if (oldExceptionHandler) {
+	        oldExceptionHandler(exception);
+	    }
+	}
+
+
+```
+
+
+
+# 收集调用的堆栈
+
+调用堆栈的收集可以利用系统 api，
+
+```objective-c
+	+ (NSArray *)backtrace {
+	    /*  指针列表。
+	
+	        ①、backtrace 用来获取当前线程的调用堆栈，获取的信息存放在这里的 callstack 中
+	        ②、128 用来指定当前的 buffer 中可以保存多少个 void* 元素
+	     */
+	    void * callstack[128];
+	    
+	    // 返回值是实际获取的指针个数
+	    int frames = backtrace(callstack, 128);
+	    
+	    // backtrace_symbols 将从 backtrace 函数获取的信息转化为一个字符串数组，每个字符串包含了一个相对于 callstack 中对应元素的可打印信息，包括函数名、偏移地址、实际返回地址。
+	    // 返回一个指向字符串数组的指针
+	    char **strs = backtrace_symbols(callstack, frames);
+	    
+	    NSMutableArray * backtrace = [NSMutableArray arrayWithCapacity:frames];
+	    for (int i = 0; i < frames; i++) {
+	        [backtrace addObject:[NSString stringWithUTF8String:strs[i]]];
+	    }
+	    free(strs);
+	    return backtrace;
+	}
+
+```
+
+# 堆栈符号化
+
+系统 api 获取的堆栈信息可能只是一串内存地址。
+
+思路：找到当前应用对于的 dsym 符号表文件，
+
+-  symbolicatecrash（Xcode 的 Organizer 内置了）
+- dwarfdump，
+- atos
+
+还原 crash 堆栈内存地址对应的符号名。需要注意，<font color='red'>如果应用中使用了自己或第三方的动态库，应用崩溃在动态库 Image 而不是主程序 Image 中，我们需要有对应动态库的 dsym 符号表才能符号化</font>
+
+
+
+地址空间布局随机化(Address space layout randomization)，就是每次应用加载时，使用随机的一个地址空间，这样能有效防止被攻击。
+
+VM Address 是编译后 Image 的**起始位置**，Load Address 是在运行时加载到虚拟内存的起始位置，Slide 是加载到内存的偏移，这个偏移值是一个随机值，每次运行都不相同，有下面公式：
+
+```
+Stack Address = Symbol Address + Slide
+```
+
+<img src="https://img-blog.csdnimg.cn/d25875b0799d472e89dbe58f1245ad63.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBARm9yZXZlcl93ag==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述" style="zoom:50%;" />
+
+Stack Address 位于 0x1046eea14
+
+相对Load Address 0x1046e8000 偏移了 27156。（Stack Address = Load Address + Offset)
+
+已知 VM Address 为 0x100000000，Load Address 为 0x1046e8000，可以得到 Slide 为 0x46e8000。通过公式 Symbol Address = Stack Address - Slider 求得 Symbol Address 为 0x100006a14
+
+
+
+
+
+# 参考文档
+
+[iOS之深入解析崩溃Crash的收集调试与符号化分析](https://blog.csdn.net/Forever_wj/article/details/120068863?spm=1001.2101.3001.6650.5&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-5-120068863-blog-119517507.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-5-120068863-blog-119517507.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=9)

@@ -1372,6 +1372,16 @@ AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerObserverContext
 - NSAllowArbitraryLoadsInWebContent：webview加载时不受限制
 - NSAllowsLocalNetworking
 
+5. `NSURLSession`与`NSURLConnection`的区别
+
+| NSURLSession                                                 | NSURLConnection                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| cancel, suspend,resume 更灵活                                | Start,cancel                                                 |
+| 直接下载到沙盒                                               | 先现在到内存，再挪到沙盒，会出现内存暴涨                     |
+| 进行断点下载，当暂停下载任务后，如果 downloadTask （下载任务）为非空；有一个方法，保存当前的进度，下次下载时，继续进行下载操作 | 断点下载，通过设置访问请求的HTTPHeaderField的Range属性，开启运行循环 |
+
+
+
 # 参考链接
 
 [有关HTTP2.0详解](https://blog.csdn.net/yexudengzhidao/article/details/98207149)
