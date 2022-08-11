@@ -7,6 +7,7 @@
 
 #import <XCTest/XCTest.h>
 
+#import "LockLearn.h"
 @interface MyLearnIOSTests : XCTestCase
 
 @end
@@ -28,7 +29,9 @@
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
+    LockLearn *learn = [[LockLearn alloc] init];
     [self measureBlock:^{
+        [learn testTwoThreadLock];
         // Put the code you want to measure the time of here.
     }];
 }
