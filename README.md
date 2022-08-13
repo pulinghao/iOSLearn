@@ -4,11 +4,15 @@ iOS学习
 梳理了以下平时工作，还是面试时候遇到的一些问题
 
 # 内存管理
-## 引用计数
-## AutoReleasePool
+
+[内存管理](./内存管理/内存管理.md)
 
 # 多线程
+
 ## GCD
+
+
+
 ## NSOperation
 
 [NSOperation](./%E5%A4%9A%E7%BA%BF%E7%A8%8B/NSOperation.md)
@@ -23,10 +27,17 @@ iOS学习
 ## AFNetworking
 
 # 视图
+
 ## 核心动画
+
+[核心动画](./视图/核心动画/核心动画.md)
 
 # 性能
 
 # 三方库
+
+# 面试题汇总
+
+[iOS面试整理](./面试题汇总/iOS面试整理.md)
 
 # 我的项目

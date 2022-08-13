@@ -30,7 +30,7 @@
    for (int i = 0; i<10; i++) {
        dispatch_async(self.queue, ^{
            self.nameStr = [NSString stringWithFormat:@"dsggkdaasdasdshjksda"];
-           NSLog(@"%p", self.nameStr); // 0xb000000000000012 （Tagged Pointer 标记指针）
+           NSLog(@"tagger pointer %p", self.nameStr); // 0xb000000000000012 （Tagged Pointer 标记指针）
        });
    }
 }
@@ -42,12 +42,12 @@
     // 异步并发
     // 一直在retian
     // 一直在release -1 0
-    for (int i = 0; i<1000; i++) {
+    for (int i = 0; i<10; i++) {
         dispatch_async(self.queue, ^{
             self.nameStr = [NSString stringWithFormat:@"dsggkdaasdasdshjksda"];
             
             // self.nameStr 变成CFString 了
-            NSLog(@"new %p", self.nameStr);
+            NSLog(@"new tagger pointer %p", self.nameStr);
         });
     }
     

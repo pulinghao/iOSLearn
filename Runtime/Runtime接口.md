@@ -199,125 +199,146 @@
 
 # 类
 
-- 创建类`objc_allocateClassPair`
+## 创建类`objc_allocateClassPair`
 
-  创建一个新类
+创建一个新类
 
-  ```c
-  /**
-  	param1: 父类
-  	param2: 新类的名字，转C字符串
-  	param3: 额外的字节数，不常用
-  */
-  newClass = objc_allocateClassPair([self class], newName.UTF8String, 0);
-  
-  ```
+```c
+/**
+	param1: 父类
+	param2: 新类的名字，转C字符串
+	param3: 额外的字节数，不常用
+*/
+newClass = objc_allocateClassPair([self class], newName.UTF8String, 0);
 
-- 类的注册`objc_registerClassPair`
+```
 
-  与类的创建何用，需要把创建的类，放到系统内存
+## 类的注册`objc_registerClassPair`
 
-- 给父类发送``msgSend``消息
+与类的创建何用，需要把创建的类，放到系统内存
 
-  ```c
-  static void tz_setter(id self, SEL _cmd, id newValue) {
-      NSLog(@"%s", __func__);
-      
-    // 构造父类的objc_super结构体
-      struct objc_super superStruct = {
-          self,
-          class_getSuperclass(object_getClass(self))
-      };
-      
-      // 改变父类的值
-      objc_msgSendSuper(&superStruct, _cmd, newValue);
-      
-      // 通知观察者， 值发生改变了
-      // 观察者
-      id observer = objc_getAssociatedObject(self, (__bridge void *)@"objc");
-      NSString* setterName = NSStringFromSelector(_cmd);
-      NSString* key = getterForSetter(setterName);
-      
-      objc_msgSend(observer, @selector(observeValueForKeyPath:ofObject:change:context:), key, self, @{key:newValue}, nil);
-  }
-  ```
+## 给父类发送``msgSend``消息
 
-- 给类添加实例变量`class_addIvar`
+```c
+static void tz_setter(id self, SEL _cmd, id newValue) {
+    NSLog(@"%s", __func__);
+    
+  // 构造父类的objc_super结构体
+    struct objc_super superStruct = {
+        self,
+        class_getSuperclass(object_getClass(self))
+    };
+    
+    // 改变父类的值
+    objc_msgSendSuper(&superStruct, _cmd, newValue);
+    
+    // 通知观察者， 值发生改变了
+    // 观察者
+    id observer = objc_getAssociatedObject(self, (__bridge void *)@"objc");
+    NSString* setterName = NSStringFromSelector(_cmd);
+    NSString* key = getterForSetter(setterName);
+    
+    objc_msgSend(observer, @selector(observeValueForKeyPath:ofObject:change:context:), key, self, @{key:newValue}, nil);
+}
+```
 
-  ```
-  class_addIvar(TZCat, name.UTF8String, sizeof(id),log2(sizeof(id)),@encode(id));
-  ```
+## 给类添加实例变量`class_addIvar`
 
-  添加`ivar`只能在`objc_registerClassPair`之前，原因在于，`ivar`在`class_ro_t`的结构体中，是只读的。而`method`能够在类注册之后添加，原因也是因为`method`的列表，在`class_rw_t`结构中。
+```
+class_addIvar(TZCat, name.UTF8String, sizeof(id),log2(sizeof(id)),@encode(id));
+```
+
+添加`ivar`只能在`objc_registerClassPair`之前，原因在于，`ivar`在`class_ro_t`的结构体中，是只读的。而`method`能够在类注册之后添加，原因也是因为`method`的列表，在`class_rw_t`结构中。
+
+
+
+## 获取类下面的所有属性`class_copyPropertyList`
+
+获取属性的名字 `property_getName`
+
+获取属性的特征 `property_getAttributes`
+
+```objective-c
+unsigned int count =0;
+objc_property_t *properties = class_copyPropertyList(NSClassFromString(className), &count);
+for (int i = 0; i < count; i++) {
+        objc_property_t property = properties[i];
+        NSString *ivarName =[NSString stringWithUTF8String:property_getName(property)];
+        NSString *ivarType =[NSString stringWithUTF8String:property_getAttributes(property)];
+        NSLog(@"%@ , %@", ivarName, ivarType);
+ }
+```
+
+
 
 # 方法
 
-- 获取实例方法`class_getInstanceMethod`
+## 获取实例方法`class_getInstanceMethod`
 
-  ```c
-  /**
-  	param1: 类
-  	param2: SEL名
-  */
-  Method classMethod = class_getInstanceMethod([self class], @selector(class));
-  ```
+```c
+/**
+	param1: 类
+	param2: SEL名
+*/
+Method classMethod = class_getInstanceMethod([self class], @selector(class));
+```
 
-- 给类添加方法`class_addMethod`
+## 给类添加方法`class_addMethod`
 
-  ```c
-  const char* classTypes = method_getTypeEncoding(classMethod);
-  // IMP
-  IMP myImp = class_getMethodImplementation([self class], @selector(my_class));   
-  /**
-  	param1: 类名
-  	param2: 要添加的SEL名
-  	param3: IMP实现，如果是OC的方法，需要转成IMP，如果是C的方法，需要参考OC消息转发的格式
-  */
-  class_addMethod(newClass, @selector(class), (IMP)myImp, classTypes);
+```c
+const char* classTypes = method_getTypeEncoding(classMethod);
+// IMP
+IMP myImp = class_getMethodImplementation([self class], @selector(my_class));   
+/**
+	param1: 类名
+	param2: 要添加的SEL名
+	param3: IMP实现，如果是OC的方法，需要转成IMP，如果是C的方法，需要参考OC消息转发的格式
+*/
+class_addMethod(newClass, @selector(class), (IMP)myImp, classTypes);
+
+// OC方法
+// my_class不是IMP，而是一个SEL
+- (Class)my_class
+{
+    NSLog(@"my class");
+    return class_getSuperclass(object_getClass(self));
+}
+
+// c方法
+Class tz_class(id self, SEL _cmd) {
+    return class_getSuperclass(object_getClass(self));
+}
+```
+
+## 获取方法的IMP`method_getImplementation`
+
+```
+Method newMethod = class_getInstanceMethod([Person class], @selector(run));
+IMP imp = method_getImplementation(newMethod);
+```
+
+
+
+## 设置方法的IMP`method_setImplementation`
+
+交换两个方法，如下
+
+```objective-c
+Person *p = [[Person alloc] init];
+[p walk];
+
+Method oldMethod = class_getInstanceMethod([Person class], @selector(walk));
+Method newMethod = class_getInstanceMethod([Person class], @selector(run));
+IMP imp = method_getImplementation(newMethod);
+method_setImplementation(oldMethod, imp);
+[p walk];
+
+//也可以设置C语言指针
+void doSth(){
   
-  // OC方法
-  // my_class不是IMP，而是一个SEL
-  - (Class)my_class
-  {
-      NSLog(@"my class");
-      return class_getSuperclass(object_getClass(self));
-  }
-  
-  // c方法
-  Class tz_class(id self, SEL _cmd) {
-      return class_getSuperclass(object_getClass(self));
-  }
-  ```
-
-- 获取方法的IMP`method_getImplementation`
-
-  ```
-  Method newMethod = class_getInstanceMethod([Person class], @selector(run));
-  IMP imp = method_getImplementation(newMethod);
-  ```
-
-  
-
-- 设置方法的IMP`method_setImplementation`
-
-  交换两个方法，如下
-
-  ```objective-c
-  Person *p = [[Person alloc] init];
-  [p walk];
-  
-  Method oldMethod = class_getInstanceMethod([Person class], @selector(walk));
-  Method newMethod = class_getInstanceMethod([Person class], @selector(run));
-  IMP imp = method_getImplementation(newMethod);
-  method_setImplementation(oldMethod, imp);
-  [p walk];
-  
-  //也可以设置C语言指针
-  void doSth(){
-    
-  }
-  method_setImplementation(oldMethod, (IMP)doSth);
-  ```
+}
+method_setImplementation(oldMethod, (IMP)doSth);
+```
 
 - 与`@selector()`等价 方法
 
@@ -325,7 +346,7 @@
   @selector(yourname) //与下面的方法等价
   sel_registerName("yourname");
   ```
-  
+
 - 将`SEL`转成C字符串
 
   ```objc
@@ -333,11 +354,14 @@
   // setTitle:
   ```
 
-  
+
+## 
+
+
 
 # clang
 
-用C++编译带`UIKit`的文件
+## 用C++编译带`UIKit`的文件
 
 ```shell
 clang -x objective-c -rewrite-objc -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk  XXX.m文件

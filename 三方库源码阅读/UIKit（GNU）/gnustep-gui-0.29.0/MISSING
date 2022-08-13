@@ -1,0 +1,26 @@
+MISSING HEADERS ( * = difficult, - = quick, + = placeholder, x = won't do )
+---
+> NSATSTypesetter.h +
+> NSCollectionViewCompositionalLayout.h *
+> NSCollectionViewFlowLayout.h *
+> NSCollectionViewGridLayout.h *
+> NSCollectionViewLayout.h *
+> NSCollectionViewTransitionLayout.h *
+> NSDictionaryController.h -
+> NSDiffableDataSource.h *
+> NSDraggingItem.h -
+> NSDraggingSession.h -
+> NSFilePromiseProvider.h -
+> NSFilePromiseReceiver.h -
+> NSGlyphInfo.h -
+> NSItemProvider.h + 
+> NSMenuToolbarItem.h -
+> NSOpenGLLayer.h *
+> NSStackView.h *
+> NSTableCellView.h *
+> NSTableRowView.h *
+> NSTableViewRowAction.h *
+> NSTypesetter.h +
+> NSUserActivity.h -
+> NSWindowTab.h +
+> NSWindowTabGroup.h +

@@ -145,11 +145,11 @@ typedef void(^testBlock)();
     _myLabel.minimumScaleFactor = 1.0;
     [self.view addSubview:_myLabel];
     
-    [self addLabelWithFrame: CGRectMake(0, 100, 320, 100)
-         baselineAdjustment: UIBaselineAdjustmentAlignCenters];
-
-    [self addLabelWithFrame: CGRectMake(0, 210, 320, 100)
-         baselineAdjustment: UIBaselineAdjustmentAlignBaselines];
+//    [self addLabelWithFrame: CGRectMake(0, 100, 320, 100)
+//         baselineAdjustment: UIBaselineAdjustmentAlignCenters];
+//
+//    [self addLabelWithFrame: CGRectMake(0, 210, 320, 100)
+//         baselineAdjustment: UIBaselineAdjustmentAlignBaselines];
     
     [self gcd_dispatch_semaphore];
     
@@ -235,8 +235,8 @@ typedef void(^testBlock)();
 
 
     
-//    self.taggerpointer = [[TaggerPointerLearn alloc] init];
-//    [self.taggerpointer testTaggerPointer];
+    self.taggerpointer = [[TaggerPointerLearn alloc] init];
+    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
     [gcd test5];
