@@ -154,7 +154,233 @@ struct objc_method {
 
 
 
+# 对象的析构
 
+## release 引用技术减一
+
+执行release方法，根本上是`objc_object::rootRelease(bool performDealloc, objc_object::RRVariant variant)`
+
+```c
+ALWAYS_INLINE bool 
+objc_object::rootRelease(bool performDealloc, bool handleUnderflow)
+{
+    //判断是否是TaggedPointer
+    if (isTaggedPointer()) return false;
+
+    bool sideTableLocked = false;
+
+    isa_t oldisa;
+    isa_t newisa;
+
+ retry:
+    do {
+        oldisa = LoadExclusive(&isa.bits);
+        newisa = oldisa;
+        //是否是优化过的isa指针
+        if (slowpath(!newisa.nonpointer)) {
+            ClearExclusive(&isa.bits);
+            if (sideTableLocked) sidetable_unlock();
+            return sidetable_release(performDealloc);
+        }
+        
+        // don't check newisa.fast_rr; we already called any RR overrides
+        uintptr_t carry;
+        newisa.bits = subc(newisa.bits, RC_ONE, 0, &carry);  // extra_rc--
+        if (slowpath(carry)) {
+            // don't ClearExclusive()
+            goto underflow;
+        }
+    } while (slowpath(!StoreReleaseExclusive(&isa.bits, 
+                                             oldisa.bits, newisa.bits)));
+
+    if (slowpath(sideTableLocked)) sidetable_unlock();
+    return false;
+
+ underflow:
+    // newisa.extra_rc-- underflowed: borrow from side table or deallocate
+
+    // abandon newisa to undo the decrement
+    newisa = oldisa;
+    //是否has_sidetable_rc为true，引用计数是否存在sideTable中
+    if (slowpath(newisa.has_sidetable_rc)) {
+        if (!handleUnderflow) {
+            ClearExclusive(&isa.bits);
+            return rootRelease_underflow(performDealloc);
+        }
+
+        // Transfer retain count from side table to inline storage.
+
+        if (!sideTableLocked) {
+            ClearExclusive(&isa.bits);
+            sidetable_lock();
+            sideTableLocked = true;
+            // Need to start over to avoid a race against 
+            // the nonpointer -> raw pointer transition.
+            goto retry;
+        }
+
+        // Try to remove some retain counts from the side table.        
+        size_t borrowed = sidetable_subExtraRC_nolock(RC_HALF);
+
+        // To avoid races, has_sidetable_rc must remain set 
+        // even if the side table count is now zero.
+
+        if (borrowed > 0) {
+            // Side table retain count decreased.
+            // Try to add them to the inline count.
+            // 引用计数-1
+            newisa.extra_rc = borrowed - 1;  // redo the original decrement too
+            bool stored = StoreReleaseExclusive(&isa.bits, 
+                                                oldisa.bits, newisa.bits);
+            if (!stored) {
+                // Inline update failed. 
+                // Try it again right now. This prevents livelock on LL/SC 
+                // architectures where the side table access itself may have 
+                // dropped the reservation.
+                isa_t oldisa2 = LoadExclusive(&isa.bits);
+                isa_t newisa2 = oldisa2;
+                if (newisa2.nonpointer) {
+                    uintptr_t overflow;
+                    newisa2.bits = 
+                        addc(newisa2.bits, RC_ONE * (borrowed-1), 0, &overflow);
+                    if (!overflow) {
+                        stored = StoreReleaseExclusive(&isa.bits, oldisa2.bits, 
+                                                       newisa2.bits);
+                    }
+                }
+            }
+
+            if (!stored) {
+                // Inline update failed.
+                // Put the retains back in the side table.
+                sidetable_addExtraRC_nolock(borrowed);
+                goto retry;
+            }
+
+            // Decrement successful after borrowing from side table.
+            // This decrement cannot be the deallocating decrement - the side 
+            // table lock and has_sidetable_rc bit ensure that if everyone 
+            // else tried to -release while we worked, the last one would block.
+            sidetable_unlock();
+            return false;
+        }
+        else {
+            // Side table is empty after all. Fall-through to the dealloc path.
+        }
+    }
+
+    // Really deallocate.
+
+    if (slowpath(newisa.deallocating)) {
+        ClearExclusive(&isa.bits);
+        if (sideTableLocked) sidetable_unlock();
+        return overrelease_error();
+        // does not actually return
+    }
+    newisa.deallocating = true;
+    if (!StoreExclusive(&isa.bits, oldisa.bits, newisa.bits)) goto retry;
+
+    if (slowpath(sideTableLocked)) sidetable_unlock();
+
+    __sync_synchronize();
+    if (performDealloc) {
+        ((void(*)(objc_object *, SEL))objc_msgSend)(this, SEL_dealloc);
+    }
+    return true;
+}
+```
+
+## dealloc方法
+
+##### 一、dealloc调用流程
+
+1、首先调用`_objc_rootDealloc()`
+
+2、然后调用`rootDealloc()`
+
+3、判断是否可以被释放，判断依据为，是否有以下5中情况：
+ （1）`NONPointer_ISA`
+ （2）`weakly_reference`
+ （3）`has_assoc`
+ （4）`has_cxx_dtor`
+ （5）`has_sidetable_rc`
+
+4、如果有以上5中情况中的任意一种，则调用`object_dispose()`方法；如果没有其中任意一种，表明可以执行释放操作，执行C函数的`free()`。
+
+5、执行完毕。
+
+```c
+inline void objc_object::rootDealloc()
+{
+    if (isTaggedPointer()) return;  // fixme necessary?
+
+    if (fastpath(isa.nonpointer                     &&
+                 !isa.weakly_referenced             &&
+                 !isa.has_assoc                     &&
+#if ISA_HAS_CXX_DTOR_BIT
+                 !isa.has_cxx_dtor                  &&
+#else
+                 !isa.getClass(false)->hasCxxDtor() &&
+#endif
+                 !isa.has_sidetable_rc))
+    {
+        assert(!sidetable_present());
+        free(this);
+    } 
+    else {
+        object_dispose((id)this);
+    }
+}
+
+```
+
+##### 二、object_dispose()调用流程
+
+1、调用`objc_destructInstance()`
+
+2、调用C函数的`free()`
+
+
+
+##### 三、objc_destructInstance()调用流程
+
+1、判断`has_cxx_dtor`，如果有C++相关内容，要调用`objc_cxxDestruct()`，销毁C++相关内容。
+
+2、判断`hasAssociatatedObjects`，如果有，要调用`objc_remove_associations()`，销毁关联对象的一系列操作。
+
+3、调用`clearDeallocating()`。
+
+4、执行完毕。
+
+```c
+void *objc_destructInstance(id obj) 
+{
+    if (obj) {
+        // Read all of the flags at once for performance.
+        bool cxx = obj->hasCxxDtor();
+        bool assoc = obj->hasAssociatedObjects();
+
+        // This order is important.
+        if (cxx) object_cxxDestruct(obj);
+        if (assoc) _object_remove_assocations(obj, /*deallocating*/true);
+        obj->clearDeallocating();
+    }
+
+    return obj;
+}
+```
+
+
+
+##### 四、clearDeallocating()调用流程
+
+1、执行`sideTable_clearDeallocating()`。
+
+2、执行`weak_clear_no_lock`，在这一步骤中，会将指向该对象的弱引用指针置为nil。
+
+3、执行`table.refcnts.eraser()`，从引用计数表中擦除改对象的引用计数。
+
+4、至此，dealloc执行流程结束。
 
 # 消息传递
 
