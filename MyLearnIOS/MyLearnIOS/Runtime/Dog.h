@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Dog : NSObject
 
-- (void)walk;
+- (void)walkDog;
 
 - (void)run;
 

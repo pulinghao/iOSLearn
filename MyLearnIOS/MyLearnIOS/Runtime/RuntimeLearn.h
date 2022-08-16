@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 消息转发
 - (void)resolve;
 
+- (void)forwardingTarget;
+
+- (void)invocation;
+
 @end
 
 NS_ASSUME_NONNULL_END

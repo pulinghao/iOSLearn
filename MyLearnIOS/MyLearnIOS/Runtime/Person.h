@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)walk;
 
+- (void)walkDog;
 - (void)run;
 
 + (void)walkwalk;
@@ -21,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)doSomeThing;
+
+- (void)nioIntroduce;
 @end
 
 NS_ASSUME_NONNULL_END

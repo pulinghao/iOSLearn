@@ -9,7 +9,7 @@
 
 @implementation Dog
 
-- (void)walk{
+- (void)walkDog{
     NSLog(@"%s",__func__);
 }
 

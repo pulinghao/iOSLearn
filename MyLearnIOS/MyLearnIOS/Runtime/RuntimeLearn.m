@@ -44,4 +44,14 @@ struct method_t {
     
 //    [Person walkwalk];
 }
+
+- (void)forwardingTarget{
+    Person *p = [[Person alloc] init];
+    [p walkDog];
+}
+
+- (void)invocation{
+    Person *p = [[Person alloc] init];
+    [p nioIntroduce];
+}
 @end

@@ -47,6 +47,18 @@ void swim(id self, SEL sel){
     NSLog(@"swim");
 }
 
+
+- (void)testKindOfClass
+{
+    BOOL res1 = [self isKindOfClass:[NSObject class]];
+    id obj = NSObject.self;
+    id obj2 = [NSObject class];
+    BOOL res2 = [NSObject.self isKindOfClass:[NSObject class]];
+    
+    NSLog(@"res1 [self isKindOfClass:[NSObject class]]:%d" , res1);
+    NSLog(@"res2 [NSObject.self isKindOfClass:[NSObject class]] : %d",res2);
+}
+
 + (BOOL)resolveInstanceMethod:(SEL)sel
 {
     NSLog(@"%s",__func__);
@@ -59,17 +71,6 @@ void swim(id self, SEL sel){
     }
     return [super resolveInstanceMethod:sel];
 }
-- (void)testKindOfClass
-{
-    BOOL res1 = [self isKindOfClass:[NSObject class]];
-    id obj = NSObject.self;
-    id obj2 = [NSObject class];
-    BOOL res2 = [NSObject.self isKindOfClass:[NSObject class]];
-    
-    NSLog(@"res1 [self isKindOfClass:[NSObject class]]:%d" , res1);
-    NSLog(@"res2 [NSObject.self isKindOfClass:[NSObject class]] : %d",res2);
-}
-
 
 // 动态方法解析
 //+ (BOOL)resolveInstanceMethod:(SEL)sel
@@ -104,7 +105,7 @@ void swim(id self, SEL sel){
 
 // 备用接收者
 - (id)forwardingTargetForSelector:(SEL)aSelector{
-    if (@selector(walk) == aSelector) {
+    if (@selector(walkDog) == aSelector) {
         return [Dog new];
     }
     return [super forwardingTargetForSelector:aSelector];
@@ -113,7 +114,7 @@ void swim(id self, SEL sel){
 
 // 完整消息转发
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
-    if (@selector(walk) == aSelector) {
+    if (@selector(nioIntroduce) == aSelector) {
         // 提供方法签名
         return [NSMethodSignature signatureWithObjCTypes:"v@:"];
     }

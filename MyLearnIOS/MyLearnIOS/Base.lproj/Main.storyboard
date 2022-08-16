@@ -127,14 +127,69 @@
                     <view key="view" contentMode="scaleToFill" id="U0a-JL-Vdg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iva-WM-RLX">
+                                <rect key="frame" x="156" y="125" width="102" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="直接调用"/>
+                                <connections>
+                                    <action selector="directCallClick:" destination="NjZ-Fh-0lP" eventType="touchUpInside" id="p6n-Am-ofc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iy-YE-N4Q">
+                                <rect key="frame" x="147" y="182" width="144" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="objc_msgSend"/>
+                                <connections>
+                                    <action selector="objcMsgSendClick:" destination="NjZ-Fh-0lP" eventType="touchUpInside" id="9fE-du-OSL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsR-6R-THY">
+                                <rect key="frame" x="156" y="252" width="99" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="动态解析"/>
+                                <connections>
+                                    <action selector="resovleClick:" destination="NjZ-Fh-0lP" eventType="touchUpInside" id="ZQU-Z9-BRK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecJ-zK-9Cc">
+                                <rect key="frame" x="153" y="305" width="109" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="备用接收者"/>
+                                <connections>
+                                    <action selector="forwardClick:" destination="NjZ-Fh-0lP" eventType="touchUpInside" id="IRE-Q2-zT9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGQ-43-QeM">
+                                <rect key="frame" x="156" y="347" width="109" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="消息转发"/>
+                                <connections>
+                                    <action selector="forwardClick:" destination="NjZ-Fh-0lP" eventType="touchUpInside" id="qEe-9T-cfJ"/>
+                                    <action selector="invocationClick:" destination="NjZ-Fh-0lP" eventType="touchUpInside" id="9QO-PA-8kR"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Xuq-6S-vSl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="hlh-Ca-WMr"/>
+                    <connections>
+                        <outlet property="directCall" destination="Iva-WM-RLX" id="Ii2-HQ-Pgr"/>
+                        <outlet property="forwardBtn" destination="ecJ-zK-9Cc" id="2En-5s-MQP"/>
+                        <outlet property="invactionBtn" destination="YGQ-43-QeM" id="dC5-VD-74f"/>
+                        <outlet property="objcMsgSendBtn" destination="2iy-YE-N4Q" id="fIn-q8-z62"/>
+                        <outlet property="resolveBtn" destination="hsR-6R-THY" id="Qm1-hx-ByY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Vy-B5-fXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730" y="285"/>
+            <point key="canvasLocation" x="728.98550724637687" y="284.59821428571428"/>
         </scene>
         <!--Multi DelegateVC-->
         <scene sceneID="SuK-bN-uVg">

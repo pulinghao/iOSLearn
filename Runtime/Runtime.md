@@ -384,5 +384,41 @@ void *objc_destructInstance(id obj)
 
 # 消息传递
 
+## 直接调用
+
+很显然，直接知道方法的地址来调用，比消息转发要快一些。使用`methodForSelector:`直接获取某个target下面的某个方法的地址
+
+```c
+void (*setter)(id, SEL, BOOL);
+setter = (void (*)(id, SEL, BOOL))[self methodForSelector:@selector(setDirectBl:)];
+```
+
+获取self下面`setDirectBl`的地址。
+
+
+
+比较直接调用和消息转发的耗时。
+
+```c
+ CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+for (int i = 0; i < 100000; i++) {
+    setter(self, @selector(setDirectBl:),YES);
+}
+CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
+
+NSLog(@"time %f ms", linkTime *1000.0);
+    
+CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+for (int i = 0; i < 100000; i++) {
+    [self setDirectBl:YES];
+}
+CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
+NSLog(@"objc_msg send time %f ms", linkTime *1000.0);
+```
+
+<img src="/Users/pulinghao/Library/Application Support/typora-user-images/image-20220816234629443.png" alt="image-20220816234629443" style="zoom:50%;" />
+
+两者的调用时间，在10000次调用的时候，大概有0.2ms的差距。直接调用具有更好的优势。
+
 
 

@@ -13,22 +13,42 @@
 
 @property (nonatomic, strong) RuntimeLearn *learn;
 
+@property (weak, nonatomic) IBOutlet UIButton *directCall;
+@property (weak, nonatomic) IBOutlet UIButton *objcMsgSendBtn;
+@property (nonatomic, assign) BOOL directBl;
+
+@property (weak, nonatomic) IBOutlet UIButton *resolveBtn;
+@property (weak, nonatomic) IBOutlet UIButton *forwardBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *invactionBtn;
+
 @end
 
 @implementation RuntimeVC
 
+void (*setter)(id, SEL, BOOL);
+int i;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self classTest];
+//    [self classTest];
     _learn = [[RuntimeLearn alloc] init];
-    [_learn resolve];
     
+    
+    setter = (void (*)(id, SEL, BOOL))[self methodForSelector:@selector(setDirectBl:)];
+    
+    
+}
+
+- (void)setDirectBl:(BOOL)directBl{
+    _directBl = directBl;
 }
 
 void hunting(id self, SEL _cmd){
     NSLog(@"%s",__func__);
 }
+
 - (void)classTest
 {
     // 创建一类对
@@ -53,6 +73,38 @@ void hunting(id self, SEL _cmd){
     [cat performSelector:@selector(hunting)];
 }
 
+- (IBAction)resovleClick:(id)sender {
+    
+    [_learn resolve];
+    
+}
+
+- (IBAction)forwardClick:(id)sender {
+    [_learn forwardingTarget];
+}
+
+- (IBAction)invocationClick:(id)sender {
+    [_learn invocation];
+}
+
+
+- (IBAction)directCallClick:(id)sender {
+    CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+    for (int i = 0; i < 100000; i++) {
+        setter(self, @selector(setDirectBl:),YES);
+    }
+    CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
+
+    NSLog(@"time %f ms", linkTime *1000.0);
+}
+- (IBAction)objcMsgSendClick:(id)sender {
+    CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+    for (int i = 0; i < 100000; i++) {
+        [self setDirectBl:YES];
+    }
+    CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
+    NSLog(@"objc_msg send time %f ms", linkTime *1000.0);
+}
 
 /*
 #pragma mark - Navigation
