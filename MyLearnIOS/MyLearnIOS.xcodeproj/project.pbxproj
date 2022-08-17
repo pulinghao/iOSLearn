@@ -61,6 +61,7 @@
 		B6372C5126DC819C0089E653 /* RunloopMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6372C5026DC819C0089E653 /* RunloopMonitor.m */; };
 		B66C1B87285E318D00F1C5FD /* PLHUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */; };
 		B66C1BE2286233A100F1C5FD /* AutoReleasePoolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B66C1BE1286233A100F1C5FD /* AutoReleasePoolVC.m */; };
+		B683DF9628A9E69B00DF4C5E /* CopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683DF9528A9E69B00DF4C5E /* CopyViewController.m */; };
 		B689DDC425D1157F0039B245 /* UIButton+BigFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */; };
 		B6E1EB5426C114B2002C2A66 /* NSOperationQueueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB5326C114B2002C2A66 /* NSOperationQueueVC.m */; };
 		B6E1EB6326C21ECB002C2A66 /* RunLoopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EB6226C21ECB002C2A66 /* RunLoopVC.m */; };
@@ -208,6 +209,8 @@
 		B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHUIViewController.m; sourceTree = "<group>"; };
 		B66C1BE0286233A100F1C5FD /* AutoReleasePoolVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoReleasePoolVC.h; sourceTree = "<group>"; };
 		B66C1BE1286233A100F1C5FD /* AutoReleasePoolVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoReleasePoolVC.m; sourceTree = "<group>"; };
+		B683DF9428A9E69B00DF4C5E /* CopyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CopyViewController.h; sourceTree = "<group>"; };
+		B683DF9528A9E69B00DF4C5E /* CopyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CopyViewController.m; sourceTree = "<group>"; };
 		B689DDC225D1157F0039B245 /* UIButton+BigFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BigFrame.h"; sourceTree = "<group>"; };
 		B689DDC325D1157F0039B245 /* UIButton+BigFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BigFrame.m"; sourceTree = "<group>"; };
 		B6E1EB5226C114B2002C2A66 /* NSOperationQueueVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOperationQueueVC.h; sourceTree = "<group>"; };
@@ -285,7 +288,6 @@
 				A3E0D7EB25D584DB00DDA689 /* Network */,
 				A3E0D76C25D0084F00DDA689 /* UIView */,
 				A3E0D76025CAEB0200DDA689 /* AutoReleasePool */,
-				A3E0D75F25CAE96B00DDA689 /* NSString */,
 				B689DDC125D1157F0039B245 /* UIButton */,
 				B6EC824225CAC3E900689DF4 /* NSProxy */,
 				A3E0D6AD25C9828200DDA689 /* Load&Initialize */,
@@ -456,13 +458,6 @@
 			path = "Load&Initialize";
 			sourceTree = "<group>";
 		};
-		A3E0D75F25CAE96B00DDA689 /* NSString */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NSString;
-			sourceTree = "<group>";
-		};
 		A3E0D76025CAEB0200DDA689 /* AutoReleasePool */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +505,8 @@
 			children = (
 				A3E6A60D25B99C70001E427D /* MyCopy.h */,
 				A3E6A60E25B99C70001E427D /* MyCopy.m */,
+				B683DF9428A9E69B00DF4C5E /* CopyViewController.h */,
+				B683DF9528A9E69B00DF4C5E /* CopyViewController.m */,
 			);
 			path = Copy;
 			sourceTree = "<group>";
@@ -763,6 +760,7 @@
 				A394262725C6F61200114F3A /* CircleTransition.m in Sources */,
 				A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */,
 				A36C764725B5DCA5005D7B8A /* Dog.m in Sources */,
+				B683DF9628A9E69B00DF4C5E /* CopyViewController.m in Sources */,
 				A39E689925F3D10A00AB0A35 /* Hero.m in Sources */,
 				A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */,
 				A3E0D6A725C9725500DDA689 /* NSObject+MyKVO.m in Sources */,

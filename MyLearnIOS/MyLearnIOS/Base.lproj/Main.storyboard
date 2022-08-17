@@ -106,6 +106,15 @@
                                     <segue destination="v56-8v-Kc0" kind="show" id="Uue-oA-5qh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jts-HZ-3B0">
+                                <rect key="frame" x="138" y="655" width="161" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="深拷贝和浅拷贝"/>
+                                <connections>
+                                    <segue destination="h7J-OX-EXt" kind="show" id="PeF-TS-FvY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yKR-Lk-maq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -118,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYf-dH-Tmn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="-449"/>
+            <point key="canvasLocation" x="1527.536231884058" y="-449.33035714285711"/>
         </scene>
         <!--RuntimeVC-->
         <scene sceneID="Vls-ur-Svo">
@@ -238,6 +247,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ez6-yv-E4P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2729" y="285"/>
+        </scene>
+        <!--Copy View Controller-->
+        <scene sceneID="PRe-TU-yJc">
+            <objects>
+                <viewController id="h7J-OX-EXt" customClass="CopyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mpW-zr-g8C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6v-Dl-uCq">
+                                <rect key="frame" x="121" y="160" width="127" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="testOne"/>
+                                <connections>
+                                    <action selector="onClickTestOne:" destination="h7J-OX-EXt" eventType="touchUpInside" id="fKI-yR-t3N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-0a-k3h">
+                                <rect key="frame" x="121" y="212" width="127" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="testTow"/>
+                                <connections>
+                                    <action selector="onClickTestTwo:" destination="h7J-OX-EXt" eventType="touchUpInside" id="wqA-mc-AgL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ba-6E-1eg">
+                                <rect key="frame" x="121" y="298" width="127" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="testArray"/>
+                                <connections>
+                                    <action selector="onClickTestArray:" destination="h7J-OX-EXt" eventType="touchUpInside" id="NA3-9T-OVg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wb-YP-CBQ">
+                                <rect key="frame" x="126" y="368" width="136" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="testMutableArray"/>
+                                <connections>
+                                    <action selector="onClickTestMutableArray:" destination="h7J-OX-EXt" eventType="touchUpInside" id="gQA-Dk-jkU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mdv-am-FDR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="m7g-jF-bEc"/>
+                    <connections>
+                        <outlet property="testArrayBtn" destination="2Ba-6E-1eg" id="MD7-Rx-7aM"/>
+                        <outlet property="testMutableArrayBtn" destination="3wb-YP-CBQ" id="nqX-d0-Q13"/>
+                        <outlet property="testOneBtn" destination="R6v-Dl-uCq" id="uy0-8O-8Bq"/>
+                        <outlet property="testTwoBtn" destination="Hhb-0a-k3h" id="dtw-mg-2du"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ww0-zJ-yJe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3444.9275362318845" y="267.85714285714283"/>
         </scene>
         <!--Auto Release PoolVC-->
         <scene sceneID="raU-aK-ZNt">

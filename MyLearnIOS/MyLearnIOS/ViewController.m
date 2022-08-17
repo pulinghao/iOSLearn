@@ -135,15 +135,15 @@ typedef void(^testBlock)();
     id proxy = [MyProxy proxyWithObj:dog];
     [proxy barking:4];
     
-    _myLabel = [[UILabel alloc] init];
-    _myLabel.text = @"1000+kg";
-    _myLabel.font = [UIFont systemFontOfSize:10];
-    _myLabel.frame = CGRectMake(10, 120, 200, 50);
-    _myLabel.numberOfLines = 1;
-    _myLabel.adjustsFontSizeToFitWidth = YES;
-    _myLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    _myLabel.minimumScaleFactor = 1.0;
-    [self.view addSubview:_myLabel];
+//    _myLabel = [[UILabel alloc] init];
+//    _myLabel.text = @"1000+kg";
+//    _myLabel.font = [UIFont systemFontOfSize:10];
+//    _myLabel.frame = CGRectMake(10, 120, 200, 50);
+//    _myLabel.numberOfLines = 1;
+//    _myLabel.adjustsFontSizeToFitWidth = YES;
+//    _myLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+//    _myLabel.minimumScaleFactor = 1.0;
+//    [self.view addSubview:_myLabel];
     
 //    [self addLabelWithFrame: CGRectMake(0, 100, 320, 100)
 //         baselineAdjustment: UIBaselineAdjustmentAlignCenters];
@@ -177,9 +177,9 @@ typedef void(^testBlock)();
 
     });
     
-    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 200, 100, 50)];
-    view2.backgroundColor = [UIColor redColor];
-    [self.view addSubview:view2];
+//    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 200, 100, 50)];
+//    view2.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:view2];
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //        [self.view addSubview:view2];
 //    });

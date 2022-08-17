@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyCopy : NSObject
 
+- (void)testOne;
+- (void)testTwo;
+
 
 @end
 

@@ -128,6 +128,80 @@ struct objc_class {
 
 
 
+## 继承关系
+
+<img src="http://yulingtianxia.com/resources/Runtime/class-diagram.jpg" alt="img" style="zoom:48%;" />
+
+这张图注意两点
+
+- NSObject的父类 是 nil
+- NSObject元类的父类是 NSObject
+
+### objcect_getClass
+
+```c++
++ (Class)class {
+    return self;
+}
+
+- (Class)class {
+    return object_getClass(self);
+}
+
+Class object_getClass(id obj)
+{
+    if (obj) return obj->getIsa();
+    else return Nil;
+}
+
+inline Class objc_object::getIsa() 
+{
+    return ISA();
+}
+
+inline Class objc_object::ISA() 
+{
+    return (Class)(isa.bits & ISA_MASK);
+}
+
+```
+
+getClass方法，获取自己的isa指针，类的isa指针是元类，实例的isa指针是类
+
+### isKindOfClass
+
+```c
++ (BOOL)isKindOfClass:(Class)cls {
+    for (Class tcls = object_getClass((id)self); tcls; tcls = tcls->superclass) {
+        if (tcls == cls) return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isKindOfClass:(Class)cls {
+    for (Class tcls = [self class]; tcls; tcls = tcls->superclass) {
+        if (tcls == cls) return YES;
+    }
+    return NO;
+}
+```
+
+
+
+### isMemeberOfClass
+
+```
++ (BOOL)isMemberOfClass:(Class)cls {
+    return object_getClass((id)self) == cls;
+}
+
+- (BOOL)isMemberOfClass:(Class)cls {
+    return [self class] == cls;
+}
+```
+
+
+
 # objc_method_list
 
 
