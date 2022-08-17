@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "Block.h"
+#import "Block.h"
+#import "MyObject.h"
 
 int val = 10;
 void (^blk)(void) = ^{
@@ -24,11 +25,11 @@ int main(int argc, const char * argv[]) {
 //        };
 //        blk2(); //全局block
         
-//        Block *b = [[Block alloc] init];
-//        id obj = [b getBlockArraySafeInMRC];
-//        typedef void  (^blk_t)(void);
-//        blk_t blk3 = (blk_t)[obj objectAtIndex:0];
-//        blk3();
+        Block *b = [[Block alloc] init];
+        id obj = [b getBlockArraySafeInMRC];
+        typedef void  (^blk_t)(void);
+        blk_t blk3 = (blk_t)[obj objectAtIndex:0];
+        blk3();
         
         
         __block int val4 = 12;
@@ -44,6 +45,9 @@ int main(int argc, const char * argv[]) {
         
 //        void (^blk_on_heap)(void) = [blk_on_stack copy];
         void (^blk_on_heap)(void) = Block_copy(blk_on_stack);
+        
+        id o = [[MyObject alloc] init];
+        NSLog(@"%@",o);
         
     }
     return 0;

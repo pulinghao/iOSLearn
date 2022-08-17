@@ -7,11 +7,24 @@
 
 #import "NSOperationQueueLearn.h"
 
+@interface MyOperation : NSOperation
+
+@end
+
+@implementation MyOperation
+
+- (void)main{
+    NSLog(@"my operation");
+}
+
+@end
+
 @implementation NSOperationQueueLearn
 
 - (void)test
 {
     NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(network:) object:@{@"name":@"moxiaohui"}];
+    [operation waitUntilFinished];
     [operation setName:@"moxiaoyan"];
     [operation setCompletionBlock:^{ // 任务执行完成后在子线程中执行
       NSLog(@"Completion %@", [NSThread currentThread]);
