@@ -235,12 +235,12 @@ typedef void(^testBlock)();
 
 
     
-    self.taggerpointer = [[TaggerPointerLearn alloc] init];
-    [self.taggerpointer testTaggerPointer];
+//    self.taggerpointer = [[TaggerPointerLearn alloc] init];
+//    [self.taggerpointer testTaggerPointer];
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
-    [gcd test5];
-//    [gcd useTargetQueue2];
+//    [gcd test5];
+    [gcd useDispatchTime];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];

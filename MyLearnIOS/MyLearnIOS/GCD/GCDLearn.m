@@ -17,6 +17,7 @@ typedef void(^myBlock)();
 @interface GCDLearn()
 
 @property (nonatomic, copy) myBlock block;
+@property (nonatomic, strong) dispatch_source_t timer;
 
 
 @end
@@ -32,7 +33,6 @@ typedef void(^myBlock)();
             
         });
         
-        
         Student s ={
             .name = "Kt",
             .age = 13,
@@ -43,6 +43,8 @@ typedef void(^myBlock)();
         p.age = 11;
         p.classNum = 2;
         dispatch_async(dispatch_get_main_queue(), blk);
+        
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
     }
     return self;
 }
@@ -204,10 +206,10 @@ typedef void(^myBlock)();
 
     //变更前
     dispatch_async(serialQueue, ^{
-        NSLog(@"1");
+        NSLog(@"dispatch_set_target_queue 1");
     });
     dispatch_async(serialDefaultQueue, ^{
-        NSLog(@"2");
+        NSLog(@"dispatch_set_target_queue 2");
     });
 
     //获取优先级为后台优先级的全局队列
@@ -218,10 +220,10 @@ typedef void(^myBlock)();
 
     //变更后
     dispatch_async(serialQueue, ^{
-        NSLog(@"1");
+        NSLog(@"dispatch_set_target_queue 1");
     });
     dispatch_async(serialDefaultQueue, ^{
-        NSLog(@"2");
+        NSLog(@"dispatch_set_target_queue 2");
     });
 }
 
@@ -310,5 +312,31 @@ typedef void(^myBlock)();
     });
     
     NSLog(@"%@ *** %d",[NSThread currentThread],a);
+}
+
+
+-(void)useDispatchTime{
+    // 定时器任务
+//    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    
+    // 5s后执行任务,允许延迟1s
+    NSTimeInterval period = 0.5;
+//    dispatch_source_set_timer(_timer, dispatch_time(DISPATCH_TIME_NOW, 5ull * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 1ull * NSEC_PER_SEC);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
+
+    // 指定事件
+    dispatch_source_set_event_handler(_timer, ^{
+        NSLog(@"wake up");
+    
+        // 这儿取消
+//        dispatch_source_cancel(_timer);
+    });
+    
+    dispatch_source_set_cancel_handler(_timer, ^{
+        NSLog(@"取消");
+    });
+    
+    // 启动timer
+    dispatch_resume(_timer);
 }
 @end

@@ -11,7 +11,7 @@ NSThread有两个函数`main`和`start`
 ## 栅栏函数
 
 - 封装网络请求的时候，不可以用<font color='red'>栅栏函数！！！</font>(AFN的网络队列，与这个添加网络任务的队列，不是一个队列)
-- 栅栏函数，必须创建在**并发队列**上
+- 栅栏函数，必须创建在<font color='red'>'**并发队列**</font>上
 
 ## 调度组
 
@@ -230,8 +230,7 @@ typedef struct dispatch_introspection_queue_s {
 ```c
 // 创建一个队列 .label 属性是怎么配置
 // attr 性质:  并发 串行
-dispatch_queue_t
-dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
+dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
 {
 	return _dispatch_queue_create_with_target(label, attr,
 			DISPATCH_TARGET_QUEUE_DEFAULT, true);
@@ -241,7 +240,7 @@ dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
 - `label`：名字
 - `atrr`：属性
 - 串行（NULL，或者是0）
-	- 并发
+- 并发
 
 看下更深层次的源码`_dispatch_queue_create_with_target`的实现：
 
@@ -554,6 +553,8 @@ dispatch_get_global_queue(long priority, unsigned long flags)
 ## 同步 `dispatch_sync`
 
 `dispatch_sync`方法，本质是有`dispatch_sync_f`来实现的。
+
+> Dispatch_sync函数可简化源代码，是简版的dispatch_group_wait
 
 ### dispatch_sync_f
 
@@ -1062,7 +1063,17 @@ _dispatch_global_queue_poke_slow(dispatch_queue_t dq, int n, int floor){
 
 ### dispatch_queue_t
 
-## dispatch_once
+创建串行队列（默认）
+
+```c
+dispatch_queue_t serialQueue = disptach_queue_create("com.queue.myserial",NULL);
+```
+
+
+
+> ARC环境下，已经能够管理 dispatch_queue的引用和释放了，不需要再额外执行 dispatch_release() 和 dispatch_retain()
+
+### dispatch_once
 
 ### dispatch_once_t val
 
@@ -1077,6 +1088,8 @@ _dispatch_global_queue_poke_slow(dispatch_queue_t dq, int n, int floor){
 # GCD的高级用法
 
 ##  dispatch_set_target_queue
+
+解决手动创建的队列(`dispatch_queue_create()`)无法设置优先级的问题！！！
 
 `dispatch_set_target_queue(dispatch_object_t object, dispatch_queue_t queue);`
 
@@ -1176,6 +1189,210 @@ dispatch_async(serialQueue3, ^{
 //执行顺序为 1， 2， 3 ,有顺序了
 ```
 
+### 使用场景
+
+- 并行改串行
+
+再多个Serial Dispatch Queue中用set_target_queue指定目标为某一个Serial Dispatch Queue，能够将并行执行的多个Serial Dispatch Queue，在目标Serial Dispatch Queue上 **串行**
+
+- 线程同步
+
+无序变有序
+
+## Dispatch Group
+
+解决以下两个问题
+
+- 使用Concurrent Dispatch Queue
+- 同时使用多个Serial Dispatch Queue同步
+
+
+
+`dispatch_group_notify`
+
+```c
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_group_t group = dispatch_group_create();
+dispatch_group_async(group, queue, ^{
+    NSLog(@"blk0");
+});
+dispatch_group_async(group, queue, ^{
+    NSLog(@"blk1");
+});
+dispatch_group_async(group, queue, ^{
+    NSLog(@"blk2");
+});
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+    // 同步上边所有的任务
+    NSLog(@"done");
+})
+```
+
+
+
+`dispatch_group_wait`
+
+```c
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_group_t group = dispatch_group_create();
+dispatch_group_async(group, queue, ^{
+    NSLog(@"blk0");
+});
+dispatch_group_async(group, queue, ^{
+    NSLog(@"blk1");
+});
+dispatch_group_async(group, queue, ^{
+    NSLog(@"blk2");
+});
+dispatch_group_wait(group, DISPATCH_TIME_FOREVER);  //永久等待
+```
+
+判断操作是否在规定时间内完成
+
+```c
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_group_async(group, queue, ^{
+      NSLog(@"blk0");
+  });
+  dispatch_group_async(group, queue, ^{
+      sleep(2); // sleep 2s
+      NSLog(@"blk1");
+  });
+  dispatch_group_async(group, queue, ^{
+      NSLog(@"blk2");
+  });
+
+  dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 2ull * NSEC_PER_SEC);
+  long result = dispatch_group_wait(group, time);
+  if (result == 0) {
+      // 全部任务执行完成
+      NSLog(@"done");
+  } else {
+      // 某个任务还在执行
+      NSLog(@"false");  //输出false
+  }
+```
+
+
+
+## 栅栏函数
+
+`dispatch_barrier_async`
+
+创建的队列必须是并发队列
+
+实现同步读，异步写
+
+```objc
+// 多读
+- (id)objectForKey:(NSString *)key {
+    __block id obj;
+    // 同步读取指定数据:
+    dispatch_sync(self.concurrent_queue, ^{
+        // 阻塞当前线程，将任务添加到并发队列
+        // 同步执行
+        // 还是在当前线程下执行（不开新的线程）
+        obj = [self.dataCenterDic objectForKey:key];
+    });
+    return obj;
+}
+
+// 单写
+- (void)setObject:(id)obj forKey:(NSString *)key {
+    // 异步栅栏调用设置数据:
+    dispatch_barrier_async(self.concurrent_queue, ^{
+        // 栅栏函数的作用，等待并发队列上的所有任务执行完，再执行
+        [self.dataCenterDic setObject:obj forKey:key];
+    });
+}
+```
+
+
+
+## dispatch_apply
+
+重复相同的任务，或者对数组内的所有元素，执行相同的任务（顺序不一定）
+
+```c
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_apply(10, queue, ^(size_t index) {
+    NSLog(@"%zu",index);
+});
+```
+
+与`dispatch_sync`方法相同，也会阻塞当前的线程
+
+
+
+## 信号量
+
+`dispatch_semaphore_t`
+
+`dispatch_semaphore_create()` 创建信号量
+
+`dispatch_semaphore_wait` 如果信号量的值>=1,则减1，并返回0；否则的话，，返回非0
+
+```c
+dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+    
+dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 2ull * NSEC_PER_SEC);
+long result = dispatch_semaphore_wait(sema, time);
+if (result == 0) {
+    // 如果sema >= 1，则-1,并返回0
+} else {
+    // 否则返回非0
+}
+```
+
+`dispatch_semaphore_signal()` 信号量 + 1
+
+
+
+## dispatch_source
+
+Dispatch_Source 与 Dispatch Queue不同，它可以取消。取消时，必须执行的处理可指定为回调用的Block形式。
+
+```objc
+@interface GCDLearn()
+@property (nonatomic, strong) dispatch_source_t timer; //强引用
+@end
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    }
+    return self;
+}
+
+-(void)useDispatchTime{
+    // 定时器任务
+    // 5s后执行任务,允许延迟1s
+    NSTimeInterval period = 0.5;
+    dispatch_source_set_timer(_timer, dispatch_time(DISPATCH_TIME_NOW, 5ull * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 1ull * NSEC_PER_SEC);
+//    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
+
+    // 指定事件
+    dispatch_source_set_event_handler(_timer, ^{
+        NSLog(@"wake up");
+    
+        // 这儿取消(否则的话，会一直做下去)
+        dispatch_source_cancel(_timer);
+    });
+    
+    dispatch_source_set_cancel_handler(_timer, ^{
+        NSLog(@"取消");
+    });
+    
+    // 启动timer
+    dispatch_resume(_timer);
+}
+```
+
+
+
 # 参考链接
 
 [iOS多线程——Dispatch Source](https://www.jianshu.com/p/880c2f9301b6)
@@ -1203,7 +1420,7 @@ if (legacy) { // 之前的类型
 }
 ```
 
-const void *a这是定义了一个指针a，a可以指向任意类型的值，但它指向的值必须是常量，在这种情况下，我们不能修改被指向的对象，但可以使指针指向其他对象。
+`const void *a`这是定义了一个指针a，a可以指向任意类型的值，但它指向的值必须是常量，在这种情况下，我们不能修改被指向的对象，但可以使指针指向其他对象。
 
 ## dispatch上锁
 

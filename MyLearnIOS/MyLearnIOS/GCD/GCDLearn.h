@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)meituanInterview;
+
+- (void)useDispatchTime;
 @end
 
 NS_ASSUME_NONNULL_END
