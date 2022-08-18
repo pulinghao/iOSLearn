@@ -24,7 +24,7 @@
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
 {
     if ([key isEqualToString: @"firstName"]) {
-        return NO;
+        return NO; //关闭
     }
     return [super automaticallyNotifiesObserversForKey:key];
 }

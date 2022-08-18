@@ -18,6 +18,8 @@ typedef void(^myBlock)();
 
 @property (nonatomic, copy) myBlock block;
 @property (nonatomic, strong) dispatch_source_t timer;
+@property (nonatomic, strong) NSTimer *timer_ns;
+@property (nonatomic, assign) NSInteger num;
 
 
 @end
@@ -45,6 +47,9 @@ typedef void(^myBlock)();
         dispatch_async(dispatch_get_main_queue(), blk);
         
         _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+        self.num = 0;
+//        _timer_ns = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fireTimer) userInfo:nil repeats:YES];
+//        [[NSRunLoop mainRunLoop] addTimer:_timer_ns forMode:NSDefaultRunLoopMode];
     }
     return self;
 }
@@ -322,7 +327,11 @@ typedef void(^myBlock)();
     // 5s后执行任务,允许延迟1s
     NSTimeInterval period = 0.5;
 //    dispatch_source_set_timer(_timer, dispatch_time(DISPATCH_TIME_NOW, 5ull * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 1ull * NSEC_PER_SEC);
-    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
+    uint64_t interval = (uint64_t)(2.0 * NSEC_PER_SEC);
+    dispatch_source_set_timer(_timer, start, interval, 0);
+    
+//    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
 
     // 指定事件
     dispatch_source_set_event_handler(_timer, ^{
@@ -338,5 +347,30 @@ typedef void(^myBlock)();
     
     // 启动timer
     dispatch_resume(_timer);
+}
+
+- (void)userDispatchTimer{
+    // 创建一个定时器
+//    dispatch_source_t sourceTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+//    self.timer = sourceTimer; //持有
+
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
+    uint64_t interval = (uint64_t)(2.0 * NSEC_PER_SEC);
+    dispatch_source_set_timer(self.timer, start, interval, 0);
+    // 设置回调
+    __weak typeof(self) wself = self;
+    dispatch_source_set_event_handler(self.timer, ^{
+        NSLog(@"num = %ld", wself.num ++); //注意：需要使用weakSelf，不然会内存泄漏
+    });
+    // 启动定时器
+    dispatch_resume(self.timer);
+    NSLog(@"定时器开始工作");
+}
+
+- (void)dealloc
+{
+    NSLog(@"DetailViewController dealloc");
+    // 如果前面block回调使用了weakSelf，那么cancel可以写在这里
+    dispatch_source_cancel(self.timer);
 }
 @end

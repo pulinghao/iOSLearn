@@ -240,7 +240,7 @@ typedef void(^testBlock)();
 
     GCDLearn *gcd = [[GCDLearn alloc] init];
 //    [gcd test5];
-    [gcd useDispatchTime];
+    [gcd userDispatchTimer];
 //    
 //    NSOperationQueueLearn *quelearn = [[NSOperationQueueLearn alloc] init];
 //    [quelearn testQueue];
@@ -409,6 +409,9 @@ typedef void(^testBlock)();
 //2020-07-06 15:28:49.979764+0800 GCD[2989:1190741] semaphore---begin
 //2020-07-06 15:28:51.984955+0800 GCD[2989:1190767] 1---<NSThread: 0x28048f400>{number = 3, name = (null)}
 //2020-07-06 15:28:51.985111+0800 GCD[2989:1190741] semaphore---end,number = 100
+
+
+
 - (void)testMultiBlock
 {
     [self sendIntBlock:^(int x) {

@@ -1349,9 +1349,9 @@ if (result == 0) {
 
 
 
-## dispatch_source
+## Dispatch Source
 
-Dispatch_Source 与 Dispatch Queue不同，它可以取消。取消时，必须执行的处理可指定为回调用的Block形式。
+`Dispatch Source` 与 `Dispatch Queue`不同，它可以取消。取消时，必须执行的处理可指定为回调用的Block形式。
 
 ```objc
 @interface GCDLearn()
@@ -1378,7 +1378,8 @@ Dispatch_Source 与 Dispatch Queue不同，它可以取消。取消时，必须�
     dispatch_source_set_event_handler(_timer, ^{
         NSLog(@"wake up");
     
-        // 这儿取消(否则的话，会一直做下去)
+        // 这儿取消(否则的话，会一直做下去）
+        // 不取消的话，会有内存泄露的问题
         dispatch_source_cancel(_timer);
     });
     
@@ -1391,7 +1392,32 @@ Dispatch_Source 与 Dispatch Queue不同，它可以取消。取消时，必须�
 }
 ```
 
+也可以在dealloc中，停止timer
 
+```objc
+- (void)starttimer{
+    // ...
+		// 设置回调
+    __weak typeof(self) wself = self;
+    dispatch_source_set_event_handler(sourceTimer, ^{
+        NSLog(@"num = %ld", wself.num ++); //注意：需要使用weakSelf，不然会内存泄漏
+    });
+    dispatch_resume(sourceTimer);
+}
+
+- (void)dealloc {
+    NSLog(@"DetailViewController dealloc");
+    // 如果前面block回调使用了weakSelf，那么cancel可以写在这里
+    dispatch_source_cancel(self.timer);
+}
+// 输出为 
+// num = 1
+// num = 2
+// num = 3
+// 点击退出时，被dealloc
+```
+
+> 注意：虽然在GCD的Block中，使用self，不会造成循环引用。但是前提是，这个Block执行完以后，会释放self。如果是dispatch_source的一个定时器，Block任务始终会持有self，因此这里可能会造成循环引用。需要主动调用cancel才行。
 
 # 参考链接
 

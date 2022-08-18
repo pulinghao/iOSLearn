@@ -80,6 +80,7 @@ static void tz_setter(id self, SEL _cmd, id newValue) {
 
 
 Class tz_class(id self, SEL _cmd) {
+    // class返回的还是原来的super class
     return class_getSuperclass(object_getClass(self));
 }
 

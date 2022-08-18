@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Rc-dU-UC1">
-                                <rect key="frame" x="184" y="330" width="46" height="30"/>
+                                <rect key="frame" x="192" y="330" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="KVO"/>
                                 <connections>
                                     <segue destination="NEK-DU-44A" kind="show" id="jI2-pp-8Xa"/>
                                 </connections>
@@ -66,14 +66,6 @@
                                     <segue destination="S3J-81-0mW" kind="show" id="2q3-YC-bJL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqb-XQ-9kr">
-                                <rect key="frame" x="178" y="226" width="58" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Network"/>
-                                <connections>
-                                    <segue destination="PqG-zZ-Rf2" kind="show" id="hGT-XA-vGb"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQn-65-FJZ">
                                 <rect key="frame" x="155" y="482" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -113,6 +105,14 @@
                                 <buttonConfiguration key="configuration" style="plain" title="深拷贝和浅拷贝"/>
                                 <connections>
                                     <segue destination="h7J-OX-EXt" kind="show" id="PeF-TS-FvY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqb-XQ-9kr">
+                                <rect key="frame" x="177" y="198" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Network"/>
+                                <connections>
+                                    <segue destination="PqG-zZ-Rf2" kind="show" id="hGT-XA-vGb"/>
                                 </connections>
                             </button>
                         </subviews>

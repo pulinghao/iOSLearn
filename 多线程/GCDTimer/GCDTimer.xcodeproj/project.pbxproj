@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B659556428AE9AB600CE060B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B659556328AE9AB600CE060B /* AppDelegate.m */; };
+		B659556728AE9AB600CE060B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B659556628AE9AB600CE060B /* SceneDelegate.m */; };
+		B659556A28AE9AB600CE060B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B659556928AE9AB600CE060B /* ViewController.m */; };
+		B659556D28AE9AB600CE060B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B659556B28AE9AB600CE060B /* Main.storyboard */; };
+		B659556F28AE9AB700CE060B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B659556E28AE9AB700CE060B /* Assets.xcassets */; };
+		B659557228AE9AB700CE060B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B659557028AE9AB700CE060B /* LaunchScreen.storyboard */; };
+		B659557528AE9AB700CE060B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B659557428AE9AB700CE060B /* main.m */; };
+		B659557F28AE9AB800CE060B /* GCDTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B659557E28AE9AB800CE060B /* GCDTimerTests.m */; };
+		B659558928AE9AB800CE060B /* GCDTimerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B659558828AE9AB800CE060B /* GCDTimerUITests.m */; };
+		B659558B28AE9AB800CE060B /* GCDTimerUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B659558A28AE9AB800CE060B /* GCDTimerUITestsLaunchTests.m */; };
+		B659559928AE9B3200CE060B /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B659559828AE9B3200CE060B /* GCDViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B659557B28AE9AB800CE060B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B659555728AE9AB600CE060B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B659555E28AE9AB600CE060B;
+			remoteInfo = GCDTimer;
+		};
+		B659558528AE9AB800CE060B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B659555728AE9AB600CE060B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B659555E28AE9AB600CE060B;
+			remoteInfo = GCDTimer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B659555F28AE9AB600CE060B /* GCDTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCDTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B659556228AE9AB600CE060B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B659556328AE9AB600CE060B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B659556528AE9AB600CE060B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		B659556628AE9AB600CE060B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		B659556828AE9AB600CE060B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B659556928AE9AB600CE060B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B659556C28AE9AB600CE060B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B659556E28AE9AB700CE060B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B659557128AE9AB700CE060B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B659557328AE9AB700CE060B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B659557428AE9AB700CE060B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B659557A28AE9AB800CE060B /* GCDTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCDTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B659557E28AE9AB800CE060B /* GCDTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDTimerTests.m; sourceTree = "<group>"; };
+		B659558428AE9AB800CE060B /* GCDTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCDTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B659558828AE9AB800CE060B /* GCDTimerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDTimerUITests.m; sourceTree = "<group>"; };
+		B659558A28AE9AB800CE060B /* GCDTimerUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDTimerUITestsLaunchTests.m; sourceTree = "<group>"; };
+		B659559728AE9B3200CE060B /* GCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
+		B659559828AE9B3200CE060B /* GCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B659555C28AE9AB600CE060B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659557728AE9AB800CE060B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659558128AE9AB800CE060B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B659555628AE9AB600CE060B = {
+			isa = PBXGroup;
+			children = (
+				B659556128AE9AB600CE060B /* GCDTimer */,
+				B659557D28AE9AB800CE060B /* GCDTimerTests */,
+				B659558728AE9AB800CE060B /* GCDTimerUITests */,
+				B659556028AE9AB600CE060B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B659556028AE9AB600CE060B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B659555F28AE9AB600CE060B /* GCDTimer.app */,
+				B659557A28AE9AB800CE060B /* GCDTimerTests.xctest */,
+				B659558428AE9AB800CE060B /* GCDTimerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B659556128AE9AB600CE060B /* GCDTimer */ = {
+			isa = PBXGroup;
+			children = (
+				B659556228AE9AB600CE060B /* AppDelegate.h */,
+				B659556328AE9AB600CE060B /* AppDelegate.m */,
+				B659556528AE9AB600CE060B /* SceneDelegate.h */,
+				B659556628AE9AB600CE060B /* SceneDelegate.m */,
+				B659556828AE9AB600CE060B /* ViewController.h */,
+				B659556928AE9AB600CE060B /* ViewController.m */,
+				B659556B28AE9AB600CE060B /* Main.storyboard */,
+				B659559728AE9B3200CE060B /* GCDViewController.h */,
+				B659559828AE9B3200CE060B /* GCDViewController.m */,
+				B659556E28AE9AB700CE060B /* Assets.xcassets */,
+				B659557028AE9AB700CE060B /* LaunchScreen.storyboard */,
+				B659557328AE9AB700CE060B /* Info.plist */,
+				B659557428AE9AB700CE060B /* main.m */,
+			);
+			path = GCDTimer;
+			sourceTree = "<group>";
+		};
+		B659557D28AE9AB800CE060B /* GCDTimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B659557E28AE9AB800CE060B /* GCDTimerTests.m */,
+			);
+			path = GCDTimerTests;
+			sourceTree = "<group>";
+		};
+		B659558728AE9AB800CE060B /* GCDTimerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B659558828AE9AB800CE060B /* GCDTimerUITests.m */,
+				B659558A28AE9AB800CE060B /* GCDTimerUITestsLaunchTests.m */,
+			);
+			path = GCDTimerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B659555E28AE9AB600CE060B /* GCDTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B659558E28AE9AB800CE060B /* Build configuration list for PBXNativeTarget "GCDTimer" */;
+			buildPhases = (
+				B659555B28AE9AB600CE060B /* Sources */,
+				B659555C28AE9AB600CE060B /* Frameworks */,
+				B659555D28AE9AB600CE060B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GCDTimer;
+			productName = GCDTimer;
+			productReference = B659555F28AE9AB600CE060B /* GCDTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B659557928AE9AB800CE060B /* GCDTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B659559128AE9AB800CE060B /* Build configuration list for PBXNativeTarget "GCDTimerTests" */;
+			buildPhases = (
+				B659557628AE9AB800CE060B /* Sources */,
+				B659557728AE9AB800CE060B /* Frameworks */,
+				B659557828AE9AB800CE060B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B659557C28AE9AB800CE060B /* PBXTargetDependency */,
+			);
+			name = GCDTimerTests;
+			productName = GCDTimerTests;
+			productReference = B659557A28AE9AB800CE060B /* GCDTimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B659558328AE9AB800CE060B /* GCDTimerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B659559428AE9AB800CE060B /* Build configuration list for PBXNativeTarget "GCDTimerUITests" */;
+			buildPhases = (
+				B659558028AE9AB800CE060B /* Sources */,
+				B659558128AE9AB800CE060B /* Frameworks */,
+				B659558228AE9AB800CE060B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B659558628AE9AB800CE060B /* PBXTargetDependency */,
+			);
+			name = GCDTimerUITests;
+			productName = GCDTimerUITests;
+			productReference = B659558428AE9AB800CE060B /* GCDTimerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B659555728AE9AB600CE060B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					B659555E28AE9AB600CE060B = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					B659557928AE9AB800CE060B = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = B659555E28AE9AB600CE060B;
+					};
+					B659558328AE9AB800CE060B = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = B659555E28AE9AB600CE060B;
+					};
+				};
+			};
+			buildConfigurationList = B659555A28AE9AB600CE060B /* Build configuration list for PBXProject "GCDTimer" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B659555628AE9AB600CE060B;
+			productRefGroup = B659556028AE9AB600CE060B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B659555E28AE9AB600CE060B /* GCDTimer */,
+				B659557928AE9AB800CE060B /* GCDTimerTests */,
+				B659558328AE9AB800CE060B /* GCDTimerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B659555D28AE9AB600CE060B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659557228AE9AB700CE060B /* LaunchScreen.storyboard in Resources */,
+				B659556F28AE9AB700CE060B /* Assets.xcassets in Resources */,
+				B659556D28AE9AB600CE060B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659557828AE9AB800CE060B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659558228AE9AB800CE060B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B659555B28AE9AB600CE060B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659556A28AE9AB600CE060B /* ViewController.m in Sources */,
+				B659556428AE9AB600CE060B /* AppDelegate.m in Sources */,
+				B659557528AE9AB700CE060B /* main.m in Sources */,
+				B659559928AE9B3200CE060B /* GCDViewController.m in Sources */,
+				B659556728AE9AB600CE060B /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659557628AE9AB800CE060B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659557F28AE9AB800CE060B /* GCDTimerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659558028AE9AB800CE060B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659558928AE9AB800CE060B /* GCDTimerUITests.m in Sources */,
+				B659558B28AE9AB800CE060B /* GCDTimerUITestsLaunchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B659557C28AE9AB800CE060B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B659555E28AE9AB600CE060B /* GCDTimer */;
+			targetProxy = B659557B28AE9AB800CE060B /* PBXContainerItemProxy */;
+		};
+		B659558628AE9AB800CE060B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B659555E28AE9AB600CE060B /* GCDTimer */;
+			targetProxy = B659558528AE9AB800CE060B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B659556B28AE9AB600CE060B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B659556C28AE9AB600CE060B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B659557028AE9AB700CE060B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B659557128AE9AB700CE060B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B659558C28AE9AB800CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B659558D28AE9AB800CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B659558F28AE9AB800CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GCDTimer/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.GCDTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B659559028AE9AB800CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GCDTimer/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.GCDTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B659559228AE9AB800CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.GCDTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GCDTimer.app/GCDTimer";
+			};
+			name = Debug;
+		};
+		B659559328AE9AB800CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.GCDTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GCDTimer.app/GCDTimer";
+			};
+			name = Release;
+		};
+		B659559528AE9AB800CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.GCDTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GCDTimer;
+			};
+			name = Debug;
+		};
+		B659559628AE9AB800CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.GCDTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GCDTimer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B659555A28AE9AB600CE060B /* Build configuration list for PBXProject "GCDTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659558C28AE9AB800CE060B /* Debug */,
+				B659558D28AE9AB800CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B659558E28AE9AB800CE060B /* Build configuration list for PBXNativeTarget "GCDTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659558F28AE9AB800CE060B /* Debug */,
+				B659559028AE9AB800CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B659559128AE9AB800CE060B /* Build configuration list for PBXNativeTarget "GCDTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659559228AE9AB800CE060B /* Debug */,
+				B659559328AE9AB800CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B659559428AE9AB800CE060B /* Build configuration list for PBXNativeTarget "GCDTimerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659559528AE9AB800CE060B /* Debug */,
+				B659559628AE9AB800CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B659555728AE9AB600CE060B /* Project object */;
+}
