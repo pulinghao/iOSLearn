@@ -129,8 +129,6 @@ void dispatch_resume(dispatch_object_t object);
 }
 ```
 
-
-
 ```
 void dispatch_source_merge_data(dispatch_source_t source, uintptr_t value);
 ```
@@ -1082,10 +1080,27 @@ dispatch_queue_t serialQueue = disptach_queue_create("com.queue.myserial",NULL);
 - block执行完后，val的值被刷新，不为0
 
 	- 后续再进来，比较val与NULL不等，所以都不会再执行block
+	- 由于第一个线程把val修改了，所以别的线程都无法执行block
 
-### 由于第一个线程把val修改了，所以别的线程都无法执行block
+
 
 # GCD的高级用法
+
+## 获取queue的label
+
+```
+dispatch_queue_get_label(dispatch_queue_t _Nullable queue);
+```
+
+判断当前queue是不是main queue
+
+传入的参数为`DISPATCH_CURRENT_QUEUE_LABEL`
+
+```c
+dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == dispatch_queue_get_label(dispatch_get_main_queue())
+```
+
+
 
 ##  dispatch_set_target_queue
 
@@ -1149,7 +1164,7 @@ dispatch_queue_t serialQueue = disptach_queue_create("com.queue.myserial",NULL);
 
 `dispatch_suspend(dispatchA)`;
 
-则只会暂停dispatchA上原来的block的执行，dispatchB的block则不受影响。而如果暂停dispatchB的运行，则会暂停dispatchA的运行。
+则只会暂停`dispatchA`上原来的block的执行，`dispatchB`的block则不受影响。而如果暂停`dispatchB`的运行，则会暂停`dispatchA`的运行。
 
 ```objective-c
 dispatch_queue_t serialQueue1 = dispatch_queue_create("com.gcd.setTargetQueue2.serialQueue1", NULL);
@@ -1280,9 +1295,9 @@ dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAU
 
 `dispatch_barrier_async`
 
-创建的队列必须是并发队列
+创建的队列必须是并发队列，不能是全局队列`dispatch_get_global_queue`。因为栅栏函数相当于是给全局队列加同步锁
 
-实现同步读，异步写
+- 实现同步读，异步写
 
 ```objc
 // 多读
@@ -1304,6 +1319,23 @@ dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAU
     dispatch_barrier_async(self.concurrent_queue, ^{
         // 栅栏函数的作用，等待并发队列上的所有任务执行完，再执行
         [self.dataCenterDic setObject:obj forKey:key];
+    });
+}
+```
+
+- 添加图片
+
+```c
+dispatch_queue_t con = dispatch_queue_create("cooci", DISPATCH_QUEUE_CONCURRENT); //必须是自定义的队列
+for (int i = 0; i < 5000; i++) {
+    dispatch_async(con, ^{
+        NSString *name = [NSString stringWithFormat:@"%d.jpg",i % 10];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:nil];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        dispatch_barrier_async(con, ^{
+            [self.mArray addObject:image];
+        });
     });
 }
 ```
@@ -1419,6 +1451,59 @@ if (result == 0) {
 
 > 注意：虽然在GCD的Block中，使用self，不会造成循环引用。但是前提是，这个Block执行完以后，会释放self。如果是dispatch_source的一个定时器，Block任务始终会持有self，因此这里可能会造成循环引用。需要主动调用cancel才行。
 
+
+
+## 检查线程数量 & 防止线程爆炸
+
+使用`task_threads()`接口，返回所有线程端口
+
+```c
+// 获取电当前task的所有线程
+mach_msg_type_number_t count;
+thread_act_array_t threads;
+task_threads(mach_task_self(), &threads, &count);
+```
+
+使用KKThreadMonitor
+
+` pthread_introspection_hook_install(kk_pthread_introspection_hook_t);` hook了线程的相关方法
+
+监听回调，
+
+- PTHREAD_INTROSPECTION_THREAD_CREATE：创建线程
+- PTHREAD_INTROSPECTION_THREAD_DESTROY : 销毁线程
+
+```c
+void kk_pthread_introspection_hook_t(unsigned int event, pthread_t thread, void *addr, size_t size)
+{
+    if (old_pthread_introspection_hook_t) {
+        old_pthread_introspection_hook_t(event, thread, addr, size);
+    }
+    if (event == PTHREAD_INTROSPECTION_THREAD_CREATE) {
+        threadCount = threadCount + 1;
+        if (isMonitor && (threadCount > maxThreadCountThreshold)) {
+            maxThreadCountThreshold += 5;
+            kk_Alert_Log_CallStack(false, 0);
+        }
+        threadCountIncrease = threadCountIncrease + 1;
+        if (isMonitor && (threadCountIncrease > threadIncreaseThreshold)) {
+            kk_Alert_Log_CallStack(true, threadCountIncrease);
+        }
+    }
+    else if (event == PTHREAD_INTROSPECTION_THREAD_DESTROY){
+        threadCount = threadCount - 1;
+        if (threadCount < KK_THRESHOLD) {
+            maxThreadCountThreshold = KK_THRESHOLD;
+        }
+        if (threadCountIncrease > 0) {
+            threadCountIncrease = threadCountIncrease - 1;
+        }
+    }
+}
+```
+
+
+
 # 参考链接
 
 [iOS多线程——Dispatch Source](https://www.jianshu.com/p/880c2f9301b6)
@@ -1496,7 +1581,7 @@ typedef struct Student{
     int  classNum;
 }Student;
 
-// 点式初始刷
+// 点式初始化
 Student s ={
             .name = "Kt",
             .age = 13,

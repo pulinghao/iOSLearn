@@ -1,0 +1,626 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B659561528B26BCB00CE060B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B659561428B26BCB00CE060B /* AppDelegate.m */; };
+		B659561828B26BCB00CE060B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B659561728B26BCB00CE060B /* SceneDelegate.m */; };
+		B659561B28B26BCB00CE060B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B659561A28B26BCB00CE060B /* ViewController.m */; };
+		B659561E28B26BCB00CE060B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B659561C28B26BCB00CE060B /* Main.storyboard */; };
+		B659562028B26BCE00CE060B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B659561F28B26BCE00CE060B /* Assets.xcassets */; };
+		B659562328B26BCE00CE060B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B659562128B26BCE00CE060B /* LaunchScreen.storyboard */; };
+		B659562628B26BCE00CE060B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B659562528B26BCE00CE060B /* main.m */; };
+		B659563028B26BCE00CE060B /* ___Class_Extension_______Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B659562F28B26BCE00CE060B /* ___Class_Extension_______Tests.m */; };
+		B659563A28B26BCE00CE060B /* ___Class_Extension_______UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B659563928B26BCE00CE060B /* ___Class_Extension_______UITests.m */; };
+		B659563C28B26BCE00CE060B /* ___Class_Extension_______UITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B659563B28B26BCE00CE060B /* ___Class_Extension_______UITestsLaunchTests.m */; };
+		B659564A28B26BF200CE060B /* Sark.m in Sources */ = {isa = PBXBuildFile; fileRef = B659564928B26BF200CE060B /* Sark.m */; };
+		B659564D28B26C1100CE060B /* PrivateSarkWife.m in Sources */ = {isa = PBXBuildFile; fileRef = B659564C28B26C1100CE060B /* PrivateSarkWife.m */; };
+		B659565028B26C3A00CE060B /* Sark+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = B659564F28B26C3A00CE060B /* Sark+Internal.m */; };
+		B659565328B26C9B00CE060B /* Sark+Other.m in Sources */ = {isa = PBXBuildFile; fileRef = B659565228B26C9B00CE060B /* Sark+Other.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B659562C28B26BCE00CE060B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B659560828B26BCB00CE060B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B659560F28B26BCB00CE060B;
+			remoteInfo = "巧用 Class Extension 分离接口依赖";
+		};
+		B659563628B26BCE00CE060B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B659560828B26BCB00CE060B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B659560F28B26BCB00CE060B;
+			remoteInfo = "巧用 Class Extension 分离接口依赖";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B659561028B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "巧用 Class Extension 分离接口依赖.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B659561328B26BCB00CE060B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B659561428B26BCB00CE060B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B659561628B26BCB00CE060B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		B659561728B26BCB00CE060B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		B659561928B26BCB00CE060B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B659561A28B26BCB00CE060B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B659561D28B26BCB00CE060B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B659561F28B26BCE00CE060B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B659562228B26BCE00CE060B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B659562428B26BCE00CE060B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B659562528B26BCE00CE060B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B659562B28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "巧用 Class Extension 分离接口依赖Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B659562F28B26BCE00CE060B /* ___Class_Extension_______Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Class_Extension_______Tests.m"; sourceTree = "<group>"; };
+		B659563528B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "巧用 Class Extension 分离接口依赖UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B659563928B26BCE00CE060B /* ___Class_Extension_______UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Class_Extension_______UITests.m"; sourceTree = "<group>"; };
+		B659563B28B26BCE00CE060B /* ___Class_Extension_______UITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Class_Extension_______UITestsLaunchTests.m"; sourceTree = "<group>"; };
+		B659564828B26BF200CE060B /* Sark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sark.h; sourceTree = "<group>"; };
+		B659564928B26BF200CE060B /* Sark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sark.m; sourceTree = "<group>"; };
+		B659564B28B26C1100CE060B /* PrivateSarkWife.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateSarkWife.h; sourceTree = "<group>"; };
+		B659564C28B26C1100CE060B /* PrivateSarkWife.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivateSarkWife.m; sourceTree = "<group>"; };
+		B659564E28B26C3A00CE060B /* Sark+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sark+Internal.h"; sourceTree = "<group>"; };
+		B659564F28B26C3A00CE060B /* Sark+Internal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Sark+Internal.m"; sourceTree = "<group>"; };
+		B659565128B26C9B00CE060B /* Sark+Other.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sark+Other.h"; sourceTree = "<group>"; };
+		B659565228B26C9B00CE060B /* Sark+Other.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Sark+Other.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B659560D28B26BCB00CE060B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659562828B26BCE00CE060B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659563228B26BCE00CE060B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B659560728B26BCB00CE060B = {
+			isa = PBXGroup;
+			children = (
+				B659561228B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖 */,
+				B659562E28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests */,
+				B659563828B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests */,
+				B659561128B26BCB00CE060B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B659561128B26BCB00CE060B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B659561028B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖.app */,
+				B659562B28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests.xctest */,
+				B659563528B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B659561228B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖 */ = {
+			isa = PBXGroup;
+			children = (
+				B659564828B26BF200CE060B /* Sark.h */,
+				B659564E28B26C3A00CE060B /* Sark+Internal.h */,
+				B659565128B26C9B00CE060B /* Sark+Other.h */,
+				B659565228B26C9B00CE060B /* Sark+Other.m */,
+				B659564F28B26C3A00CE060B /* Sark+Internal.m */,
+				B659564928B26BF200CE060B /* Sark.m */,
+				B659564B28B26C1100CE060B /* PrivateSarkWife.h */,
+				B659564C28B26C1100CE060B /* PrivateSarkWife.m */,
+				B659561328B26BCB00CE060B /* AppDelegate.h */,
+				B659561428B26BCB00CE060B /* AppDelegate.m */,
+				B659561628B26BCB00CE060B /* SceneDelegate.h */,
+				B659561728B26BCB00CE060B /* SceneDelegate.m */,
+				B659561928B26BCB00CE060B /* ViewController.h */,
+				B659561A28B26BCB00CE060B /* ViewController.m */,
+				B659561C28B26BCB00CE060B /* Main.storyboard */,
+				B659561F28B26BCE00CE060B /* Assets.xcassets */,
+				B659562128B26BCE00CE060B /* LaunchScreen.storyboard */,
+				B659562428B26BCE00CE060B /* Info.plist */,
+				B659562528B26BCE00CE060B /* main.m */,
+			);
+			path = "巧用 Class Extension 分离接口依赖";
+			sourceTree = "<group>";
+		};
+		B659562E28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B659562F28B26BCE00CE060B /* ___Class_Extension_______Tests.m */,
+			);
+			path = "巧用 Class Extension 分离接口依赖Tests";
+			sourceTree = "<group>";
+		};
+		B659563828B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B659563928B26BCE00CE060B /* ___Class_Extension_______UITests.m */,
+				B659563B28B26BCE00CE060B /* ___Class_Extension_______UITestsLaunchTests.m */,
+			);
+			path = "巧用 Class Extension 分离接口依赖UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B659560F28B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B659563F28B26BCE00CE060B /* Build configuration list for PBXNativeTarget "巧用 Class Extension 分离接口依赖" */;
+			buildPhases = (
+				B659560C28B26BCB00CE060B /* Sources */,
+				B659560D28B26BCB00CE060B /* Frameworks */,
+				B659560E28B26BCB00CE060B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "巧用 Class Extension 分离接口依赖";
+			productName = "巧用 Class Extension 分离接口依赖";
+			productReference = B659561028B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B659562A28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B659564228B26BCE00CE060B /* Build configuration list for PBXNativeTarget "巧用 Class Extension 分离接口依赖Tests" */;
+			buildPhases = (
+				B659562728B26BCE00CE060B /* Sources */,
+				B659562828B26BCE00CE060B /* Frameworks */,
+				B659562928B26BCE00CE060B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B659562D28B26BCE00CE060B /* PBXTargetDependency */,
+			);
+			name = "巧用 Class Extension 分离接口依赖Tests";
+			productName = "巧用 Class Extension 分离接口依赖Tests";
+			productReference = B659562B28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B659563428B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B659564528B26BCE00CE060B /* Build configuration list for PBXNativeTarget "巧用 Class Extension 分离接口依赖UITests" */;
+			buildPhases = (
+				B659563128B26BCE00CE060B /* Sources */,
+				B659563228B26BCE00CE060B /* Frameworks */,
+				B659563328B26BCE00CE060B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B659563728B26BCE00CE060B /* PBXTargetDependency */,
+			);
+			name = "巧用 Class Extension 分离接口依赖UITests";
+			productName = "巧用 Class Extension 分离接口依赖UITests";
+			productReference = B659563528B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B659560828B26BCB00CE060B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					B659560F28B26BCB00CE060B = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					B659562A28B26BCE00CE060B = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = B659560F28B26BCB00CE060B;
+					};
+					B659563428B26BCE00CE060B = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = B659560F28B26BCB00CE060B;
+					};
+				};
+			};
+			buildConfigurationList = B659560B28B26BCB00CE060B /* Build configuration list for PBXProject "巧用 Class Extension 分离接口依赖" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B659560728B26BCB00CE060B;
+			productRefGroup = B659561128B26BCB00CE060B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B659560F28B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖 */,
+				B659562A28B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖Tests */,
+				B659563428B26BCE00CE060B /* 巧用 Class Extension 分离接口依赖UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B659560E28B26BCB00CE060B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659562328B26BCE00CE060B /* LaunchScreen.storyboard in Resources */,
+				B659562028B26BCE00CE060B /* Assets.xcassets in Resources */,
+				B659561E28B26BCB00CE060B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659562928B26BCE00CE060B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659563328B26BCE00CE060B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B659560C28B26BCB00CE060B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659564A28B26BF200CE060B /* Sark.m in Sources */,
+				B659564D28B26C1100CE060B /* PrivateSarkWife.m in Sources */,
+				B659561B28B26BCB00CE060B /* ViewController.m in Sources */,
+				B659565028B26C3A00CE060B /* Sark+Internal.m in Sources */,
+				B659561528B26BCB00CE060B /* AppDelegate.m in Sources */,
+				B659565328B26C9B00CE060B /* Sark+Other.m in Sources */,
+				B659562628B26BCE00CE060B /* main.m in Sources */,
+				B659561828B26BCB00CE060B /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659562728B26BCE00CE060B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659563028B26BCE00CE060B /* ___Class_Extension_______Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B659563128B26BCE00CE060B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B659563A28B26BCE00CE060B /* ___Class_Extension_______UITests.m in Sources */,
+				B659563C28B26BCE00CE060B /* ___Class_Extension_______UITestsLaunchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B659562D28B26BCE00CE060B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B659560F28B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖 */;
+			targetProxy = B659562C28B26BCE00CE060B /* PBXContainerItemProxy */;
+		};
+		B659563728B26BCE00CE060B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B659560F28B26BCB00CE060B /* 巧用 Class Extension 分离接口依赖 */;
+			targetProxy = B659563628B26BCE00CE060B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B659561C28B26BCB00CE060B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B659561D28B26BCB00CE060B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B659562128B26BCE00CE060B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B659562228B26BCE00CE060B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B659563D28B26BCE00CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B659563E28B26BCE00CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B659564028B26BCE00CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "巧用 Class Extension 分离接口依赖/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baidu.---Class-Extension-------";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B659564128B26BCE00CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "巧用 Class Extension 分离接口依赖/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baidu.---Class-Extension-------";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B659564328B26BCE00CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baidu.---Class-Extension-------Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/巧用 Class Extension 分离接口依赖.app/巧用 Class Extension 分离接口依赖";
+			};
+			name = Debug;
+		};
+		B659564428B26BCE00CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baidu.---Class-Extension-------Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/巧用 Class Extension 分离接口依赖.app/巧用 Class Extension 分离接口依赖";
+			};
+			name = Release;
+		};
+		B659564628B26BCE00CE060B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baidu.---Class-Extension-------UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "巧用 Class Extension 分离接口依赖";
+			};
+			name = Debug;
+		};
+		B659564728B26BCE00CE060B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8E2J3QZ8ZD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baidu.---Class-Extension-------UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "巧用 Class Extension 分离接口依赖";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B659560B28B26BCB00CE060B /* Build configuration list for PBXProject "巧用 Class Extension 分离接口依赖" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659563D28B26BCE00CE060B /* Debug */,
+				B659563E28B26BCE00CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B659563F28B26BCE00CE060B /* Build configuration list for PBXNativeTarget "巧用 Class Extension 分离接口依赖" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659564028B26BCE00CE060B /* Debug */,
+				B659564128B26BCE00CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B659564228B26BCE00CE060B /* Build configuration list for PBXNativeTarget "巧用 Class Extension 分离接口依赖Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659564328B26BCE00CE060B /* Debug */,
+				B659564428B26BCE00CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B659564528B26BCE00CE060B /* Build configuration list for PBXNativeTarget "巧用 Class Extension 分离接口依赖UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B659564628B26BCE00CE060B /* Debug */,
+				B659564728B26BCE00CE060B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B659560828B26BCB00CE060B /* Project object */;
+}

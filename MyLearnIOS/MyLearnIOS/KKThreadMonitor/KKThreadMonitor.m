@@ -37,9 +37,12 @@ static bool isMonitor = false;
 {
     global_semaphore = dispatch_semaphore_create(1);
     dispatch_semaphore_wait(global_semaphore, DISPATCH_TIME_FOREVER);
+    
+    // 获取电当前task的所有线程
     mach_msg_type_number_t count;
     thread_act_array_t threads;
     task_threads(mach_task_self(), &threads, &count);
+    
     threadCount = count; //加解锁之间，保证线程的数量不变
     old_pthread_introspection_hook_t = pthread_introspection_hook_install(kk_pthread_introspection_hook_t);
     dispatch_semaphore_signal(global_semaphore);

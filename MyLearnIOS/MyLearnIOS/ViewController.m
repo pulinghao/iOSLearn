@@ -37,6 +37,7 @@
 #import "MyProxy.h"
 #import "LinkPerson.h"
 extern void instrumentObjcMessageSends(BOOL);
+extern void _objc_autoreleasePoolPrint(void);
 
 typedef void (^MyBlock)(void);
 typedef void(^OtherBlk)(int a);
@@ -250,6 +251,20 @@ typedef void(^testBlock)();
 //        NSLog(@"2");
 //    });
 //    NSLog(@"3");
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        id array = [NSMutableArray arrayWithCapacity:1];
+        id __unsafe_unretained array_1 = [NSMutableArray array];
+        id array_2 = [NSMutableArray array];
+        id __weak weakArray = [NSMutableArray arrayWithCapacity:1];
+        id __unsafe_unretained unsaferetainedArray = [NSMutableArray arrayWithCapacity:1];
+        NSLog(@"array: %p", array);
+        NSLog(@"array_1: %p", array_1);
+        NSLog(@"array_2: %p", array_2);
+        NSLog(@"weakArray: %p", weakArray);
+        NSLog(@"unsaferetainedArray: %p", unsaferetainedArray);
+        _objc_autoreleasePoolPrint();
+    });
 }
 
 - (void)viewDidAppear:(BOOL)animated
