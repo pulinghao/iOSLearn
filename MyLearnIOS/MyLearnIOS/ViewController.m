@@ -223,16 +223,6 @@ typedef void(^testBlock)();
 
     instrumentObjcMessageSends(NO);
     
-//
-//    PLHThread *thread = [[PLHThread alloc] initWithBlock:^{
-//        [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//            NSLog(@"定时打招呼!!!");
-//        }];
-//        [[NSRunLoop currentRunLoop] run];
-//    }];
-    
-//    [thread start];
-
 
 
     
@@ -367,18 +357,20 @@ typedef void(^testBlock)();
         @"height":@"188cm"
     };
     
+    // 不执行方法
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"kFirstToSecondNotification" object:nil userInfo:userInfo];
     
     // method1
-//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//            NSDictionary *userInfo = @{
-//                @"name":@"Notification",
-//                @"age":@"18",
-//                @"height":@"188cm"
-//            };
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"kFirstToSecondNotification" object:nil userInfo:userInfo];
-//        [vc doSomething];
-//    }];
+    // 执行方法，执行通知
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSDictionary *userInfo = @{
+                @"name":@"Notification",
+                @"age":@"18",
+                @"height":@"188cm"
+            };
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kFirstToSecondNotification" object:nil userInfo:userInfo];
+        [vc doSomething];
+    }];
     
     
     // method2

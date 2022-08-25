@@ -59,6 +59,7 @@
 		B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E8C25C7C5B500837F2A /* MutiDelegateDemo2.m */; };
 		B6184E9425C7C63500837F2A /* MultiDemoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184E9325C7C63500837F2A /* MultiDemoSource.m */; };
 		B6372C5126DC819C0089E653 /* RunloopMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6372C5026DC819C0089E653 /* RunloopMonitor.m */; };
+		B659575B28B5204100CE060B /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = B659575A28B5204100CE060B /* NSArray+Safe.m */; };
 		B66C1B87285E318D00F1C5FD /* PLHUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */; };
 		B66C1BE2286233A100F1C5FD /* AutoReleasePoolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B66C1BE1286233A100F1C5FD /* AutoReleasePoolVC.m */; };
 		B683DF9628A9E69B00DF4C5E /* CopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B683DF9528A9E69B00DF4C5E /* CopyViewController.m */; };
@@ -205,6 +206,8 @@
 		B6184E9325C7C63500837F2A /* MultiDemoSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiDemoSource.m; sourceTree = "<group>"; };
 		B6372C4F26DC819C0089E653 /* RunloopMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunloopMonitor.h; sourceTree = "<group>"; };
 		B6372C5026DC819C0089E653 /* RunloopMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunloopMonitor.m; sourceTree = "<group>"; };
+		B659575928B5204100CE060B /* NSArray+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		B659575A28B5204100CE060B /* NSArray+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
 		B66C1B85285E318D00F1C5FD /* PLHUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLHUIViewController.h; sourceTree = "<group>"; };
 		B66C1B86285E318D00F1C5FD /* PLHUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHUIViewController.m; sourceTree = "<group>"; };
 		B66C1BE0286233A100F1C5FD /* AutoReleasePoolVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoReleasePoolVC.h; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 		A36C75E025B32817005D7B8A /* MyLearnIOS */ = {
 			isa = PBXGroup;
 			children = (
+				B659575828B51FDA00CE060B /* Hook Array */,
 				B682A97A28864DC500F90124 /* Image */,
 				B60CB69827DBA01900AF2738 /* 函数式编程 */,
 				A39E689425F3C1D900AB0A35 /* DesignPatterns */,
@@ -582,6 +586,15 @@
 			path = MultiDelegate;
 			sourceTree = "<group>";
 		};
+		B659575828B51FDA00CE060B /* Hook Array */ = {
+			isa = PBXGroup;
+			children = (
+				B659575928B5204100CE060B /* NSArray+Safe.h */,
+				B659575A28B5204100CE060B /* NSArray+Safe.m */,
+			);
+			path = "Hook Array";
+			sourceTree = "<group>";
+		};
 		B682A97A28864DC500F90124 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -808,6 +821,7 @@
 				A3E0D6C225C982FF00DDA689 /* LoadStudent+Class.m in Sources */,
 				B6E1EB5426C114B2002C2A66 /* NSOperationQueueVC.m in Sources */,
 				B6372C5126DC819C0089E653 /* RunloopMonitor.m in Sources */,
+				B659575B28B5204100CE060B /* NSArray+Safe.m in Sources */,
 				B6184E8D25C7C5B500837F2A /* MutiDelegateDemo2.m in Sources */,
 				B6184E8625C7C4C800837F2A /* MultiDelegateVC.m in Sources */,
 				A36C75E625B32817005D7B8A /* SceneDelegate.m in Sources */,
