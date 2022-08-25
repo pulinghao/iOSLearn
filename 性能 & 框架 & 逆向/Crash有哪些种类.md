@@ -1,3 +1,5 @@
+Crash 一般产生自 iOS 的微内核 Mach，然后在 BSD 层转换成 UNIX SIGABRT 信号，以标准 POSIX 信号的形式提供给用户。NSException 是使用者在处理 App 逻辑时，用编程的方法抛出。
+
 # 分类
 
 - Mach异常：是指最底层的内核级异常。用户态的开发者可以直接通过Mach API设置thread，task，host的异常端口，来捕获Mach异常。
