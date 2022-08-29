@@ -676,6 +676,7 @@ objc_object::rootRetain(bool tryRetain, objc_object::RRVariant variant)
         newisa.bits = addc(newisa.bits, RC_ONE, 0, &carry);  // extra_rc++
 
         if (slowpath(carry)) {
+            // extra_rc溢出
             // newisa.extra_rc++ overflowed
             if (variant != RRVariant::Full) {
                 ClearExclusive(&isa.bits);
