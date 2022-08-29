@@ -6,6 +6,33 @@
 
 - 只复制block中用到的变量，复制的是一个值
 
+  - 如果是普通变量
+
+  ```c
+  int val = __cself->val;
+  ```
+
+  
+
+  - 如果是对象，例如
+
+```c
+NSMutableString * str = [[NSMutableString alloc]initWithString:@"Hello,"];
+void (^myBlock)(void) = ^{
+    [str appendString:@"World!"];
+    NSLog(@"Block中 str = %@",str);
+};
+```
+
+在捕获的是指针；
+
+```c
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  NSMutableString *str = __cself->str;
+  //...
+}
+```
+
 
 
 - 不能修改
@@ -39,9 +66,59 @@ void ^blk(void) = ^{
 
 ## 静态局部变量
 
+```c
+int main(){
+	static int static_k = 3;
+}
+```
+
+捕获
+
+```c
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  int *static_k = __cself->static_k; // bound by copy
+}
+```
+
+静态局部变量被捕获进来，以地址的形式访问
+
 ## 静态全局变量
 
+```c
+static int static_global_j = 2;
+int main(){
+
+}
+```
+
+捕获时，直接捕获；操作的时候，操作的就是`static_global_j`
+
+```c
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  int *static_k = __cself->static_k; // bound by copy
+  int val = __cself->val; // bound by copy
+
+  global_i ++;
+  static_global_j ++;
+  (*static_k) ++;
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_45_k1d9q7c52vz50wz1683_hk9r0000gn_T_main_6fe658_mi_0,global_i,static_global_j,(*static_k),val);
+    }
+```
+
+
+
 ## 全局变量
+
+```c
+int global_i = 2;
+int main(){
+
+}
+```
+
+同静态全局变量：捕获时，直接捕获；操作的时候，操作的就是`global_i`
+
+
 
 # 实现原理
 
@@ -84,15 +161,15 @@ NSLog(@"%d",val);
 
 #### block的复制
 
-```c
+```objective-c
 //以下代码在MRC中运行
-    __block int i = 0;
-    NSLog(@"%p",&i);
-    
-    void (^myBlock)(void) = [^{
-        i ++;
-        NSLog(@"这是Block 里面%p",&i);
-    }copy];
+__block int i = 0;
+NSLog(@"%p",&i);
+
+void (^myBlock)(void) = [^{
+    i ++;
+    NSLog(@"这是Block 里面%p",&i);
+}copy];
 ```
 
 输出为
@@ -150,12 +227,135 @@ NSLog(@"%d",val);
 
 
 
+# `__block`原理
+
+## 普通非对象的变量
+
+```c
+#import <Foundation/Foundation.h>
+
+int main(int argc, const char * argv[]) {
+    __block int i = 0;
+    void (^myBlock)(void) = ^{
+        i ++;
+        NSLog(@"%d",i);
+    }; 
+    myBlock();
+    return 0;
+}
+```
+
+转成C++的代码
+
+```c
+struct __Block_byref_i_0 {
+  void *__isa;
+__Block_byref_i_0 *__forwarding;
+ int __flags;
+ int __size;
+ int i;//存储实际值
+};
+
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  __Block_byref_i_0 *i = __cself->i; // bound by ref
+
+ (i->__forwarding->i) ++;
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_45_k1d9q7c52vz50wz1683_hk9r0000gn_T_main_3b0837_mi_0,(i->__forwarding->i));
+}
+
+int main(int argc, const char * argv[]) {
+    __attribute__((__blocks__(byref))) __Block_byref_i_0 i = {(void*)0,(__Block_byref_i_0 *)&i, 0, sizeof(__Block_byref_i_0), 0}; //构造函数，原来的val变成了一个结构体
+
+    void (*myBlock)(void) = ((void (*)())&__main_block_impl_0((void *)__main_block_func_0, &__main_block_desc_0_DATA, (__Block_byref_i_0 *)&i, 570425344));
+
+    ((void (*)(__block_impl *))((__block_impl *)myBlock)->FuncPtr)((__block_impl *)myBlock);
+
+    return 0;
+}
+```
+
+- 将原来的变量val，构造一个<font color='red'>结构体`__Block_byref_i_0`</font>
+- 让这个结构体的指向 i
+- 实际改动的是forwarding指针指向的值
+
+## 普通对象
+
+### 非__block修饰
+
+```objc
+id obj = [[NSObject alloc]init];
+NSLog(@"block_obj = [%@ , %p] , obj = [%@ , %p]",block_obj , &block_obj , obj , &obj);
+    
+void (^myBlock)(void) = ^{
+    NSLog(@"***Block中****block_obj = [%@ , %p] , obj = [%@ , %p]",block_obj , &block_obj , obj , &obj);
+  // obj的地址跟外边的地址是一样的
+};
+```
+
+转换为C++，使用的是指针，所以地址不会变化
+
+```c
+struct __main_block_impl_0 {
+  struct __block_impl impl;
+  struct __main_block_desc_0* Desc;
+  id obj;
+  __Block_byref_block_obj_0 *block_obj; // by ref
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, id _obj, __Block_byref_block_obj_0 *_block_obj, int flags=0) : obj(_obj), block_obj(_block_obj->__forwarding) {
+    impl.isa = &_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  id obj = __cself->obj; // bound by copy
+
+  NSLog((NSString *)&__NSConstantStringImpl__var_folders_45_k1d9q7c52vz50wz1683_hk9r0000gn_T_main_e64910_mi_1,(block_obj->__forwarding->block_obj) , &(block_obj->__forwarding->block_obj) , obj , &obj);
+}
+```
+
+
+
+## __block修饰
+
+```objc
+
+__block id block_obj = [[NSObject alloc]init];
+NSLog(@"block_obj = [%@ , %p] , obj = [%@ , %p]",block_obj , &block_obj , obj , &obj);
+
+void (^myBlock)(void) = ^{
+    NSLog(@"***Block中****block_obj = [%@ , %p] , obj = [%@ , %p]",block_obj , &block_obj , obj , &obj);
+   //ARC环境下，输出地址不同；MRC环境下，输出地址相同，因为MRC下，这是一个栈block，不拷贝
+};
+```
+
+传递的是一个结构体，结构体的内部forwarding指向了block_obj的地址
+
+```c
+struct __Block_byref_block_obj_0 {
+  void *__isa;
+__Block_byref_block_obj_0 *__forwarding;
+ int __flags;
+ int __size;
+ void (*__Block_byref_id_object_copy)(void*, void*);
+ void (*__Block_byref_id_object_dispose)(void*);
+ id block_obj;  //默认带strong修饰符，会引起引用计数+1
+};
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  __Block_byref_block_obj_0 *block_obj = __cself->block_obj; // bound by ref
+   NSLog((NSString *)&__NSConstantStringImpl__var_folders_45_k1d9q7c52vz50wz1683_hk9r0000gn_T_main_e64910_mi_1,(block_obj->__forwarding->block_obj) , &(block_obj->__forwarding->block_obj) , obj , &obj);
+    }
+```
+
+
+
 # 补充
 
 对于对象来说，
 
 在MRC环境下，`__block`根本不会对指针所指向的对象执行copy操作，而只是把指针进行的复制。
-而在ARC环境下，对于声明为`__block`的外部对象，在block内部会进行retain，以至于在block环境内能安全的引用外部对象。对于没有声明__block的外部对象，在block中也会被retain。
+而在ARC环境下，对于声明为`__block`的外部对象，在block内部会进行`retain`，以至于在block环境内能安全的引用外部对象。对于没有声明__block的外部对象，在block中也会被retain。
 
 
 
@@ -211,3 +411,8 @@ Block中 obj = 2
 3.Block外 obj = 1
 ```
 
+
+
+# 参考文档
+
+[](https://halfrost.com/ios_block/)
