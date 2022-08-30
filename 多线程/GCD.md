@@ -11,7 +11,7 @@ NSThread有两个函数`main`和`start`
 ## 栅栏函数
 
 - 封装网络请求的时候，不可以用<font color='red'>栅栏函数！！！</font>(AFN的网络队列，与这个添加网络任务的队列，不是一个队列)
-- 栅栏函数，必须创建在<font color='red'>'**并发队列**</font>上
+- 栅栏函数，必须创建在<font color='red'>**自定义的并发队列**</font>上
 
 ## 调度组
 
@@ -1092,15 +1092,11 @@ dispatch_queue_t serialQueue = disptach_queue_create("com.queue.myserial",NULL);
 dispatch_queue_get_label(dispatch_queue_t _Nullable queue);
 ```
 
-判断当前queue是不是main queue
-
-传入的参数为`DISPATCH_CURRENT_QUEUE_LABEL`
+判断当前queue是不是main queue，传入的参数为`DISPATCH_CURRENT_QUEUE_LABEL`
 
 ```c
 dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == dispatch_queue_get_label(dispatch_get_main_queue())
 ```
-
-
 
 ##  dispatch_set_target_queue
 
