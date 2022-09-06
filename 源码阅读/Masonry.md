@@ -2,7 +2,7 @@
 
 ## 更新视图
 
-mas_updateContraints`
+`mas_updateContraints`
 
 - 更新的约束，必须是在原来的make约束的基础之上，不能是新的约束
 
@@ -21,7 +21,7 @@ mas_updateContraints`
 ```objective-c
  [self.speView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.stationNameLabel.mas_right).mas_offset(5);
-        }];
+}];
 ```
 
 
@@ -57,7 +57,7 @@ mas_updateContraints`
 
 ## install接口
 
-```
+```objective-c
 - (NSArray *)install {
     if (self.removeExisting) {
         // 将已经存在的约束移除
@@ -103,9 +103,13 @@ mas_updateContraints`
 
 
 
+# 参考文档
+
+[源码解读——Masonry](https://www.jianshu.com/p/a294ab266858/)
+
 # 代码Tip
 
-- 父类未实现，子类实现的宏定义
+## 父类未实现，子类实现的宏定义
 
 如果子类没有实现，那么会崩溃，在输出信息中，打印出异常信息
 
@@ -118,7 +122,7 @@ mas_updateContraints`
 - (MASConstraint * (^)(CGFloat multiplier))multipliedBy { MASMethodNotImplemented(); }
 ```
 
-- 用约束实现动画效果
+## 用约束实现动画效果
 
 ```objective-c
 // 设置动画执行完毕后的布局
@@ -150,6 +154,31 @@ mas_updateContraints`
         // 这一步才会去挪动方块，执行真正的渲染
         // 下面这一句一定要放到动画的中间
         [self layoutIfNeeded];
-        }];
+}];
+```
+
+## 链式语法
+
+链式语法，利用iOS的三个点
+
+- 是一个get方法
+- 是用`block`来传参
+- 链式的核心是，返回`self`
+
+```objective-c
+self.doSth.setName(@"123");
+
+- (Person *)doSth{
+  // your code
+  return self;
+}
+
+- (Person* (^)(NSString *name))setName{
+   Person* (^block)(NSString *name) = ^(NSString *name){
+     NSLog(@"%@",name);
+     return self;
+   }
+   return block;
+}
 ```
 
