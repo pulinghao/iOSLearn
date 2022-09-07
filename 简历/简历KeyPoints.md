@@ -506,11 +506,12 @@ UIScrollVIew.delaysContentTouches
 React 与 San框架对比（[San 为什么会这么快](https://efe.baidu.com/blog/san-perf/)）
 
 - 在创建大量的行数据、刷新局部数据、交换行数据时，San的性能优于React
-- San引入了预热机制，模板确定时，提前做一遍，避免渲染时，重复做。对以下可以预热：
+- San引入了**预热机制**，模板确定时，提前做一遍，避免渲染时，重复做。对以下可以预热：
   - 静态属性
   - 保存属性操作函数
   - 对for，if这些提前选择ANode节点对应的实际类型
 - San去掉了private state，无DOM操作，
+- San更轻量，做减法，体积大概是64KB（3.10.0）；React 128KB（17.0.1），Vue 92KB（2.6.12）
 
 ### 2.5.2 动态化领域的问题
 
