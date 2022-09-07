@@ -95,13 +95,8 @@ int main(){
 
 ```c
 static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  int *static_k = __cself->static_k; // bound by copy
-  int val = __cself->val; // bound by copy
-
-  global_i ++;
   static_global_j ++;
-  (*static_k) ++;
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_45_k1d9q7c52vz50wz1683_hk9r0000gn_T_main_6fe658_mi_0,global_i,static_global_j,(*static_k),val);
+  NSLog((NSString *)&__NSConstantStringImpl__var_folders_45_k1d9q7c52vz50wz1683_hk9r0000gn_T_main_6fe658_mi_0,static_global_j);
     }
 ```
 
@@ -182,7 +177,7 @@ void (^myBlock)(void) = [^{
 
 从栈上复制到堆上，`__block`捕获的对象，也被复制到了堆上。此时，栈上的forwading指针指向的是堆上的那个`__block`对象。而堆上的`__block`对象，指向的是它自己。
 
-<img src="https://img.halfrost.com/Blog/ArticleImage/21_6.jpg" alt="img" style="zoom:50%;" />
+<img src="https://img.halfrost.com/Blog/ArticleImage/21_6.jpg" alt="img" style="zoom:40%;" />
 
 
 
@@ -356,8 +351,6 @@ static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
 
 在MRC环境下，`__block`根本不会对指针所指向的对象执行copy操作，而只是把指针进行的复制。
 而在ARC环境下，对于声明为`__block`的外部对象，在block内部会进行`retain`，以至于在block环境内能安全的引用外部对象。对于没有声明__block的外部对象，在block中也会被retain。
-
-
 
 在ARC环境下，其实也存在Stack类型的Block
 
