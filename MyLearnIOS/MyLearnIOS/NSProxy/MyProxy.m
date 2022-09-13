@@ -8,6 +8,48 @@
 
 #import "MyProxy.h"
 
+@interface THProxyA : NSProxy
+@property (nonatomic, strong) id target;
+@end
+@implementation THProxyA
+- (id)initWithObject:(id)object {
+    self.target = object;
+    return self;
+}
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+    return [self.target methodSignatureForSelector:selector];
+}
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    [invocation invokeWithTarget:self.target];
+}
+@end
+
+
+@interface THProxyB : NSObject
+@property (nonatomic, strong) id target;
+@end
+@implementation THProxyB
+- (id)initWithObject:(id)object {
+    self = [super init];
+    if (self) {
+        self.target = object;
+    }
+    return self;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector{
+    return true;
+}
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+    return [self.target methodSignatureForSelector:selector];  //这个方法不会走到
+}
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    [invocation invokeWithTarget:self.target];
+}
+@end
+
+
+
 @interface MyProxy()
 
 @property (nonatomic, weak) id innerObject;
@@ -24,15 +66,6 @@
 +(instancetype)proxyWithObj:(id)object{
     return [[MyProxy alloc] initWithObj:object];
 }
-
-//- (void)forwardInvocation:(NSInvocation *)invocation {
-//    id target;
-//    if ([_innerObject methodSignatureForSelector:invocation.selector]) {
-//        target = _innerObject;
-//    }
-//    [invocation invokeWithTarget:target];
-//
-//}
 
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel{
@@ -93,5 +126,15 @@
     NSString *temp = months > 3 ? @"wang wang!" : @"eng eng!";
     NSLog(@"barking:%@",temp);
     return temp;
+}
+
+- (void)test{
+    NSString *string = @"test";
+    THProxyA *proxyA = [[THProxyA alloc] initWithObject:string];
+    THProxyB *proxyB = [[THProxyB alloc] initWithObject:string];
+    NSLog(@"%d", [proxyA respondsToSelector:@selector(length)]);  // 1
+    NSLog(@"%d", [proxyB respondsToSelector:@selector(length)]);  // 0
+    NSLog(@"%d", [proxyA isKindOfClass:[NSString class]]);   // 1
+    NSLog(@"%d", [proxyB isKindOfClass:[NSString class]]);   // 0
 }
 @end
