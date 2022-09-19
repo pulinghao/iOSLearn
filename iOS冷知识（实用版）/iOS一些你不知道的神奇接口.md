@@ -1,4 +1,4 @@
-# 视图
+# 1. 视图
 
 ## 按钮点击范围
 
@@ -31,7 +31,7 @@
 
 
 
-# 巧用类别来添加属性
+# 2. 巧用类别来添加属性
 
 一般，我们使用Category去实现原有的类不具备的功能，但是Category不支持添加属性。假设有这样的一个需求，内部需要添加属性，而对外部来说，这个属性不可见。
 
@@ -79,4 +79,20 @@ NS_ASSUME_NONNULL_END
 
 @end
 ```
+
+# 3. 单色icon转字体文件
+
+将图片做成字体文件，从而减少包体积。不过仅适用于单色图片
+
+使用工具https://icomoon.io/ 将单色icon转成字体文件
+
+将转换后的ttf文件，放到项目中
+
+![30173f7a6bf6d8168d3624fcc0d5ddb8](iOS一些你不知道的神奇接口.assets/30173f7a6bf6d8168d3624fcc0d5ddb8.jpg)
+
+
+
+# 4. 检测重复代码的工具
+
+[Simian](http://www.harukizaemon.com/simian/installation.html)
 
