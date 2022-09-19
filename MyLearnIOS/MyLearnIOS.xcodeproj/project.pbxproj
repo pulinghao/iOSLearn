@@ -49,6 +49,7 @@
 		A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253525BC79E6008051CB /* RuntimeVC.m */; };
 		A3EF253D25BC849B008051CB /* NIOPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF253C25BC849B008051CB /* NIOPerson.m */; };
 		A3EF255125BDCBBB008051CB /* PLHThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF255025BDCBBB008051CB /* PLHThread.m */; };
+		B605CED128D0560A0046A2E2 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B605CED028D0560A0046A2E2 /* YYWeakProxy.m */; };
 		B60CB69B27DBA06900AF2738 /* LinkPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B60CB69A27DBA06900AF2738 /* LinkPerson.m */; };
 		B6184DD225C3E37D00837F2A /* LockLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184DD125C3E37D00837F2A /* LockLearn.m */; };
 		B6184DE225C3FA8200837F2A /* TaggerPointerLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = B6184DE125C3FA8200837F2A /* TaggerPointerLearn.m */; };
@@ -186,6 +187,8 @@
 		A3EF254A25BDCA59008051CB /* CFRunLoop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFRunLoop.h; sourceTree = "<group>"; };
 		A3EF254F25BDCBBB008051CB /* PLHThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLHThread.h; sourceTree = "<group>"; };
 		A3EF255025BDCBBB008051CB /* PLHThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLHThread.m; sourceTree = "<group>"; };
+		B605CECF28D0560A0046A2E2 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
+		B605CED028D0560A0046A2E2 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		B60CB69927DBA06900AF2738 /* LinkPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkPerson.h; sourceTree = "<group>"; };
 		B60CB69A27DBA06900AF2738 /* LinkPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkPerson.m; sourceTree = "<group>"; };
 		B6184DD025C3E37D00837F2A /* LockLearn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LockLearn.h; sourceTree = "<group>"; };
@@ -614,6 +617,8 @@
 		B6EC824225CAC3E900689DF4 /* NSProxy */ = {
 			isa = PBXGroup;
 			children = (
+				B605CECF28D0560A0046A2E2 /* YYWeakProxy.h */,
+				B605CED028D0560A0046A2E2 /* YYWeakProxy.m */,
 				B6EC824325CAC3FA00689DF4 /* MyProxy.h */,
 				B6EC824425CAC3FA00689DF4 /* MyProxy.m */,
 			);
@@ -806,6 +811,7 @@
 				B6E1EB6326C21ECB002C2A66 /* RunLoopVC.m in Sources */,
 				A3E0D76F25D008E800DDA689 /* HItTestView.m in Sources */,
 				A3E0D78125D043A200DDA689 /* LoadStudent+PersonClass.m in Sources */,
+				B605CED128D0560A0046A2E2 /* YYWeakProxy.m in Sources */,
 				A3EF253625BC79E6008051CB /* RuntimeVC.m in Sources */,
 				A394260925C4609100114F3A /* NSOperationQueueLearn.m in Sources */,
 				A36C762625B3308F005D7B8A /* KVOSecondViewController.m in Sources */,

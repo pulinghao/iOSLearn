@@ -35,6 +35,7 @@
 #import "NSOperationQueueVC.h"
 #import "RunLoopVC.h"
 #import "MyProxy.h"
+#import "YYWeakProxy.h"
 #import "LinkPerson.h"
 extern void instrumentObjcMessageSends(BOOL);
 extern void _objc_autoreleasePoolPrint(void);
@@ -133,8 +134,12 @@ typedef void(^testBlock)();
     self.runtimeLearn = [[RuntimeLearn alloc] init];
     
     MyDog *dog = [MyDog new];
-    id proxy = [MyProxy proxyWithObj:dog];
-    [proxy barking:4];
+//    id proxy = [MyProxy proxyWithObj:dog];
+//    [proxy barking:4];
+    
+    id p = [YYWeakProxy proxyWithTarget:dog];
+//    [p performSelector:@selector(doSomething)];
+    [p barking:4];
     
 //    _myLabel = [[UILabel alloc] init];
 //    _myLabel.text = @"1000+kg";

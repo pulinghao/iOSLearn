@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSString *)barking:(NSInteger)months;
 
+- (void)test;
 
 @end
 
