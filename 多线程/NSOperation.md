@@ -7,7 +7,7 @@
 - NSInvocationOperation 
 - NSBlockOperation
 
-## **NSInvocationOperation**
+# **NSInvocationOperation**
 
 - `start`方法会在<font color='red'>**当前线程**</font>执行和调度。
 - `start`如果在主线程，就会阻塞主线程
@@ -43,6 +43,8 @@
 - 对于并发操作，重写四个方法：`start`、`asynchronous`、`executing`、`finished`。需要自己创建自动释放池，因为异步操作无法访问主线程的自动释放池。
 
 ### 串行
+
+默认是串行执行的
 
 ### 并发
 

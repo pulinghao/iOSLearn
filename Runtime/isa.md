@@ -21,7 +21,7 @@ union isa_t {
 
 手机做了non-pointer的优化，而PC没有做优化
 
-- isa_t使用的是联合体结构
+- isa_t使用的是**联合体结构**
 
 共有3个成员 cls、bits和struct结构的一个字段，共用一个地址
 
@@ -137,7 +137,7 @@ struct objc_class {
 - NSObject的父类 是 nil
 - NSObject元类的父类是 NSObject
 
-### objcect_getClass
+### object_getClass
 
 ```c++
 + (Class)class {
@@ -190,7 +190,7 @@ getClass方法，获取自己的isa指针，类的isa指针是元类，实例的
 
 ### isMemeberOfClass
 
-```
+```objc
 + (BOOL)isMemberOfClass:(Class)cls {
     return object_getClass((id)self) == cls;
 }
@@ -474,7 +474,7 @@ setter = (void (*)(id, SEL, BOOL))[self methodForSelector:@selector(setDirectBl:
 比较直接调用和消息转发的耗时。
 
 ```c
- CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
+CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
 for (int i = 0; i < 100000; i++) {
     setter(self, @selector(setDirectBl:),YES);
 }
