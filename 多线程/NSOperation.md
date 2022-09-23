@@ -131,7 +131,7 @@
 
 补充一下，NSOperation内部添加了对上面那些状态的键值观察
 
-<img src="/Users/pulinghao/Library/Application Support/typora-user-images/image-20220818003814141.png" alt="image-20220818003814141" style="zoom:50%;" />
+<img src="NSOperation.assets/image-20220818003814141.png" alt="image-20220818003814141" style="zoom:50%;" />
 
 注意：自己创建自动释放池，异步操作无法访问主线程的自动释放池
 

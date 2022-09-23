@@ -16,7 +16,7 @@ item1.attribute1 = multiplier × item2.attribute2 + constant
 
 
 
-![view-formula](/Users/pulinghao/Github/iOSLearn/视图/view-formula.png)
+![view-formula](view-formula.png)
 
 该约束表示红色视图的左边界在蓝色视图的右边界再往右 8 个像素点。**注意，这里的 `=` 并不是赋值的意思，而是相等的意思**。
 
@@ -77,7 +77,7 @@ iOS 中有部分视图具有**固有内容尺寸**（intrinsic content size）�
 
 `Content Compressing Priority`：表示一个视图抗压缩的优先级，数值越高优先级越高，越不容易被压缩。
 
-![intrinsic_content_size](/Users/pulinghao/Github/iOSLearn/视图/intrinsic_content_size.png)
+![intrinsic_content_size](intrinsic_content_size.png)
 
 默认情况下，视图的 `Content Hugging Priority` 值是 `250`，`Content Compression Resistance Priority` 值是 `750`。因此，拉伸视图比压缩视图更容易。
 
@@ -89,7 +89,7 @@ iOS 中有部分视图具有**固有内容尺寸**（intrinsic content size）�
 
 有时候，我们在创建复杂视图时，可能会添加各种装饰元素，如：阴影，角标等。为了降低开发成本，我们会直接使用设计师给的切图。如下所示：
 
-![alignment-rect](/Users/pulinghao/Github/iOSLearn/视图/alignment-rect.jpeg)
+![alignment-rect](alignment-rect.jpeg)
 
 其中，(a) 是设计师给的切图，(c) 是这个图的 `frame`。显然，我们在布局时，不想将阴影和角标考虑进入（视图的 `center` 和底边、右边都发生了偏移），而只考虑中间的核心部分，如图 (b) 中框出的矩形所示。
 
@@ -109,7 +109,7 @@ iOS 中有部分视图具有**固有内容尺寸**（intrinsic content size）�
 
 
 
-![the-render-loop](/Users/pulinghao/Github/iOSLearn/视图/the-render-loop.png)
+![the-render-loop](the-render-loop.png)
 
 Auto layout 在 view 显示之前，多引入了两个步骤：`updating constraints` 和 `laying out views`。每一个步骤都依赖于上一个。display 依赖 layout，而 layout 依赖 updating constraints。 `updating constraints->layout->display`
 
@@ -162,9 +162,7 @@ Auto layout 在 view 显示之前，多引入了两个步骤：`updating constra
 
 应该避免**布局传递**！！！也就是说，在下一步设置layout的时候，又触发了上一步的`updateConstraints`!!!
 
-<img src="/Users/pulinghao/Library/Application Support/typora-user-images/image-20220821210950444.png" alt="image-20220821210950444" style="zoom:50%;" />
-
-
+<img src="AutoLayout.assets/image-20220821210950444.png" alt="image-20220821210950444" style="zoom:50%;" />
 
 # autolayout生命周期
 

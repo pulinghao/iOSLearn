@@ -88,9 +88,9 @@ signal(SIGSEGV,signalHandler); // 注册监听 Unix 信号
 }
 ```
 
-程序最后，会在断点abort()的位置崩溃
+程序最后，会在断点`abort()`的位置崩溃
 
-![image-20220808000249385](/Users/pulinghao/Library/Application Support/typora-user-images/image-20220808000249385.png)
+<img src="Crash有哪些种类.assets/image-20220808000249385.png" alt="image-20220808000249385" style="zoom:50%;" />
 
 # Unix Signal
 

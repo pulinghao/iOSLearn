@@ -490,7 +490,7 @@ CFAbsoluteTime linkTime = (CFAbsoluteTimeGetCurrent() - startTime);
 NSLog(@"objc_msg send time %f ms", linkTime *1000.0);
 ```
 
-<img src="/Users/pulinghao/Library/Application Support/typora-user-images/image-20220816234629443.png" alt="image-20220816234629443" style="zoom:50%;" />
+![image-20220816234629443](isa.assets/image-20220816234629443.png)
 
 两者的调用时间，在10000次调用的时候，大概有0.2ms的差距。直接调用具有更好的优势。
 
