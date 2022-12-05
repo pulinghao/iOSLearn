@@ -89,7 +89,13 @@ typedef void(^testBlock)();
 }
 @end
 
-@interface ViewController ()
+
+@protocol MyProtocol <NSObject>
+
+@property (nonatomic, copy) NSString *myProtocolName;
+
+@end
+@interface ViewController () <MyProtocol>
 
 @property (nonatomic, strong) LockLearn *lockLearn;
 @property (nonatomic, strong) TaggerPointerLearn *taggerpointer;
@@ -140,6 +146,8 @@ typedef void(^testBlock)();
     id p = [YYWeakProxy proxyWithTarget:dog];
 //    [p performSelector:@selector(doSomething)];
     [p barking:4];
+    
+    NSLog(@"myProtocolName : %@",self.myProtocolName);
     
 //    _myLabel = [[UILabel alloc] init];
 //    _myLabel.text = @"1000+kg";
@@ -262,6 +270,9 @@ typedef void(^testBlock)();
     });
 }
 
+- (NSString *)myProtocolName{
+    return @"123";
+}
 - (void)viewDidAppear:(BOOL)animated
 {
 //    NSLog(@"%p",&_person);
@@ -456,4 +467,5 @@ typedef void(^testBlock)();
     int a = 10;
     return blk(a);
 }
+
 @end
