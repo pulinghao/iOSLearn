@@ -6,7 +6,7 @@
 
 - 主队列在APP的`main`函数之前，就被创建出来了
 
-NSThread有两个函数`main`和`start`
+`NSThread`有两个函数`main`和`start`
 
 ## 栅栏函数
 
