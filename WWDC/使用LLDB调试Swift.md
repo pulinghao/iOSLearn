@@ -42,7 +42,7 @@ image lookup -va 函数地址
 
 
 
-![image-20230211021218874](/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/WWDC/使用LLDB调试Swift.assets/image-20230211021218874-6052740.png)
+![image-20230211021218874](./使用LLDB调试Swift.assets/image-20230211021218874-6052740.png)
 
 输入下面的指令，来查看当前image中的库(以UIKitFrameWork为例，他对应的库为TerminalInterface)
 
@@ -50,14 +50,14 @@ image lookup -va 函数地址
 $image list TerminalInterface
 ```
 
-![image-20230211015619442](/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/WWDC/使用LLDB调试Swift.assets/image-20230211015619442-6051780.png)
+![image-20230211015619442](./使用LLDB调试Swift.assets/image-20230211015619442-6051780.png)
 
 
 
 设置库的映射文件
 
-![image-20230211015726186](/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/WWDC/使用LLDB调试Swift.assets/image-20230211015726186-6051847.png)
+![image-20230211015726186](./使用LLDB调试Swift.assets/image-20230211015726186-6051847.png)
 
 也可以额通过Edit Scheme设置每次LLDB加载的源码库地址
 
-![image-20230211015341736](/Volumes/MacHD_M2/Users/pulinghao/Github/iOSLearn/WWDC/使用LLDB调试Swift.assets/image-20230211015341736-6051623.png)
+![image-20230211015341736](./使用LLDB调试Swift.assets/image-20230211015341736-6051623.png)
