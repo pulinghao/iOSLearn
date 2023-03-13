@@ -20,3 +20,17 @@ var steps: [MKRouteStep] = []
 steps.append(item)
 ```
 
+
+
+## 时间戳
+
+- String类型的数据，转TimeInterval
+
+转成NSString之后，获取doubleValue
+
+```swift
+if let timeValidString = YourTimeStampString as? NSString {
+    return timeValidString.doubleValue
+}
+```
+
