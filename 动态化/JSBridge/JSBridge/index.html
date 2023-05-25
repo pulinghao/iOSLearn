@@ -1,0 +1,16 @@
+<script>
+    function sendMessage() {
+        window.webkit.messageHandlers.hello.postMessage("Hello from JavaScript!");
+    }
+</script>
+<button width="200" height="100" onclick="sendMessage()">Send Message</button>
+
+<script>
+    function showToast() {
+        var text = document.getElementById("text").value;
+        var url = "jsbridge://showToast?text=" + text;
+        window.location.href = url;
+    }
+</script>
+<input type="text" id="text" placeholder="Input text here">
+<button onclick="showToast()">Show Toast</button>
